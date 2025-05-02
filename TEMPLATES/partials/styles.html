@@ -1,0 +1,239 @@
+<!-- Include CSS -->
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<!-- Include Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Configure Tailwind -->
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Inter', 'sans-serif'],
+        },
+        colors: {
+          primary: {
+            50: '#f9fafb',
+            100: '#f3f4f6',
+            200: '#e5e7eb',
+            300: '#d1d5db',
+            400: '#9ca3af',
+            500: '#6b7280',
+            600: '#4b5563',
+            700: '#374151',
+            800: '#1f2937',
+            900: '#111827',
+          },
+        }
+      }
+    }
+  }
+</script>
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.sidebar-menu {
+  background-color: #f8f4f3;
+}
+
+.severity-critical {
+  color: #fff;
+  background-color: #dc2626;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+
+.severity-high {
+  color: #fff;
+  background-color: #f97316;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+
+.severity-medium {
+  color: #000;
+  background-color: #facc15;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+
+.severity-low {
+  color: #fff;
+  background-color: #2563eb;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+}
+
+/* Animation effects */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.shimmer {
+  animation: shimmer 2s infinite linear;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.animate-pulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.menu-item a:hover, .menu-item button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.menu-item a, .menu-item button {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.menu-item a::after, .menu-item button::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: calc(50% - 8px);
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+}
+
+.menu-item:hover a::after, .menu-item:hover button::after {
+  opacity: 0.3;
+  transform: translateY(0);
+}
+
+.menu-item.active a::after, .menu-item.active button::after {
+  opacity: 0.6;
+  transform: translateY(0);
+  background-color: #ef4444;
+}
+
+.submenu-item {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.submenu-item:hover {
+  transform: translateX(5px);
+}
+
+.submenu-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background: linear-gradient(to bottom, #ef4444, #f87171);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+.submenu-item:hover::before {
+  transform: scaleY(1);
+}
+
+@keyframes navGlow {
+  0% { box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+  50% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.3); }
+  100% { box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.menu-item.active a, .menu-item.active button {
+  animation: navGlow 2s infinite;
+}
+
+.menu-item a .icon-wrapper, .menu-item button .icon-wrapper {
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.menu-item:hover a .icon-wrapper, .menu-item:hover button .icon-wrapper,
+.menu-item.active a .icon-wrapper, .menu-item.active button .icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* Active indicator for submenu */
+.submenu-item.active {
+  background-color: rgba(255, 255, 255, 0.1);
+  font-weight: 500;
+  color: white;
+  padding-left: 20px; 
+}
+
+.submenu-item.active::before {
+  transform: scaleY(1);
+  background: linear-gradient(to bottom, #ef4444, #f87171);
+}
+
+/* Smooth page transition */
+.page-transition {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Add these new styles */
+[x-cloak] { 
+  display: none !important; 
+}
+
+/* Style for when modal is open - add this class to body when modal opens */
+.modal-open {
+  overflow: hidden;
+}
+
+/* Enhanced backdrop blur and glass effect for modals */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Glass effect for modal content */
+.modal-content {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .modal-content {
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Add smooth transition for blur effects */
+.transition-blur {
+  transition: backdrop-filter 0.3s ease-in-out;
+}

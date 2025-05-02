@@ -1,0 +1,713 @@
+<!-- Defect Resolution Time Analysis Component -->
+<section class="mb-6">
+    <div class="bg-gray-800/70 rounded-xl border border-gray-700/40 backdrop-filter backdrop-blur-sm p-6 relative overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-indigo-500/10">
+      <!-- Decorative elements with theme-matching gradients -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-full -mt-20 -mr-20 z-0 opacity-60"></div>
+      <div class="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-full -mb-20 -ml-20 z-0 opacity-60"></div>
+      
+      <!-- Content wrapper -->
+      <div class="relative z-10">
+        <!-- Header with controls -->
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
+          <div>
+            <h2 class="text-xl font-bold inline-flex items-center">
+              <span class="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">การวิเคราะห์ประสิทธิภาพการแก้ไข Defects</span>
+              <i data-popover-target="defect-time-info" data-popover-placement="bottom" class="ri-information-line ml-2 text-gray-500 hover:text-blue-400 cursor-pointer transition-colors"></i>
+              <div data-popover id="defect-time-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-400 transition-opacity duration-300 bg-gray-800/90 border border-gray-700 rounded-lg shadow-lg opacity-0 w-72">
+                <div class="p-3 space-y-2">
+                  <h3 class="font-semibold text-white">การวิเคราะห์ประสิทธิภาพการแก้ไข Defects</h3>
+                  <p class="text-gray-400">แสดงระยะเวลาเฉลี่ยในการแก้ไข Defects ตามช่วงเวลาที่เลือก และเปรียบเทียบจำนวน Defects ระหว่างช่วงเวลาต่างๆ</p>
+                </div>
+                <div data-popper-arrow></div>
+              </div>
+            </h2>
+            <p class="text-sm text-gray-400 mt-1 flex items-center">
+              <i class="ri-timer-line mr-1.5 text-gray-500"></i>
+              วิเคราะห์จาก <span class="font-medium text-gray-300 ml-1">{{ defects_data|length }}</span> defects
+            </p>
+          </div>
+          
+          <!-- Time range selector -->
+          <div class="flex items-center space-x-3">
+            <div class="date-range-selector bg-gray-900/50 border border-gray-700/60 rounded-lg p-1.5 flex items-center">
+              <button id="range-week" class="time-range-btn px-3 py-1.5 text-xs font-medium rounded-md text-white bg-indigo-500/90 hover:bg-indigo-500/100 transition-colors">อาทิตย์นี้</button>
+              <button id="range-month" class="time-range-btn px-3 py-1.5 text-xs font-medium rounded-md text-gray-400 hover:text-white hover:bg-gray-700/60 transition-colors">เดือนนี้</button>
+              <button id="range-quarter" class="time-range-btn px-3 py-1.5 text-xs font-medium rounded-md text-gray-400 hover:text-white hover:bg-gray-700/60 transition-colors">ไตรมาสนี้</button>
+            </div>
+            <div class="custom-date bg-gray-900/50 border border-gray-700/60 rounded-lg p-1.5">
+              <button id="custom-range-btn" class="flex items-center text-xs font-medium text-gray-400 hover:text-white transition-colors px-2">
+                <i class="ri-calendar-line mr-1"></i>
+                กำหนดเอง
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Main analysis grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Left column: Resolution Time Analysis -->
+          <div class="bg-gray-800/30 backdrop-filter backdrop-blur-sm rounded-xl border border-gray-700/50 p-5 transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-base font-medium text-gray-200 flex items-center">
+                <i class="ri-time-line mr-2 text-indigo-400"></i>
+                ระยะเวลาการแก้ไข Defects
+              </h3>
+              <div class="flex items-center text-xs text-gray-400">
+                <span id="avg-resolution-time" class="font-medium text-indigo-400">5.2</span>
+                <span class="ml-1">วันโดยเฉลี่ย</span>
+              </div>
+            </div>
+            
+            <!-- Resolution time trend chart container -->
+            <div class="h-64 w-full resolution-chart-container" id="resolution-chart">
+              <!-- Chart will be rendered here by JavaScript -->
+              <!-- Placeholder for when JavaScript is loading -->
+              <div class="h-full w-full grid place-items-center chart-placeholder">
+                <div class="text-gray-500 text-center">
+                  <i class="ri-line-chart-line text-3xl mb-2 block"></i>
+                  <p>กำลังโหลดข้อมูล...</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Resolution time breakdown -->
+            <div class="mt-5 grid grid-cols-3 gap-3">
+              <div class="bg-gray-800/60 rounded-lg p-3 border border-gray-700/40">
+                <div class="text-xs text-gray-400 mb-1">เร็วที่สุด</div>
+                <div class="text-lg font-medium text-emerald-400">0.5 วัน</div>
+                <div class="text-xs text-gray-500 mt-1">ใน Critical Bugs</div>
+              </div>
+              <div class="bg-gray-800/60 rounded-lg p-3 border border-gray-700/40">
+                <div class="text-xs text-gray-400 mb-1">ช้าที่สุด</div>
+                <div class="text-lg font-medium text-rose-400">14.2 วัน</div>
+                <div class="text-xs text-gray-500 mt-1">ใน Minor Bugs</div>
+              </div>
+              <div class="bg-gray-800/60 rounded-lg p-3 border border-gray-700/40">
+                <div class="text-xs text-gray-400 mb-1">มัธยฐาน</div>
+                <div class="text-lg font-medium text-indigo-400">4.3 วัน</div>
+                <div class="text-xs text-gray-500 mt-1">จาก {{ defects_data|length }} Defects</div>
+              </div>
+            </div>
+            
+            <div class="mt-5">
+              <h4 class="text-sm font-medium text-gray-300 mb-3">การกระจายของเวลาการแก้ไข</h4>
+              <div class="space-y-3">
+                <div class="relative">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs text-gray-400">0-2 วัน</span>
+                    <div>
+                      <span class="text-xs font-medium text-gray-400 mr-1">25</span>
+                      <span class="text-xs font-medium text-emerald-400">(28%)</span>
+                    </div>
+                  </div>
+                  <div class="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                    <div class="h-full resolution-bar rounded-full" 
+                         style="width: 28%; background: linear-gradient(to right, rgb(52, 211, 153), rgb(16, 185, 129))"></div>
+                  </div>
+                </div>
+                
+                <div class="relative">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs text-gray-400">3-5 วัน</span>
+                    <div>
+                      <span class="text-xs font-medium text-gray-400 mr-1">42</span>
+                      <span class="text-xs font-medium text-blue-400">(47%)</span>
+                    </div>
+                  </div>
+                  <div class="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                    <div class="h-full resolution-bar rounded-full" 
+                         style="width: 47%; background: linear-gradient(to right, rgb(59, 130, 246), rgb(37, 99, 235))"></div>
+                  </div>
+                </div>
+                
+                <div class="relative">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs text-gray-400">6-10 วัน</span>
+                    <div>
+                      <span class="text-xs font-medium text-gray-400 mr-1">15</span>
+                      <span class="text-xs font-medium text-amber-400">(17%)</span>
+                    </div>
+                  </div>
+                  <div class="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                    <div class="h-full resolution-bar rounded-full" 
+                         style="width: 17%; background: linear-gradient(to right, rgb(251, 191, 36), rgb(245, 158, 11))"></div>
+                  </div>
+                </div>
+                
+                <div class="relative">
+                  <div class="flex items-center justify-between mb-1">
+                    <span class="text-xs text-gray-400">มากกว่า 10 วัน</span>
+                    <div>
+                      <span class="text-xs font-medium text-gray-400 mr-1">7</span>
+                      <span class="text-xs font-medium text-rose-400">(8%)</span>
+                    </div>
+                  </div>
+                  <div class="h-1.5 bg-gray-700 rounded-full overflow-hidden">
+                    <div class="h-full resolution-bar rounded-full" 
+                         style="width: 8%; background: linear-gradient(to right, rgb(244, 63, 94), rgb(225, 29, 72))"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right column: Defect Trend Analysis -->
+          <div class="bg-gray-800/30 backdrop-filter backdrop-blur-sm rounded-xl border border-gray-700/50 p-5 transition-all duration-300 hover:shadow-md">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="text-base font-medium text-gray-200 flex items-center">
+                <i class="ri-line-chart-line mr-2 text-blue-400"></i>
+                แนวโน้มการเพิ่มขึ้นของ Defects
+              </h3>
+              <div id="trend-delta" class="flex items-center text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-full px-2 py-0.5">
+                <i class="ri-arrow-up-line mr-1"></i>
+                <span>+12% จากช่วงก่อนหน้า</span>
+              </div>
+            </div>
+            
+            <!-- Defect trend chart container -->
+            <div class="h-64 w-full defect-trend-chart-container" id="defect-trend-chart">
+              <!-- Chart will be rendered here by JavaScript -->
+              <!-- Placeholder for when JavaScript is loading -->
+              <div class="h-full w-full grid place-items-center chart-placeholder">
+                <div class="text-gray-500 text-center">
+                  <i class="ri-bar-chart-grouped-line text-3xl mb-2 block"></i>
+                  <p>กำลังโหลดข้อมูล...</p>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Weekly comparison -->
+            <div class="mt-5 flex space-x-4">
+              <div class="flex-1 bg-gray-800/60 rounded-lg p-4 border border-gray-700/40">
+                <div class="text-sm text-gray-300 mb-3 flex items-center justify-between">
+                  <span>อาทิตย์นี้</span>
+                  <span class="text-xs text-gray-500">15-21 ม.ค. 2567</span>
+                </div>
+                <div class="flex items-end justify-between">
+                  <div>
+                    <div class="text-2xl font-medium text-white">24</div>
+                    <div class="text-xs text-gray-400 mt-1">Defects เปิดใหม่</div>
+                  </div>
+                  <div>
+                    <div class="text-2xl font-medium text-emerald-400">18</div>
+                    <div class="text-xs text-gray-400 mt-1">Defects ที่ปิดไป</div>
+                  </div>
+                  <div class="h-12 w-12 grid place-items-center bg-rose-500/10 rounded-full border border-rose-500/20">
+                    <div class="text-rose-400 text-sm font-medium">+6</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="flex-1 bg-gray-800/60 rounded-lg p-4 border border-gray-700/40">
+                <div class="text-sm text-gray-300 mb-3 flex items-center justify-between">
+                  <span>อาทิตย์ที่แล้ว</span>
+                  <span class="text-xs text-gray-500">8-14 ม.ค. 2567</span>
+                </div>
+                <div class="flex items-end justify-between">
+                  <div>
+                    <div class="text-2xl font-medium text-white">18</div>
+                    <div class="text-xs text-gray-400 mt-1">Defects เปิดใหม่</div>
+                  </div>
+                  <div>
+                    <div class="text-2xl font-medium text-emerald-400">19</div>
+                    <div class="text-xs text-gray-400 mt-1">Defects ที่ปิดไป</div>
+                  </div>
+                  <div class="h-12 w-12 grid place-items-center bg-emerald-500/10 rounded-full border border-emerald-500/20">
+                    <div class="text-emerald-400 text-sm font-medium">-1</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Priority breakdown -->
+            <div class="mt-5">
+              <h4 class="text-sm font-medium text-gray-300 mb-3">จำแนกตามความสำคัญ (อาทิตย์นี้)</h4>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div class="bg-gray-800/60 rounded-lg p-3 text-center border border-gray-700/40">
+                  <div class="inline-block p-1.5 bg-rose-500/10 rounded-lg mb-1.5">
+                    <i class="ri-error-warning-line text-lg text-rose-400"></i>
+                  </div>
+                  <div class="text-lg font-medium text-white">6</div>
+                  <div class="text-xs text-gray-400">Critical</div>
+                </div>
+                
+                <div class="bg-gray-800/60 rounded-lg p-3 text-center border border-gray-700/40">
+                  <div class="inline-block p-1.5 bg-amber-500/10 rounded-lg mb-1.5">
+                    <i class="ri-alert-line text-lg text-amber-400"></i>
+                  </div>
+                  <div class="text-lg font-medium text-white">9</div>
+                  <div class="text-xs text-gray-400">Major</div>
+                </div>
+                
+                <div class="bg-gray-800/60 rounded-lg p-3 text-center border border-gray-700/40">
+                  <div class="inline-block p-1.5 bg-blue-500/10 rounded-lg mb-1.5">
+                    <i class="ri-information-line text-lg text-blue-400"></i>
+                  </div>
+                  <div class="text-lg font-medium text-white">7</div>
+                  <div class="text-xs text-gray-400">Minor</div>
+                </div>
+                
+                <div class="bg-gray-800/60 rounded-lg p-3 text-center border border-gray-700/40">
+                  <div class="inline-block p-1.5 bg-gray-500/10 rounded-lg mb-1.5">
+                    <i class="ri-customer-service-line text-lg text-gray-400"></i>
+                  </div>
+                  <div class="text-lg font-medium text-white">2</div>
+                  <div class="text-xs text-gray-400">Trivial</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Additional insights and metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+          <div class="bg-gray-800/20 rounded-lg border border-gray-700/30 p-4 transition-all duration-300 hover:bg-gray-800/30">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 rounded-md bg-indigo-500/10 grid place-items-center mr-2">
+                <i class="ri-speed-up-line text-indigo-400"></i>
+              </div>
+              <div class="text-sm font-medium text-gray-300">ความเร็วในการแก้ไข</div>
+            </div>
+            <div class="mt-2">
+              <div class="text-xl font-semibold text-white">82%</div>
+              <div class="text-xs text-indigo-400 mt-1">แก้ไขภายใน SLA ที่กำหนด</div>
+            </div>
+          </div>
+          
+          <div class="bg-gray-800/20 rounded-lg border border-gray-700/30 p-4 transition-all duration-300 hover:bg-gray-800/30">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 rounded-md bg-emerald-500/10 grid place-items-center mr-2">
+                <i class="ri-check-double-line text-emerald-400"></i>
+              </div>
+              <div class="text-sm font-medium text-gray-300">อัตราการแก้ไขเสร็จ</div>
+            </div>
+            <div class="mt-2">
+              <div class="text-xl font-semibold text-white">75%</div>
+              <div class="text-xs text-emerald-400 mt-1">Defects ที่ปิดในสัปดาห์นี้</div>
+            </div>
+          </div>
+          
+          <div class="bg-gray-800/20 rounded-lg border border-gray-700/30 p-4 transition-all duration-300 hover:bg-gray-800/30">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 rounded-md bg-rose-500/10 grid place-items-center mr-2">
+                <i class="ri-user-follow-line text-rose-400"></i>
+              </div>
+              <div class="text-sm font-medium text-gray-300">ทีมที่แก้ไขมากที่สุด</div>
+            </div>
+            <div class="mt-2">
+              <div class="text-xl font-semibold text-white truncate">Backend Team</div>
+              <div class="text-xs text-rose-400 mt-1">แก้ไขไปแล้ว 13 Defects</div>
+            </div>
+          </div>
+          
+          <div class="bg-gray-800/20 rounded-lg border border-gray-700/30 p-4 transition-all duration-300 hover:bg-gray-800/30">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 rounded-md bg-amber-500/10 grid place-items-center mr-2">
+                <i class="ri-calendar-check-line text-amber-400"></i>
+              </div>
+              <div class="text-sm font-medium text-gray-300">วันที่แก้ไขได้มากที่สุด</div>
+            </div>
+            <div class="mt-2">
+              <div class="text-xl font-semibold text-white">วันพุธ</div>
+              <div class="text-xs text-amber-400 mt-1">เฉลี่ย 4.5 Defects ต่อวัน</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Custom date range selector modal (hidden by default) -->
+        <div id="date-range-modal" class="fixed inset-0 z-50 hidden items-center justify-center">
+          <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+          <div class="relative bg-gray-800 rounded-xl border border-gray-700 p-6 shadow-xl w-full max-w-md">
+            <h3 class="text-lg font-semibold text-gray-100 mb-4">กำหนดช่วงเวลาเอง</h3>
+            
+            <div class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-400 mb-1">วันเริ่มต้น</label>
+                <input type="date" class="w-full bg-gray-700/60 border border-gray-600 rounded-lg px-3 py-2 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              </div>
+              
+              <div>
+                <label class="block text-sm font-medium text-gray-400 mb-1">วันสิ้นสุด</label>
+                <input type="date" class="w-full bg-gray-700/60 border border-gray-600 rounded-lg px-3 py-2 text-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+              </div>
+            </div>
+            
+            <div class="mt-6 flex justify-end space-x-3">
+              <button id="close-date-range-modal" class="px-4 py-2 bg-gray-700 text-gray-300 rounded-lg hover:bg-gray-600 transition-colors">ยกเลิก</button>
+              <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition-colors">ยืนยัน</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+<!-- JavaScript for Defect Resolution Analysis -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize time range selector
+      const timeRangeBtns = document.querySelectorAll('.time-range-btn');
+      timeRangeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Remove active class from all buttons
+          timeRangeBtns.forEach(b => {
+            b.classList.remove('bg-indigo-500/90', 'text-white');
+            b.classList.add('text-gray-400', 'hover:text-white', 'hover:bg-gray-700/60');
+          });
+          
+          // Add active class to clicked button
+          this.classList.remove('text-gray-400', 'hover:text-white', 'hover:bg-gray-700/60');
+          this.classList.add('bg-indigo-500/90', 'text-white');
+          
+          // Update charts based on selected time range
+          updateCharts(this.id);
+        });
+      });
+      
+      // Custom date range modal
+      const customRangeBtn = document.getElementById('custom-range-btn');
+      const dateRangeModal = document.getElementById('date-range-modal');
+      const closeDateRangeModalBtn = document.getElementById('close-date-range-modal');
+      
+      customRangeBtn.addEventListener('click', function() {
+        dateRangeModal.classList.remove('hidden');
+        dateRangeModal.classList.add('flex');
+      });
+      
+      closeDateRangeModalBtn.addEventListener('click', function() {
+        dateRangeModal.classList.add('hidden');
+        dateRangeModal.classList.remove('flex');
+      });
+      
+      // Close modal when clicking outside
+      dateRangeModal.addEventListener('click', function(e) {
+        if (e.target === dateRangeModal) {
+          dateRangeModal.classList.add('hidden');
+          dateRangeModal.classList.remove('flex');
+        }
+      });
+      
+      // Function to update charts based on selected time range
+      function updateCharts(rangeId) {
+        // Remove chart placeholders
+        document.querySelectorAll('.chart-placeholder').forEach(placeholder => {
+          placeholder.style.display = 'none';
+        });
+        
+        // Update trend delta indicator based on selection
+        const trendDelta = document.getElementById('trend-delta');
+        if (rangeId === 'range-week') {
+          trendDelta.className = 'flex items-center text-xs font-medium text-rose-400 bg-rose-500/10 border border-rose-500/20 rounded-full px-2 py-0.5';
+          trendDelta.innerHTML = '<i class="ri-arrow-up-line mr-1"></i><span>+12% จากช่วงก่อนหน้า</span>';
+        } else if (rangeId === 'range-month') {
+          trendDelta.className = 'flex items-center text-xs font-medium text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-2 py-0.5';
+          trendDelta.innerHTML = '<i class="ri-arrow-down-line mr-1"></i><span>-5% จากช่วงก่อนหน้า</span>';
+        } else if (rangeId === 'range-quarter') {
+          trendDelta.className = 'flex items-center text-xs font-medium text-amber-400 bg-amber-500/10 border border-amber-500/20 rounded-full px-2 py-0.5';
+          trendDelta.innerHTML = '<i class="ri-arrow-up-line mr-1"></i><span>+3% จากช่วงก่อนหน้า</span>';
+        }
+        
+        // Update average resolution time
+        const avgResolutionTime = document.getElementById('avg-resolution-time');
+        if (rangeId === 'range-week') {
+          avgResolutionTime.textContent = '5.2';
+        } else if (rangeId === 'range-month') {
+          avgResolutionTime.textContent = '4.8';
+        } else if (rangeId === 'range-quarter') {
+          avgResolutionTime.textContent = '6.1';
+        }
+        
+        // Initialize charts using ApexCharts if available
+        if (typeof ApexCharts !== 'undefined') {
+          initCharts(rangeId);
+        } else {
+          // Fallback if ApexCharts is not available - show data in tables
+          renderChartFallbacks(rangeId);
+        }
+      }
+      
+      // Initialize charts using ApexCharts
+      function initCharts(rangeId) {
+        // Resolution Time Chart
+        const resolutionChartOptions = {
+          series: [{
+            name: 'ระยะเวลาเฉลี่ย (วัน)',
+            data: [5.8, 4.2, 6.1, 5.9, 3.8, 4.7, 5.2]
+          }],
+          chart: {
+            type: 'line',
+            height: 250,
+            fontFamily: 'Inter, sans-serif',
+            foreColor: '#94a3b8',
+            toolbar: {
+              show: false
+            },
+            animations: {
+              enabled: true,
+              easing: 'easeinout',
+              speed: 800,
+            },
+            background: 'transparent'
+          },
+          stroke: {
+            curve: 'smooth',
+            width: 3
+          },
+          colors: ['#818cf8'],
+          fill: {
+            type: 'gradient',
+            gradient: {
+              shadeIntensity: 1,
+              opacityFrom: 0.4,
+              opacityTo: 0.1,
+              stops: [0, 100]
+            }
+          },
+          grid: {
+            borderColor: 'rgba(107, 114, 128, 0.15)',
+            strokeDashArray: 3,
+            padding: {
+              left: 5,
+              right: 5
+            }
+          },
+          markers: {
+            size: 5,
+            strokeColors: '#818cf8',
+            strokeWidth: 2,
+            fillOpacity: 1,
+            shape: 'circle',
+            radius: 2,
+            hover: {
+              size: 7
+            }
+          },
+          xaxis: {
+            categories: ['อาทิตย์ที่ 1', 'อาทิตย์ที่ 2', 'อาทิตย์ที่ 3', 'อาทิตย์ที่ 4', 'อาทิตย์ที่ 5', 'อาทิตย์ที่ 6', 'อาทิตย์ที่ 7'],
+            axisBorder: {
+              show: false
+            },
+            axisTicks: {
+              show: false
+            },
+            labels: {
+              style: {
+                colors: '#94a3b8',
+                fontSize: '12px'
+              }
+            }
+          },
+          yaxis: {
+            labels: {
+              style: {
+                colors: '#94a3b8',
+                fontSize: '12px'
+              },
+              formatter: function(val) {
+                return val.toFixed(1) + ' วัน';
+              }
+            }
+          },
+          tooltip: {
+            theme: 'dark',
+            y: {
+              formatter: function(val) {
+                return val.toFixed(1) + ' วัน';
+              }
+            }
+          },
+          legend: {
+            position: 'top',
+            horizontalAlign: 'right',
+            labels: {
+              colors: '#94a3b8'
+            },
+            itemMargin: {
+              horizontal: 10
+            }
+          }
+        };
+        
+        // Defect Trend Chart
+        const defectTrendChartOptions = {
+          series: [{
+            name: 'Defects เปิดใหม่',
+            data: [18, 15, 21, 19, 16, 22, 24]
+          }, {
+            name: 'Defects ที่ปิดไป',
+            data: [12, 17, 15, 19, 20, 21, 18]
+          }],
+          chart: {
+            type: 'bar',
+            height: 250,
+            fontFamily: 'Inter, sans-serif',
+            foreColor: '#94a3b8',
+            toolbar: {
+              show: false
+            },
+            animations: {
+              enabled: true,
+              speed: 500
+            },
+            background: 'transparent',
+            stacked: false
+          },
+          plotOptions: {
+            bar: {
+              horizontal: false,
+              columnWidth: '55%',
+              borderRadius: 3,
+              dataLabels: {
+                position: 'top'
+              }
+            }
+          },
+          colors: ['#3b82f6', '#10b981'],
+          grid: {
+            borderColor: 'rgba(107, 114, 128, 0.15)',
+            strokeDashArray: 3,
+            padding: {
+              left: 5,
+              right: 5
+            }
+          },
+          xaxis: {
+            categories: ['อาทิตย์ที่ 1', 'อาทิตย์ที่ 2', 'อาทิตย์ที่ 3', 'อาทิตย์ที่ 4', 'อาทิตย์ที่ 5', 'อาทิตย์ที่ 6', 'อาทิตย์ที่ 7'],
+            axisBorder: {
+              show: false
+            },
+            axisTicks: {
+              show: false
+            },
+            labels: {
+              style: {
+                colors: '#94a3b8',
+                fontSize: '12px'
+              }
+            }
+          },
+          yaxis: {
+            labels: {
+              style: {
+                colors: '#94a3b8',
+                fontSize: '12px'
+              }
+            }
+          },
+          tooltip: {
+            theme: 'dark',
+            shared: true,
+            intersect: false
+          },
+          legend: {
+            position: 'top',
+            horizontalAlign: 'right',
+            labels: {
+              colors: '#94a3b8'
+            },
+            itemMargin: {
+              horizontal: 10
+            }
+          }
+        };
+        
+        // Adjust chart data based on selected time range
+        if (rangeId === 'range-month') {
+          resolutionChartOptions.xaxis.categories = ['1-7 ม.ค.', '8-14 ม.ค.', '15-21 ม.ค.', '22-28 ม.ค.'];
+          resolutionChartOptions.series[0].data = [6.2, 5.1, 5.2, 4.8];
+          
+          defectTrendChartOptions.xaxis.categories = ['1-7 ม.ค.', '8-14 ม.ค.', '15-21 ม.ค.', '22-28 ม.ค.'];
+          defectTrendChartOptions.series[0].data = [15, 18, 24, 21];
+          defectTrendChartOptions.series[1].data = [12, 19, 18, 22];
+        } else if (rangeId === 'range-quarter') {
+          resolutionChartOptions.xaxis.categories = ['ต.ค.', 'พ.ย.', 'ธ.ค.', 'ม.ค.'];
+          resolutionChartOptions.series[0].data = [7.1, 6.5, 5.8, 5.2];
+          
+          defectTrendChartOptions.xaxis.categories = ['ต.ค.', 'พ.ย.', 'ธ.ค.', 'ม.ค.'];
+          defectTrendChartOptions.series[0].data = [58, 67, 72, 78];
+          defectTrendChartOptions.series[1].data = [45, 62, 68, 71];
+        }
+        
+        // Initialize and render charts
+        const resolutionChartEl = document.getElementById('resolution-chart');
+        const defectTrendChartEl = document.getElementById('defect-trend-chart');
+        
+        // Clear previous charts if they exist
+        if (resolutionChartEl) resolutionChartEl.innerHTML = '';
+        if (defectTrendChartEl) defectTrendChartEl.innerHTML = '';
+        
+        const resolutionChart = new ApexCharts(resolutionChartEl, resolutionChartOptions);
+        const defectTrendChart = new ApexCharts(defectTrendChartEl, defectTrendChartOptions);
+        
+        resolutionChart.render();
+        defectTrendChart.render();
+      }
+      
+      // Fallback for when ApexCharts is not available
+      function renderChartFallbacks(rangeId) {
+        const resolutionChartEl = document.getElementById('resolution-chart');
+        const defectTrendChartEl = document.getElementById('defect-trend-chart');
+        
+        resolutionChartEl.innerHTML = `
+          <div class="h-full w-full flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-gray-500 mb-3">แผนภูมิไม่สามารถแสดงผลได้</div>
+              <div class="bg-gray-800/60 rounded-lg p-3 max-w-md mx-auto">
+                <div class="text-sm font-medium text-gray-300 mb-2">ข้อมูลสรุปการแก้ไข Defect</div>
+                <div class="text-gray-400 text-xs">ระยะเวลาเฉลี่ย: <span class="text-indigo-400">5.2 วัน</span></div>
+                <div class="text-gray-400 text-xs">ระยะเวลาสั้นที่สุด: <span class="text-emerald-400">0.5 วัน</span></div>
+                <div class="text-gray-400 text-xs">ระยะเวลานานที่สุด: <span class="text-rose-400">14.2 วัน</span></div>
+              </div>
+            </div>
+          </div>
+        `;
+        
+        defectTrendChartEl.innerHTML = `
+          <div class="h-full w-full flex items-center justify-center">
+            <div class="text-center">
+              <div class="text-gray-500 mb-3">แผนภูมิไม่สามารถแสดงผลได้</div>
+              <div class="bg-gray-800/60 rounded-lg p-3 max-w-md mx-auto">
+                <div class="text-sm font-medium text-gray-300 mb-2">ข้อมูลสรุป Defect</div>
+                <div class="text-gray-400 text-xs">Defects เปิดใหม่: <span class="text-blue-400">24</span></div>
+                <div class="text-gray-400 text-xs">Defects ที่ปิดไป: <span class="text-emerald-400">18</span></div>
+                <div class="text-gray-400 text-xs">การเปลี่ยนแปลง: <span class="text-rose-400">+12%</span></div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      
+      // Initialize charts with default range
+      updateCharts('range-week');
+      
+      // Add animation for progress bars
+      document.querySelectorAll('.resolution-bar').forEach((bar, index) => {
+        setTimeout(() => {
+          bar.style.transition = 'width 1s ease-in-out';
+          // Trigger reflow to enable animation
+          void bar.offsetWidth;
+        }, index * 100);
+      });
+    });
+  </script>
+  
+  <!-- CSS for Defect Resolution Analysis -->
+  <style>
+    /* Chart placeholder styling */
+    .chart-placeholder {
+      opacity: 1;
+      transition: opacity 0.5s ease-out;
+    }
+    
+    /* Time range selector styling */
+    .time-range-btn {
+      transition: all 0.2s ease-out;
+    }
+    
+    /* Resolution time bar animation */
+    .resolution-bar {
+      width: 0; /* Start at 0 width */
+      transition: width 1s ease-in-out; /* Will be set in JS */
+      transform-origin: left;
+    }
+  </style> 

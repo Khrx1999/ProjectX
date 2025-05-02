@@ -1,0 +1,356 @@
+<!-- Defect Distribution Analysis Component -->
+<section class="mb-6">
+  <div class="bg-gray-800/70 rounded-xl border border-gray-700 backdrop-filter backdrop-blur-sm p-6 relative overflow-hidden group hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-500">
+    <!-- Decorative elements with theme-matching gradients -->
+    <div class="absolute top-0 right-0 w-56 h-56 bg-gradient-to-br from-indigo-500/5 to-purple-500/5 rounded-full -mt-20 -mr-20 z-0 opacity-70 group-hover:scale-110 transition-transform duration-700"></div>
+    <div class="absolute bottom-0 left-0 w-56 h-56 bg-gradient-to-br from-blue-500/5 to-cyan-500/5 rounded-full -mb-20 -ml-20 z-0 opacity-70 group-hover:scale-110 transition-transform duration-700"></div>
+    
+    <!-- Main content with increased z-index -->
+    <div class="relative z-10">
+      <!-- Header with elegant gradient title -->
+      <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center mb-6 gap-4">
+        <div>
+          <h2 class="text-xl font-bold inline-flex items-center">
+            <span class="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent glow-effect">การวิเคราะห์ Defects</span>
+            <i data-popover-target="defect-distribution-info" data-popover-placement="bottom" class="ri-information-line ml-2 text-gray-500 hover:text-blue-400 cursor-pointer transition-colors"></i>
+            <div data-popover id="defect-distribution-info" role="tooltip" class="absolute z-10 invisible inline-block text-sm text-gray-400 transition-opacity duration-300 bg-gray-800/90 border border-gray-700 rounded-lg shadow-lg opacity-0 w-72">
+              <div class="p-3 space-y-2">
+                <h3 class="font-semibold text-white">การวิเคราะห์การกระจาย Defects</h3>
+                <p class="text-gray-400">แสดงการกระจายของ Defects ทั้งหมดแยกตาม Module และ Page ที่พบปัญหามากที่สุด เพื่อช่วยวิเคราะห์จุดที่ควรปรับปรุง</p>
+                <h3 class="font-semibold text-white">ประโยชน์การใช้งาน</h3>
+                <p class="text-gray-400">ช่วยบ่งชี้แนวโน้มของปัญหาและระบุจุดที่ควรให้ความสำคัญในการปรับปรุงคุณภาพซอฟต์แวร์</p>
+              </div>
+              <div data-popper-arrow></div>
+            </div>
+          </h2>
+          <p class="text-sm text-gray-400 mt-1 flex items-center">
+            <i class="ri-bubble-chart-line mr-1.5 text-gray-500"></i>
+            วิเคราะห์จาก <span class="font-medium text-gray-300 ml-1">{{ defects_data|length }}</span> defects
+          </p>
+        </div>
+        
+        <!-- Summary stats cards -->
+        <div class="flex flex-wrap gap-3">
+          {% set module_counts = {} %}
+          {% set page_counts = {} %}
+          {% for defect in defects_data %}
+            {% if defect.module in module_counts %}
+              {% set _ = module_counts.update({defect.module: module_counts[defect.module] + 1}) %}
+            {% else %}
+              {% set _ = module_counts.update({defect.module: 1}) %}
+            {% endif %}
+            
+            {% if defect.page in page_counts %}
+              {% set _ = page_counts.update({defect.page: page_counts[defect.page] + 1}) %}
+            {% else %}
+              {% set _ = page_counts.update({defect.page: 1}) %}
+            {% endif %}
+          {% endfor %}
+          
+          {% set total_defects = defects_data|length %}
+          {% set sorted_modules = module_counts|dictsort(by='value', reverse=true) %}
+          {% set sorted_pages = page_counts|dictsort(by='value', reverse=true) %}
+          
+          <div class="stat-card bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-lg p-3 flex items-center space-x-3">
+            <div class="bg-indigo-500/10 rounded-full p-2">
+              <i class="ri-apps-2-line text-indigo-400 text-lg"></i>
+            </div>
+            <div>
+              <div class="text-xs text-gray-400">Module สูงสุด</div>
+              <div class="text-sm font-medium text-white flex items-center">
+                {{ sorted_modules[0][0] }}
+                <span class="text-xs font-normal text-indigo-400 ml-1.5">({{ (sorted_modules[0][1] / total_defects * 100)|round(1) }}%)</span>
+              </div>
+            </div>
+          </div>
+          
+          <div class="stat-card bg-gradient-to-br from-gray-800/50 to-gray-900/50 border border-gray-700/50 rounded-lg p-3 flex items-center space-x-3">
+            <div class="bg-blue-500/10 rounded-full p-2">
+              <i class="ri-pages-line text-blue-400 text-lg"></i>
+            </div>
+            <div>
+              <div class="text-xs text-gray-400">Page สูงสุด</div>
+              <div class="text-sm font-medium text-white flex items-center">
+                {{ sorted_pages[0][0]|truncate(15) }}
+                <span class="text-xs font-normal text-blue-400 ml-1.5">({{ (sorted_pages[0][1] / total_defects * 100)|round(1) }}%)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Main chart content -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- Module Distribution -->
+        <div class="bg-gray-800/40 backdrop-filter backdrop-blur-sm rounded-xl border border-gray-700/50 p-4 hover:shadow-md hover:shadow-indigo-500/5 transition-all">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-base font-medium text-gray-200 flex items-center">
+              <i class="ri-apps-2-line mr-2 text-indigo-400"></i>
+              การกระจายตาม Module
+            </h3>
+            <div class="flex items-center text-xs text-gray-400">
+              <span>รวม {{ module_counts|length }} modules</span>
+            </div>
+          </div>
+          
+          <div class="space-y-3 module-chart pr-1 max-h-[330px] overflow-y-auto fancy-scrollbar">
+            {% for module, count in sorted_modules %}
+              {% set percentage = (count / total_defects * 100)|round(1) %}
+              <div class="relative group animate-on-load animation-delay-{{ loop.index }}">
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="flex items-center w-7/12 pr-2">
+                    {% if module == 'Admin' %}
+                      <i class="ri-admin-line text-amber-400 mr-1.5 min-w-[16px]"></i>
+                    {% elif module == 'BE' %}
+                      <i class="ri-database-2-line text-cyan-400 mr-1.5 min-w-[16px]"></i>
+                    {% elif module == 'Authentication' %}
+                      <i class="ri-lock-line text-blue-400 mr-1.5 min-w-[16px]"></i>
+                    {% elif module == 'Payment' %}
+                      <i class="ri-bank-card-line text-green-400 mr-1.5 min-w-[16px]"></i>
+                    {% elif module == 'User Profile' %}
+                      <i class="ri-user-3-line text-purple-400 mr-1.5 min-w-[16px]"></i>
+                    {% else %}
+                      <i class="ri-code-s-slash-line text-orange-400 mr-1.5 min-w-[16px]"></i>
+                    {% endif %}
+                    <span class="text-sm text-gray-300 group-hover:text-white transition-colors truncate">{{ module }}</span>
+                  </div>
+                  <div class="w-5/12 flex justify-between items-center">
+                    <div class="flex-grow h-1.5 bg-gray-700 rounded-full overflow-hidden mx-2">
+                      <div class="h-full progress-bar rounded-full transition-all duration-1000 ease-out" 
+                           style="width: 0%;" data-percentage="{{ percentage }}"></div>
+                    </div>
+                    <div class="text-right flex items-center min-w-[80px]">
+                      <span class="text-xs font-medium text-gray-400 mr-1.5">{{ count }}</span>
+                      <span class="text-xs font-medium text-indigo-400 min-w-[40px]">{{ percentage }}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+        
+        <!-- Page Distribution -->
+        <div class="bg-gray-800/40 backdrop-filter backdrop-blur-sm rounded-xl border border-gray-700/50 p-4 hover:shadow-md hover:shadow-blue-500/5 transition-all">
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-base font-medium text-gray-200 flex items-center">
+              <i class="ri-pages-line mr-2 text-blue-400"></i>
+              การกระจายตาม Page
+            </h3>
+            <div class="flex items-center text-xs text-gray-400">
+              <span>รวม {{ page_counts|length }} pages</span>
+            </div>
+          </div>
+          
+          <div class="space-y-3 page-chart pr-1 max-h-[330px] overflow-y-auto fancy-scrollbar">
+            {% for page, count in sorted_pages %}
+              {% set percentage = (count / total_defects * 100)|round(1) %}
+              <div class="relative group animate-on-load animation-delay-{{ loop.index }}">
+                <div class="flex items-center justify-between mb-1.5">
+                  <div class="flex items-center w-7/12 pr-2">
+                    {% if 'Mobile App' in page %}
+                      <i class="ri-smartphone-line text-blue-400 mr-1.5 min-w-[16px]"></i>
+                    {% elif 'App Users' in page %}
+                      <i class="ri-group-line text-green-400 mr-1.5 min-w-[16px]"></i>
+                    {% elif 'Account' in page %}
+                      <i class="ri-account-circle-line text-purple-400 mr-1.5 min-w-[16px]"></i>
+                    {% elif 'Tenant' in page %}
+                      <i class="ri-store-2-line text-amber-400 mr-1.5 min-w-[16px]"></i>
+                    {% elif 'Onboarding' in page %}
+                      <i class="ri-rocket-line text-rose-400 mr-1.5 min-w-[16px]"></i>
+                    {% elif 'Pending' in page %}
+                      <i class="ri-timer-line text-orange-400 mr-1.5 min-w-[16px]"></i>
+                    {% else %}
+                      <i class="ri-pages-line text-gray-400 mr-1.5 min-w-[16px]"></i>
+                    {% endif %}
+                    <span class="text-sm text-gray-300 group-hover:text-white transition-colors truncate">{{ page }}</span>
+                  </div>
+                  <div class="w-5/12 flex justify-between items-center">
+                    <div class="flex-grow h-1.5 bg-gray-700 rounded-full overflow-hidden mx-2">
+                      <div class="h-full progress-bar rounded-full transition-all duration-1000 ease-out" 
+                           style="width: 0%;" data-percentage="{{ percentage }}"></div>
+                    </div>
+                    <div class="text-right flex items-center min-w-[80px]">
+                      <span class="text-xs font-medium text-gray-400 mr-1.5">{{ count }}</span>
+                      <span class="text-xs font-medium text-blue-400 min-w-[40px]">{{ percentage }}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Additional insights section -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-5">
+        {% set status_counts = {} %}
+        {% set severity_counts = {} %}
+        {% for defect in defects_data %}
+          {% if defect.status in status_counts %}
+            {% set _ = status_counts.update({defect.status: status_counts[defect.status] + 1}) %}
+          {% else %}
+            {% set _ = status_counts.update({defect.status: 1}) %}
+          {% endif %}
+          
+          {% if defect.severity in severity_counts %}
+            {% set _ = severity_counts.update({defect.severity: severity_counts[defect.severity] + 1}) %}
+          {% else %}
+            {% set _ = severity_counts.update({defect.severity: 1}) %}
+          {% endif %}
+        {% endfor %}
+        
+        {% set sorted_status = status_counts|dictsort(by='value', reverse=true) %}
+        {% set sorted_severity = severity_counts|dictsort(by='value', reverse=true) %}
+        
+        <div class="bg-gray-800/30 rounded-lg border border-gray-700/50 p-3 hover:bg-gray-800/40 transition-colors">
+          <div class="text-xs text-gray-400 mb-1">สถานะยอดนิยม</div>
+          <div class="text-base font-medium text-white truncate">{{ sorted_status[0][0] }}</div>
+          <div class="text-xs text-blue-400 mt-1">{{ (sorted_status[0][1] / total_defects * 100)|round() }}% ของ Defects ทั้งหมด</div>
+        </div>
+        
+        <div class="bg-gray-800/30 rounded-lg border border-gray-700/50 p-3 hover:bg-gray-800/40 transition-colors">
+          <div class="text-xs text-gray-400 mb-1">ความรุนแรงยอดนิยม</div>
+          <div class="text-base font-medium text-white truncate">{{ sorted_severity[0][0] }}</div>
+          <div class="text-xs text-indigo-400 mt-1">{{ (sorted_severity[0][1] / total_defects * 100)|round() }}% ของ Defects ทั้งหมด</div>
+        </div>
+        
+        <div class="bg-gray-800/30 rounded-lg border border-gray-700/50 p-3 hover:bg-gray-800/40 transition-colors">
+          <div class="text-xs text-gray-400 mb-1">จำนวน Module ทั้งหมด</div>
+          <div class="text-base font-medium text-white">{{ module_counts|length }}</div>
+          <div class="text-xs text-green-400 mt-1">เฉลี่ย {{ (total_defects / module_counts|length)|round(1) }} defects ต่อ module</div>
+        </div>
+        
+        <div class="bg-gray-800/30 rounded-lg border border-gray-700/50 p-3 hover:bg-gray-800/40 transition-colors">
+          <div class="text-xs text-gray-400 mb-1">จำนวน Page ทั้งหมด</div>
+          <div class="text-base font-medium text-white">{{ page_counts|length }}</div>
+          <div class="text-xs text-amber-400 mt-1">เฉลี่ย {{ (total_defects / page_counts|length)|round(1) }} defects ต่อ page</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JavaScript for Defect Distribution -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add animation for progress bars
+    document.querySelectorAll('.progress-bar').forEach((bar, index) => {
+      setTimeout(() => {
+        // Get the target percentage from data attribute
+        const percentage = bar.getAttribute('data-percentage');
+        
+        // Set the appropriate gradient based on parent container
+        if (bar.closest('.module-chart')) {
+          bar.style.background = 'linear-gradient(to right, rgb(99, 102, 241), rgb(129, 140, 248))';
+        } else if (bar.closest('.page-chart')) {
+          bar.style.background = 'linear-gradient(to right, rgb(37, 99, 235), rgb(59, 130, 246))';
+        }
+        
+        // Set width to percentage
+        bar.style.width = percentage + '%';
+      }, index * 30); // Staggered delay for each bar
+    });
+    
+    // Scroll animation for module and page charts
+    const animateOnScroll = function() {
+      const elements = document.querySelectorAll('.animate-on-load');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementBottom = element.getBoundingClientRect().bottom;
+        const isVisible = elementTop < window.innerHeight && elementBottom > 0;
+        
+        if (isVisible) {
+          element.classList.add('animated');
+        }
+      });
+    };
+    
+    // Run once on load
+    animateOnScroll();
+    
+    // Add event listener for scroll
+    window.addEventListener('scroll', animateOnScroll);
+  });
+</script>
+
+<!-- CSS for Defect Distribution -->
+<style>
+  /* Fancy scrollbar */
+  .fancy-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .fancy-scrollbar::-webkit-scrollbar-track {
+    background: rgba(31, 41, 55, 0.3);
+    border-radius: 3px;
+  }
+  
+  .fancy-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(79, 84, 103, 0.5);
+    border-radius: 3px;
+    transition: background 0.3s;
+  }
+  
+  .fancy-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(99, 102, 241, 0.4);
+  }
+  
+  /* Progress bar animation */
+  .progress-bar {
+    transform-origin: left;
+  }
+  
+  /* Animation delays for staggered animation */
+  .animation-delay-1 { animation-delay: 50ms; }
+  .animation-delay-2 { animation-delay: 100ms; }
+  .animation-delay-3 { animation-delay: 150ms; }
+  .animation-delay-4 { animation-delay: 200ms; }
+  .animation-delay-5 { animation-delay: 250ms; }
+  .animation-delay-6 { animation-delay: 300ms; }
+  .animation-delay-7 { animation-delay: 350ms; }
+  .animation-delay-8 { animation-delay: 400ms; }
+  .animation-delay-9 { animation-delay: 450ms; }
+  .animation-delay-10 { animation-delay: 500ms; }
+  
+  /* Animated load in effect for bars */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-on-load {
+    opacity: 0;
+  }
+  
+  .animate-on-load.animated,
+  .animate-on-load {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+  
+  /* Stat card hover effect */
+  .stat-card {
+    transition: all 0.3s ease;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(99, 102, 241, 0.1);
+  }
+  
+  /* Glow effect for headings */
+  .glow-effect {
+    text-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+  }
+</style>
+
+
+

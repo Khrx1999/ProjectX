@@ -1,0 +1,1430 @@
+<!-- Recent Defects with Advanced Features -->
+<section id="defects" class="mb-12 pt-8 relative">
+  <div class="bg-gradient-to-b from-gray-900 to-black rounded-xl border border-gray-700 p-6 mb-6 shadow-xl shadow-black/20 hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
+    <!-- Decorative Elements -->
+    <div class="absolute top-0 right-0 w-48 h-48 bg-red-500/5 rounded-full -mt-16 -mr-16 z-0"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-indigo-500/5 rounded-full -mb-32 -ml-32 z-0"></div>
+    
+    <div class="relative z-[20]">
+  
+      <!-- Header Row - Compact Layout -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-6 pb-6 border-b border-gray-700">
+        <!-- Title with Icon (Left) -->
+        <div class="flex items-center">
+          <!-- Glow Effect Container -->
+          <div class="relative group mr-3">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-500"></div>
+            <div class="relative bg-gradient-to-br from-red-600 to-rose-700 p-3 rounded-lg text-white shadow-lg shadow-red-600/20 group-hover:shadow-red-600/40 transition duration-300">
+              <i class="ri-bug-2-line text-2xl"></i>
+            </div>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-white tracking-tight flex items-center">
+              Recent Defects
+              <span id="defects-badge-count" class="ml-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-900/30 text-red-300 border border-red-800/30">
+                <i class="ri-error-warning-line mr-1"></i>
+                {{ defects_data|length }}
+              </span>
+            </h3>
+            <p class="text-sm text-gray-400 mt-1">ข้อบกพร่องที่พบล่าสุดและสถานะการแก้ไข</p>
+          </div>
+        </div>
+        
+        
+        <!-- Action Buttons Group (Right) -->
+        <div class="flex flex-wrap items-center gap-2 order-2 md:order-3 ml-auto">
+          <!-- Search Box -->
+          <div class="relative w-full sm:w-auto sm:min-w-[180px]">
+            <input type="text" placeholder="ค้นหา..." class="w-full py-2 pl-9 pr-3 text-sm bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 rounded-lg focus:ring-2 focus:ring-red-500/40 focus:outline-none transition-colors">
+            <i class="ri-search-line absolute left-3 top-2.5 text-gray-500"></i>
+          </div>
+          
+          <!-- Action Buttons - Hidden on smallest screens, shown with icons only on small screens -->
+          <div class="hidden sm:flex items-center gap-2">
+              <!-- Advanced Filters Button -->
+              <div class="dropdown relative">
+                <button class="dropdown-toggle text-sm bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 border border-gray-700 text-gray-300 px-3 py-2 rounded-lg transition-all duration-300 flex items-center shadow-lg shadow-black/20 hover:shadow-xl hover:shadow-black/30 focus:ring-2 focus:ring-red-500/40 focus:outline-none group">
+                  <div class="relative">
+                    <div class="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-pink-500 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-500"></div>
+                    <div class="relative flex items-center">
+                      <i class="ri-equalizer-line mr-1.5 text-red-400"></i>
+                      <span class="hidden md:inline">Filter</span>
+                      <i class="ri-arrow-down-s-line ml-1.5 text-gray-500 group-hover:text-red-400 transition-colors"></i>
+                    </div>
+                  </div>
+                </button>
+                <div class="advanced-filters-menu hidden p-6 rounded-xl bg-gradient-to-br from-gray-900 to-black border border-gray-700 w-96 shadow-2xl shadow-black/30 z-[30] absolute right-0 mt-2 backdrop-blur-sm">
+                  <!-- Background Effects -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-red-500/5 to-pink-500/5 backdrop-blur-[2px]"></div>
+                  <div class="absolute right-0 top-0 w-64 h-64 bg-gradient-to-br from-red-500/10 to-pink-500/10 rounded-full -mt-32 -mr-32 blur-xl"></div>
+                  <div class="absolute left-0 bottom-0 w-32 h-32 bg-gradient-to-br from-red-500/10 to-pink-500/10 rounded-full -mb-16 -ml-16 blur-xl"></div>
+                  
+                  <div class="relative space-y-4">
+                    <p class="text-xs text-gray-400 border-b border-gray-700 pb-2 flex items-center">
+                      <i class="ri-equalizer-line mr-2 text-red-400"></i>
+                      Advanced Filters
+                    </p>
+                    
+                    <div>
+                      <label class="text-xs text-gray-400 block mb-2 flex items-center">
+                        <i class="ri-checkbox-multiple-line mr-2 text-red-400"></i>
+                        Status
+                      </label>
+                      <div class="grid grid-cols-2 gap-3">
+                        <!-- All Status Checkbox -->
+                        <div class="col-span-2">
+                          <label class="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-700/50 transition-all duration-300 group">
+                            <input type="checkbox" class="mr-2" id="status-all" name="statusCheckbox" value="All" checked>
+                            <span class="group-hover:text-white transition-colors">All</span>
+                          </label>
+                        </div>
+                        <!-- Status Checkboxes -->
+                        <div class="space-y-2">
+                          <label class="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-700/50 transition-all duration-300 group">
+                            <input type="checkbox" class="mr-2" name="statusCheckbox" value="Open" checked>
+                            <span class="group-hover:text-white transition-colors flex items-center">
+                              <i class="ri-folder-open-line mr-2 text-red-400"></i>
+                              <span class="text-red-400">Open</span>
+                            </span>
+                          </label>
+                          <label class="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-700/50 transition-all duration-300 group">
+                            <input type="checkbox" class="mr-2" name="statusCheckbox" value="In Progress" checked>
+                            <span class="group-hover:text-white transition-colors flex items-center">
+                              <i class="ri-time-line mr-2 text-amber-400"></i>
+                              <span class="text-amber-400">In Progress</span>
+                            </span>
+                          </label>
+                          <label class="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-700/50 transition-all duration-300 group">
+                            <input type="checkbox" class="mr-2" name="statusCheckbox" value="Fixed" checked>
+                            <span class="group-hover:text-white transition-colors flex items-center">
+                              <i class="ri-checkbox-circle-line mr-2 text-green-400"></i>
+                              <span class="text-green-400">Fixed</span>
+                            </span>
+                          </label>
+                        </div>
+                        <div class="space-y-2">
+                          <label class="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-700/50 transition-all duration-300 group">
+                            <input type="checkbox" class="mr-2" name="statusCheckbox" value="Ready To Test" checked>
+                            <span class="group-hover:text-white transition-colors flex items-center">
+                              <i class="ri-test-tube-line mr-2 text-blue-400"></i>
+                              <span class="text-blue-400">Ready To Test</span>
+                            </span>
+                          </label>
+                          <label class="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-700/50 transition-all duration-300 group">
+                            <input type="checkbox" class="mr-2" name="statusCheckbox" value="Ready To Dev" checked>
+                            <span class="group-hover:text-white transition-colors flex items-center">
+                              <i class="ri-code-box-line mr-2 text-indigo-400"></i>
+                              <span class="text-indigo-400">Ready To Dev</span>
+                            </span>
+                          </label>
+                          <label class="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-700/50 transition-all duration-300 group">
+                            <input type="checkbox" class="mr-2" name="statusCheckbox" value="Implemented" checked>
+                            <span class="group-hover:text-white transition-colors flex items-center">
+                              <i class="ri-check-double-line mr-2 text-purple-400"></i>
+                              <span class="text-purple-400">Implemented</span>
+                            </span>
+                          </label>
+                          <label class="flex items-center text-sm text-gray-300 bg-gray-800/50 px-3 py-2 rounded-lg cursor-pointer hover:bg-gray-700/50 transition-all duration-300 group">
+                            <input type="checkbox" class="mr-2" name="statusCheckbox" value="Reopened" checked>
+                            <span class="group-hover:text-white transition-colors flex items-center">
+                              <i class="ri-refresh-line mr-2 text-orange-400"></i>
+                              <span class="text-orange-400">Reopened</span>
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  
+                    <div>
+                      <label class="text-xs text-gray-400 block mb-2 flex items-center">
+                        <i class="ri-calendar-line mr-2 text-red-400"></i>
+                        วันที่รายงาน
+                      </label>
+                      <div class="grid grid-cols-2 gap-3">
+                        <input id="filter-date-start" type="date" class="bg-gray-800/50 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-300 focus:ring-2 focus:ring-red-500/40 focus:outline-none transition-all duration-300 hover:bg-gray-700/50">
+                        <input id="filter-date-end" type="date" class="bg-gray-800/50 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-300 focus:ring-2 focus:ring-red-500/40 focus:outline-none transition-all duration-300 hover:bg-gray-700/50">
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <label class="text-xs text-gray-400 block mb-2 flex items-center">
+                        <i class="ri-folder-line mr-2 text-red-400"></i>
+                        Module
+                      </label>
+                      <select id="filter-module" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-300 focus:ring-2 focus:ring-red-500/40 focus:outline-none transition-all duration-300 hover:bg-gray-700/50 appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"%3E%3Cpath stroke="%236B7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4"/%3E%3C/svg%3E')] bg-[length:1.5em_1.5em] bg-[right_0.5rem_center] bg-no-repeat">
+                        <option value="All" class="bg-gray-800 text-gray-300">All Modules</option>
+                        {% set all_modules = defects_data | map(attribute='module') | list %}
+                        {% set unique_modules = all_modules | unique | list | sort %}
+                        {% for m in unique_modules %}
+                          <option value="{{ m }}" class="bg-gray-800 text-gray-300">
+                            {% if m == 'Admin' %}
+                              <i class="ri-admin-line mr-2 text-amber-400"></i>
+                            {% elif m == 'BE' %}
+                              <i class="ri-database-2-line mr-2 text-cyan-400"></i>
+                            {% elif m == 'Authentication' %}
+                              <i class="ri-lock-line mr-2 text-blue-400"></i>
+                            {% elif m == 'Payment' %}
+                              <i class="ri-bank-card-line mr-2 text-green-400"></i>
+                            {% elif m == 'User Profile' %}
+                              <i class="ri-user-3-line mr-2 text-purple-400"></i>
+                            {% else %}
+                              <i class="ri-code-s-slash-line mr-2 text-orange-400"></i>
+                            {% endif %}
+                            {{ m }}
+                          </option>
+                        {% endfor %}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label class="text-xs text-gray-400 block mb-2 flex items-center">
+                        <i class="ri-file-list-line mr-2 text-red-400"></i>
+                        Page
+                      </label>
+                      <select id="filter-page" class="w-full bg-gray-800/50 border border-gray-700 rounded-lg px-3 py-2 text-sm text-gray-300 focus:ring-2 focus:ring-red-500/40 focus:outline-none transition-all duration-300 hover:bg-gray-700/50 appearance-none bg-[url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"%3E%3Cpath stroke="%236B7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 8l4 4 4-4"/%3E%3C/svg%3E')] bg-[length:1.5em_1.5em] bg-[right_0.5rem_center] bg-no-repeat">
+                        <option value="All" class="bg-gray-800 text-gray-300">All Pages</option>
+                        {% set all_pages = defects_data | map(attribute='page') | list %}
+                        {% set unique_pages = all_pages | unique | list | sort %}
+                        {% for p in unique_pages %}
+                          <option value="{{ p }}" class="bg-gray-800 text-gray-300">{{ p }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                    
+                    <div class="pt-4 flex justify-end border-t border-gray-700">
+                      <button id="filter-reset-btn" class="text-sm bg-gray-800/50 hover:bg-gray-700/50 text-gray-300 px-4 py-2 rounded-lg transition-all duration-300 mr-3 flex items-center">
+                        <i class="ri-refresh-line mr-1.5"></i>
+                        Reset
+                      </button>
+                      <button id="filter-apply-btn" class="text-sm bg-gradient-to-r from-red-600 to-rose-700 text-white px-4 py-2 rounded-lg hover:from-red-700 hover:to-rose-800 transition-all duration-300 shadow-lg shadow-red-500/20 hover:shadow-xl hover:shadow-red-500/30 flex items-center">
+                        <i class="ri-check-line mr-1.5"></i>
+                        Apply Filters
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Export Button -->
+            <div class="dropdown relative">
+              <button class="dropdown-toggle text-sm bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 px-3 py-2 rounded-lg transition-colors flex items-center shadow-sm focus:ring-2 focus:ring-red-500/40 focus:outline-none">
+                <i class="ri-download-line mr-1.5"></i>
+                <span class="hidden md:inline">ส่งออก</span>
+              </button>
+              <div class="export-menu hidden py-2 rounded-lg bg-gray-800 border border-gray-700 w-40 shadow-lg z-10 absolute right-0 mt-1">
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-file-excel-line mr-2 text-green-500"></i>
+                  <span>Excel (.xlsx)</span>
+                </a>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-file-list-line mr-2 text-blue-500"></i>
+                  <span>CSV</span>
+                </a>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-file-pdf-line mr-2 text-red-500"></i>
+                  <span>PDF</span>
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <!-- More Options Button (only visible on smallest screens) -->
+          <div class="dropdown relative sm:hidden">
+            <button class="dropdown-toggle text-sm bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 p-2 rounded-lg transition-colors flex items-center shadow-sm">
+              <i class="ri-more-2-fill"></i>
+            </button>
+            <div class="dropdown-menu hidden py-2 rounded-lg bg-gray-800 border border-gray-700 w-48 shadow-lg z-10 absolute right-0 mt-1">
+              <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                <i class="ri-filter-3-line mr-2 text-gray-500"></i>
+                <span>ตัวกรอง</span>
+              </a>
+              <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                <i class="ri-equalizer-line mr-2 text-gray-500"></i>
+                <span>ฟิลเตอร์ขั้นสูง</span>
+              </a>
+              <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                <i class="ri-download-line mr-2 text-gray-500"></i>
+                <span>ส่งออก</span>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Add New Button (Always visible) -->
+          <!-- <button class="text-sm bg-gradient-to-r from-red-600 to-rose-700 text-white px-4 py-2 rounded-lg hover:from-red-700 hover:to-rose-800 transition-all duration-300 font-medium shadow-lg shadow-red-600/20 hover:shadow-red-600/40 hover:-translate-y-0.5 focus:ring-2 focus:ring-red-500/50 focus:outline-none flex items-center">
+            <i class="ri-add-line mr-1.5"></i> <span class="hidden md:inline">รายงานปัญหาใหม่</span><span class="inline md:hidden">ปัญหาใหม่</span>
+          </button> -->
+        </div>
+      </div>
+      
+      <!-- Modern Table with Enhanced Features -->
+      <div class="rounded-xl border border-gray-700 overflow-hidden bg-gray-800/50 shadow-lg">
+        <div class="w-full">
+          <table class="w-full text-sm table-fixed" id="defects-table">
+            <thead>
+              <tr class="bg-gray-800/90 text-gray-300 text-xs uppercase font-medium border-b border-gray-700">
+                <th class="py-3 px-4 text-center w-[10%]">
+                  <div class="flex items-center justify-center cursor-pointer sort-header" data-sort="issueId">
+                    <span>ID</span>
+                    <i class="ri-arrow-up-s-line ml-1 text-gray-500 sort-icon"></i>
+                  </div>
+                </th>
+                <th class="py-3 px-4 text-left w-[10%]">
+                  <div class="flex items-center cursor-pointer sort-header" data-sort="module">
+                    <span>Module</span>
+                    <i class="ri-arrow-down-s-line ml-1 text-gray-500 sort-icon"></i>
+                  </div>
+                </th>
+                <th class="py-3 px-4 text-left w-[15%]">
+                  <div class="flex items-center cursor-pointer sort-header" data-sort="page">
+                    <span>Page</span>
+                    <i class="ri-arrow-down-s-line ml-1 text-gray-500 sort-icon"></i>
+                  </div>
+                </th>
+                <th class="py-3 px-4 text-left w-[25%]">
+                  <div class="flex items-center">
+                    <span>Description</span>
+                  </div>
+                </th>
+                <th class="py-3 px-4 text-center w-[8%]">
+                  <div class="flex items-center justify-center cursor-pointer sort-header" data-sort="severity">
+                    <span>Severity</span>
+                    <i class="ri-arrow-down-s-line ml-1 text-gray-500 sort-icon"></i>
+                  </div>
+                </th>
+                <th class="py-3 px-4 text-center w-[12%]">
+                  <div class="flex items-center justify-center cursor-pointer sort-header" data-sort="status">
+                    <span>Status</span>
+                    <i class="ri-arrow-down-s-line ml-1 text-gray-500 sort-icon"></i>
+                  </div>
+                </th>
+                <th class="py-3 px-4 text-center w-[10%]">
+                  <div class="flex items-center justify-center cursor-pointer sort-header" data-sort="reportedDate">
+                    <span>Reported</span>
+                    <i class="ri-arrow-down-s-line ml-1 text-gray-500 sort-icon"></i>
+                  </div>
+                </th>
+                <th class="py-3 px-4 text-center w-[10%]">
+                  <div class="flex items-center justify-center cursor-pointer sort-header" data-sort="closedDate">
+                    <span>Closed</span>
+                    <i class="ri-arrow-down-s-line ml-1 text-gray-500 sort-icon"></i>
+                  </div>
+                </th>
+                <th class="py-3 px-4 text-center w-[12%]">
+                  <div class="flex items-center justify-center cursor-pointer sort-header" data-sort="timeToFix">
+                    <span>Time to Fix</span>
+                    <i class="ri-arrow-down-s-line ml-1 text-gray-500 sort-icon"></i>
+                  </div>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-700">
+              {% for defect in defects_data %}
+                <tr class="hover:bg-gray-700/50 transition-colors duration-150 group">
+                  <td class="py-3 px-4 text-center font-medium text-white">
+                    <span class="group-hover:text-red-400 transition-colors duration-150">{{ defect.issueId }}</span>
+                  </td>
+                  <td class="py-3 px-4 text-gray-300">
+                    <div class="flex items-center">
+                      {% if defect.module == 'Authentication' %}
+                        <i class="ri-lock-line mr-2 text-blue-400"></i>
+                      {% elif defect.module == 'Payment' %}
+                        <i class="ri-bank-card-line mr-2 text-green-400"></i>
+                      {% elif defect.module == 'User Profile' %}
+                        <i class="ri-user-3-line mr-2 text-purple-400"></i>
+                      {% elif defect.module == 'Admin' %}
+                        <i class="ri-admin-line mr-2 text-amber-400"></i>
+                      {% elif defect.module == 'BE' %}
+                        <i class="ri-database-2-line mr-2 text-cyan-400"></i>
+                      {% else %}
+                        <i class="ri-code-s-slash-line mr-2 text-orange-400"></i>
+                      {% endif %}
+                      <span>{{ defect.module }}</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-gray-300">
+                    <div class="flex items-center">
+                      {% if 'Mobile App' in defect.page %}
+                        <i class="ri-smartphone-line mr-2 text-blue-400"></i>
+                      {% elif 'App Users' in defect.page %}
+                        <i class="ri-group-line mr-2 text-green-400"></i>
+                      {% elif 'Account' in defect.page %}
+                        <i class="ri-account-circle-line mr-2 text-purple-400"></i>
+                      {% elif 'Tenant' in defect.page %}
+                        <i class="ri-store-2-line mr-2 text-amber-400"></i>
+                      {% elif 'Onboarding' in defect.page %}
+                        <i class="ri-rocket-line mr-2 text-rose-400"></i>
+                      {% elif 'Pending' in defect.page %}
+                        <i class="ri-timer-line mr-2 text-orange-400"></i>
+                      {% else %}
+                        <i class="ri-pages-line mr-2 text-gray-400"></i>
+                      {% endif %}
+                      <span>{{ defect.page }}</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-gray-400 max-w-xs truncate">
+                    <div class="tooltip-container relative inline-block w-full">
+                      <span class="truncate cursor-pointer hover:text-gray-200 defect-description-trigger description-cell" data-defect-id="{{ defect.issueId }}" data-defect-description="{{ defect.description }}" data-reported-date="{{ defect.reportedDate }}">
+                        {{ defect.description }}
+                      </span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    {% if defect.severity == 'Critical' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-900/30 text-red-300 border border-red-800/30">
+                        <i class="ri-alarm-warning-line mr-1"></i> {{ defect.severity }}
+                      </span>
+                    {% elif defect.severity == 'High' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-900/30 text-orange-300 border border-orange-800/30">
+                        <i class="ri-error-warning-line mr-1"></i> {{ defect.severity }}
+                      </span>
+                    {% elif defect.severity == 'Medium' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-900/30 text-yellow-300 border border-yellow-800/30">
+                        <i class="ri-alert-line mr-1"></i> {{ defect.severity }}
+                      </span>
+                    {% else %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-900/30 text-blue-300 border border-blue-800/30">
+                        <i class="ri-information-line mr-1"></i> {{ defect.severity }}
+                      </span>
+                    {% endif %}
+                  </td>
+                  <td class="py-3 px-4 text-center">
+                    {% if defect.status == 'Open' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-900/30 text-red-300 border border-red-800/30 whitespace-nowrap">
+                        <i class="ri-folder-open-line mr-1"></i> {{ defect.status }}
+                      </span>
+                    {% elif defect.status == 'In Progress' or defect.status == 'In Progress Dev' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-900/30 text-amber-300 border border-amber-800/30 whitespace-nowrap">
+                        <i class="ri-time-line mr-1"></i> In Progress
+                      </span>
+                    {% elif defect.status == 'Fixed' or defect.status == 'Completed' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-900/30 text-green-300 border border-green-800/30 whitespace-nowrap">
+                        <i class="ri-checkbox-circle-line mr-1"></i> Fixed
+                      </span>
+                    {% elif defect.status == 'Ready To Test' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-900/30 text-blue-300 border border-blue-800/30 whitespace-nowrap">
+                        <i class="ri-test-tube-line mr-1"></i> Ready To Test
+                      </span>
+                    {% elif defect.status == 'Ready To dav' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-900/30 text-indigo-300 border border-indigo-800/30 whitespace-nowrap">
+                        <i class="ri-code-box-line mr-1"></i> Ready To Dev
+                      </span>
+                    {% elif defect.status == 'Implementation Complete' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-900/30 text-purple-300 border border-purple-800/30 whitespace-nowrap">
+                        <i class="ri-check-double-line mr-1"></i> Implemented
+                      </span>
+                    {% elif defect.status == 'Reopen' %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-900/30 text-orange-300 border border-orange-800/30 whitespace-nowrap">
+                        <i class="ri-refresh-line mr-1"></i> Reopened
+                      </span>
+                    {% else %}
+                      <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-900/30 text-gray-300 border border-gray-800/30 whitespace-nowrap">
+                        <i class="ri-question-line mr-1"></i> {{ defect.status }}
+                      </span>
+                    {% endif %}
+                  </td>
+                  <td class="py-3 px-4 text-center text-gray-400">
+                    <div class="flex items-center justify-center whitespace-nowrap">
+                      <i class="ri-calendar-line mr-1.5 text-gray-500"></i>
+                      {{ defect.reportedDate }}
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-center text-gray-400">
+                    {% if defect.closedDate %}
+                      <div class="flex items-center justify-center whitespace-nowrap">
+                        <i class="ri-check-double-line mr-1.5 text-green-500"></i>
+                        {{ defect.closedDate }}
+                      </div>
+                    {% else %}
+                      <span class="flex items-center justify-center text-gray-500 whitespace-nowrap">
+                        <i class="ri-time-line mr-1.5"></i>
+                        Pending
+                      </span>
+                    {% endif %}
+                  </td>
+                  <td class="py-3 px-4 text-center text-gray-400">
+                    {% if defect.closedDate and defect.reportedDate %}
+                      {% set reportedDate = defect.reportedDate.split('-') %}
+                      {% set closedDate = defect.closedDate.split('-') %}
+                      {% set reported = reportedDate[0]|int * 365 + reportedDate[1]|int * 30 + reportedDate[2]|int %}
+                      {% set closed = closedDate[0]|int * 365 + closedDate[1]|int * 30 + closedDate[2]|int %}
+                      {% set diffDays = closed - reported %}
+                      
+                      {% if diffDays < 2 %}
+                        <span class="font-medium text-green-400 flex items-center justify-center whitespace-nowrap">
+                          <i class="ri-check-line mr-1"></i>{{ diffDays if diffDays > 0 else '<1' }} วัน
+                        </span>
+                      {% elif diffDays < 7 %}
+                        <span class="font-medium text-blue-400 flex items-center justify-center whitespace-nowrap">
+                          <i class="ri-check-line mr-1"></i>{{ diffDays }} วัน
+                        </span>
+                      {% else %}
+                        <span class="font-medium text-amber-400 flex items-center justify-center whitespace-nowrap">
+                          <i class="ri-check-line mr-1"></i>{{ diffDays }} วัน
+                        </span>
+                      {% endif %}
+                    {% else %}
+                      <span id="time-to-fix-{{ defect.issueId }}" class="time-to-fix flex items-center justify-center whitespace-nowrap" data-reported="{{ defect.reportedDate }}">
+                        <i class="ri-time-line mr-1 text-blue-400"></i>
+                        <span class="time-value">คำนวณ...</span>
+                      </span>
+                    {% endif %}
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Pagination and Summary -->
+        <div class="flex flex-col md:flex-row justify-between items-center py-4 px-6 bg-gray-800 border-t border-gray-700">
+          <div class="flex flex-wrap items-center mb-4 md:mb-0">
+            <span class="text-xs text-gray-400 mr-3">Page <span id="current-page" class="font-semibold text-white">1</span> of <span id="total-pages" class="font-semibold text-white">3</span></span>
+            <div class="flex space-x-1 items-center mr-6">
+              <button id="prev-page-btn" class="w-8 h-8 flex items-center justify-center rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300 transition-colors" disabled>
+                <i class="ri-arrow-left-s-line"></i>
+              </button>
+              <div id="pagination-numbers" class="flex space-x-1">
+                <button class="pagination-number-btn w-8 h-8 flex items-center justify-center rounded-md bg-gradient-to-r from-red-600 to-rose-700 text-white shadow-sm" data-page="1">1</button>
+                <button class="pagination-number-btn w-8 h-8 flex items-center justify-center rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300 transition-colors" data-page="2">2</button>
+                <button class="pagination-number-btn w-8 h-8 flex items-center justify-center rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300 transition-colors" data-page="3">3</button>
+              </div>
+              <button id="next-page-btn" class="w-8 h-8 flex items-center justify-center rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300 transition-colors">
+                <i class="ri-arrow-right-s-line"></i>
+              </button>
+            </div>
+            <!-- Row per page selector -->
+            <div class="flex items-center text-xs text-gray-400 bg-gray-700/50 px-3 py-1.5 rounded-lg border border-gray-600">
+              <span class="mr-2">แถวต่อหน้า:</span>
+              <select id="rows-per-page" class="bg-gray-700 border border-gray-600 rounded text-gray-300 text-xs px-2 py-1 focus:ring-1 focus:ring-red-500 focus:outline-none">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
+          </div>
+          <!-- Status Summary Simple Row -->
+          <div class="w-full md:w-auto flex flex-wrap justify-center md:justify-end gap-2 mt-2 md:mt-0">
+            <div class="flex items-center bg-amber-900/40 border border-amber-700 rounded-lg px-2 py-1 text-xs font-medium text-amber-200 gap-1 min-w-[90px]">
+              <i class="ri-time-line text-amber-300"></i> In Progress:
+              <span class="font-bold text-amber-100">{{ (defects_data|selectattr('status', 'equalto', 'In Progress')|list|length) + (defects_data|selectattr('status', 'equalto', 'In Progress Dev')|list|length) }}</span>
+            </div>
+            <div class="flex items-center bg-green-900/40 border border-green-700 rounded-lg px-2 py-1 text-xs font-medium text-green-200 gap-1 min-w-[90px]">
+              <i class="ri-checkbox-circle-line text-green-300"></i> Fixed:
+              <span class="font-bold text-green-100">{{ (defects_data|selectattr('status', 'equalto', 'Fixed')|list|length) + (defects_data|selectattr('status', 'equalto', 'Completed')|list|length) }}</span>
+            </div>
+            <div class="flex items-center bg-blue-900/40 border border-blue-700 rounded-lg px-2 py-1 text-xs font-medium text-blue-200 gap-1 min-w-[90px]">
+              <i class="ri-test-tube-line text-blue-300"></i> Ready To Test:
+              <span class="font-bold text-blue-100">{{ defects_data|selectattr('status', 'equalto', 'Ready To Test')|list|length }}</span>
+            </div>
+            <div class="flex items-center bg-indigo-900/40 border border-indigo-700 rounded-lg px-2 py-1 text-xs font-medium text-indigo-200 gap-1 min-w-[90px]">
+              <i class="ri-code-box-line text-indigo-300"></i> Ready To Dev:
+              <span class="font-bold text-indigo-100">{{ defects_data|selectattr('status', 'equalto', 'Ready To dav')|list|length }}</span>
+            </div>
+            <div class="flex items-center bg-purple-900/40 border border-purple-700 rounded-lg px-2 py-1 text-xs font-medium text-purple-200 gap-1 min-w-[90px]">
+              <i class="ri-check-double-line text-purple-300"></i> Implemented:
+              <span class="font-bold text-purple-100">{{ defects_data|selectattr('status', 'equalto', 'Implementation Complete')|list|length }}</span>
+            </div>
+            <div class="flex items-center bg-orange-900/40 border border-orange-700 rounded-lg px-2 py-1 text-xs font-medium text-orange-200 gap-1 min-w-[90px]">
+              <i class="ri-refresh-line text-orange-300"></i> Reopened:
+              <span class="font-bold text-orange-100">{{ defects_data|selectattr('status', 'equalto', 'Reopen')|list|length }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</section>
+<!-- End: Recent Defects -->
+
+<!-- JavaScript for Recent Defects -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // ตัวแปรสำหรับการทำงาน
+    let currentPage = 1;
+    let itemsPerPage = 10;
+    let totalDefects = 0;
+    let totalPages = 0;
+    let currentSortColumn = 'issueId';
+    let currentSortDirection = 'asc';
+    
+    // DOM elements - เจาะจงใช้เฉพาะกับตาราง defects ในไฟล์นี้
+    const defectsTable = document.getElementById('defects-table');
+    if (!defectsTable) return; // ถ้าไม่มีตาราง defects ให้หยุดการทำงาน
+    
+    const defectsTableBody = defectsTable.querySelector('tbody');
+    const currentPageSpan = document.getElementById('current-page');
+    const totalPagesSpan = document.getElementById('total-pages');
+    const prevPageBtn = document.getElementById('prev-page-btn');
+    const nextPageBtn = document.getElementById('next-page-btn');
+    const paginationNumbers = document.getElementById('pagination-numbers');
+    const rowsPerPageSelect = document.getElementById('rows-per-page');
+    const sortHeaders = defectsTable.querySelectorAll('.sort-header');
+    
+    // ปุ่ม Filter
+    const filterApplyBtn = document.getElementById('filter-apply-btn');
+    const filterResetBtn = document.getElementById('filter-reset-btn');
+    
+    // ฟิลด์ Filter
+    const dateStartInput = document.getElementById('filter-date-start');
+    const dateEndInput = document.getElementById('filter-date-end');
+    const moduleSelect = document.getElementById('filter-module');
+    const pageSelect = document.getElementById('filter-page');
+    const statusCheckboxes = document.querySelectorAll('input[name="statusCheckbox"]');
+    
+    // ตัวแปรสำหรับเก็บข้อมูลต้นฉบับ
+    let originalDefectRows = [];
+    let filteredDefectRows = [];
+
+    // เก็บข้อมูลต้นฉบับ
+    originalDefectRows = Array.from(defectsTableBody.querySelectorAll('tr'));
+    filteredDefectRows = [...originalDefectRows]; // เริ่มต้นคือทั้งหมด
+    let allDefectRows = [...filteredDefectRows]; // สำหรับ paginate เฉพาะหน้า
+    
+    // Initialize 
+    totalDefects = allDefectRows.length;
+    totalPages = Math.ceil(totalDefects / itemsPerPage);
+    if (totalPagesSpan) {
+      totalPagesSpan.textContent = totalPages.toString();
+    }
+    
+    // เพิ่มฟังก์ชันสำหรับจัดการ All checkbox
+    function setupAllStatusCheckbox() {
+      const allCheckbox = document.getElementById('status-all');
+      const statusCheckboxes = document.querySelectorAll('input[name="statusCheckbox"]:not(#status-all)');
+      
+      if (allCheckbox) {
+        // เมื่อกด All checkbox
+        allCheckbox.addEventListener('change', function() {
+          statusCheckboxes.forEach(cb => {
+            cb.checked = this.checked;
+          });
+        });
+        
+        // เมื่อกด checkbox อื่นๆ
+        statusCheckboxes.forEach(cb => {
+          cb.addEventListener('change', function() {
+            const allChecked = Array.from(statusCheckboxes).every(cb => cb.checked);
+            allCheckbox.checked = allChecked;
+          });
+        });
+      }
+    }
+    
+    // ----------------------- ฟังก์ชัน Filter หลัก -----------------------
+    function filterRowsByAdvancedFilters() {
+      const selectedStatuses = [];
+      statusCheckboxes.forEach(cb => {
+        if (cb.checked) {
+          selectedStatuses.push(cb.value); 
+        }
+      });
+      
+      let startDate = null, endDate = null;
+      if (dateStartInput && dateStartInput.value) {
+        startDate = new Date(dateStartInput.value);
+      }
+      if (dateEndInput && dateEndInput.value) {
+        endDate = new Date(dateEndInput.value);
+        endDate.setHours(23, 59, 59, 999);
+      }
+      
+      const selectedModule = moduleSelect ? moduleSelect.value : 'All';
+      const selectedPage = pageSelect ? pageSelect.value : 'All';
+
+      // กรองจากข้อมูลต้นฉบับเสมอ
+      const filtered = originalDefectRows.filter(row => {
+        const statusText = row.querySelector('td:nth-child(6)')?.textContent || '';
+        if (selectedStatuses.length > 0) {
+          let matchStatus = false;
+          for (let s of selectedStatuses) {
+            if (statusText.includes(s)) {
+              matchStatus = true;
+              break;
+            }
+          }
+          if (!matchStatus) {
+            return false;
+          }
+        }
+        
+        const moduleText = row.querySelector('td:nth-child(2) span')?.textContent.trim() || '';
+        if (selectedModule !== 'All' && moduleText !== selectedModule) {
+          return false;
+        }
+
+        const pageText = row.querySelector('td:nth-child(3) span')?.textContent.trim() || '';
+        if (selectedPage !== 'All' && pageText !== selectedPage) {
+          return false;
+        }
+        
+        const reportedText = row.querySelector('td:nth-child(7)')?.textContent.trim() || '';
+        if (reportedText) {
+          const reportedDateObj = new Date(reportedText);
+          if (startDate && reportedDateObj < startDate) {
+            return false;
+          }
+          if (endDate && reportedDateObj > endDate) {
+            return false;
+          }
+        }
+        
+        return true;
+      });
+      
+      return filtered;
+    }
+
+    function applyFilters() {
+      // กรองจากข้อมูลต้นฉบับ
+      filteredDefectRows = filterRowsByAdvancedFilters();
+      allDefectRows = [...filteredDefectRows];
+      // อัปเดตตัวแปร totalDefects / totalPages
+      totalDefects = filteredDefectRows.length;
+      totalPages = Math.ceil(totalDefects / itemsPerPage);
+      if (totalPagesSpan) {
+        totalPagesSpan.textContent = totalPages.toString();
+      }
+      // ซ่อน row ทั้งหมดก่อน
+      originalDefectRows.forEach(r => r.style.display = 'none');
+      // ถ้าไม่มีเลย แสดงว่า 0
+      if (filteredDefectRows.length === 0) {
+        return;
+      }
+      showPage(1);
+      updateDefectsBadgeCount();
+    }
+    
+    function resetFilters() {
+      // เคลียร์ค่า checkbox
+      statusCheckboxes.forEach(cb => {
+        cb.checked = true;
+      });
+      // เคลียร์วันที่
+      if (dateStartInput) dateStartInput.value = '';
+      if (dateEndInput) dateEndInput.value = '';
+      // เคลียร์ module
+      if (moduleSelect) moduleSelect.value = 'All';
+      // เคลียร์ page
+      if (pageSelect) pageSelect.value = 'All';
+      // คืนค่า filteredDefectRows เป็นข้อมูลต้นฉบับ
+      filteredDefectRows = [...originalDefectRows];
+      allDefectRows = [...filteredDefectRows];
+      // คืนค่าตัวเลข
+      totalDefects = filteredDefectRows.length;
+      totalPages = Math.ceil(totalDefects / itemsPerPage);
+      if (totalPagesSpan) {
+        totalPagesSpan.textContent = totalPages.toString();
+      }
+      // แสดงทุกแถว
+      originalDefectRows.forEach(r => r.style.display = '');
+      // กลับไปหน้า 1
+      showPage(1);
+      updateDefectsBadgeCount();
+    }
+    
+    // ----------------------- ฟังก์ชันเรียงลำดับ -----------------------
+    function setupSorting() {
+      sortHeaders.forEach(header => {
+        header.addEventListener('click', function() {
+          const column = this.getAttribute('data-sort');
+          const sortIcon = this.querySelector('.sort-icon');
+          
+          if (column === currentSortColumn) {
+            currentSortDirection = currentSortDirection === 'asc' ? 'desc' : 'asc';
+          } else {
+            defectsTable.querySelectorAll('.sort-header').forEach(h => {
+              h.querySelector('.sort-icon').className = 'ri-arrow-down-s-line ml-1 text-gray-500 sort-icon';
+            });
+            
+            currentSortColumn = column;
+            currentSortDirection = 'asc';
+          }
+          
+          sortIcon.className = currentSortDirection === 'asc' 
+            ? 'ri-arrow-up-s-line ml-1 text-red-400 sort-icon' 
+            : 'ri-arrow-down-s-line ml-1 text-red-400 sort-icon';
+          
+          sortTable(column, currentSortDirection);
+          showPage(1);
+        });
+      });
+    }
+    
+    function sortTable(column, direction) {
+      const getValue = (row, col) => {
+        if (!row) return '';
+        
+        try {
+          switch(col) {
+            case 'issueId':
+              const idSpan = row.querySelector('td:nth-child(1) span');
+              if (!idSpan) return 0;
+              const idText = idSpan.textContent.trim();
+              const match = idText.match(/([A-Z]+)-(\d+)/);
+              if (match) {
+                const prefix = match[1];
+                const number = parseInt(match[2], 10);
+                return number;
+              }
+              return 0;
+            case 'module':
+              const moduleSpan = row.querySelector('td:nth-child(2) span');
+              return moduleSpan ? moduleSpan.textContent : '';
+            case 'page':
+              const pageSpan = row.querySelector('td:nth-child(3) span');
+              return pageSpan ? pageSpan.textContent : '';
+            case 'severity':
+              const sevSpan = row.querySelector('td:nth-child(5) span');
+              const sevText = sevSpan ? sevSpan.textContent.trim() : '';
+              const sevValue = { 'Critical': 4, 'High': 3, 'Medium': 2, 'Low': 1 };
+              return sevValue[sevText] || 0;
+            case 'status':
+              const statusSpan = row.querySelector('td:nth-child(6) span');
+              return statusSpan ? statusSpan.textContent : '';
+            case 'reportedDate':
+              const reportedCell = row.querySelector('td:nth-child(7)');
+              return reportedCell ? new Date(reportedCell.textContent.trim()).getTime() || 0 : 0;
+            case 'closedDate':
+              const closedCell = row.querySelector('td:nth-child(8)');
+              if (!closedCell) return 0;
+              const isPending = closedCell.textContent.includes('Pending');
+              return isPending ? 0 : new Date(closedCell.textContent.trim()).getTime() || 0;
+            case 'timeToFix':
+              const timeCell = row.querySelector('td:nth-child(9)');
+              if (!timeCell) return 0;
+              const daysMatch = timeCell.textContent.match(/(\d+)/);
+              return daysMatch ? parseInt(daysMatch[1]) : 0;
+            default:
+              return '';
+          }
+        } catch (error) {
+          console.error(`Error getting value for column ${col}:`, error);
+          return '';
+        }
+      };
+
+      // Sort filteredDefectRows
+      filteredDefectRows.sort((a, b) => {
+        const valueA = getValue(a, column);
+        const valueB = getValue(b, column);
+        
+        if (column === 'issueId') {
+          // สำหรับ issueId เรียงตามตัวเลข
+          return direction === 'asc' ? valueA - valueB : valueB - valueA;
+        } else if (typeof valueA === 'string' && typeof valueB === 'string') {
+          return direction === 'asc' 
+            ? valueA.localeCompare(valueB, 'th') 
+            : valueB.localeCompare(valueA, 'th');
+        } else {
+          return direction === 'asc' ? valueA - valueB : valueB - valueA;
+        }
+      });
+
+      // Clear and repopulate table
+      while (defectsTableBody.firstChild) {
+        defectsTableBody.removeChild(defectsTableBody.firstChild);
+      }
+
+      filteredDefectRows.forEach(row => {
+        if (row) defectsTableBody.appendChild(row);
+      });
+
+      // Update pagination after sort
+      if (typeof showPage === 'function') {
+        showPage(1);
+      }
+    }
+    
+    // ----------------------- ฟังก์ชันเพจจิ้ง -----------------------
+    function showPage(page) {
+      currentPage = page;
+      const startIndex = (page - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, totalDefects);
+      // ลบแถวว่างๆ ที่มีอยู่ก่อนหน้า
+      const existingEmptyRows = defectsTableBody.querySelectorAll('tr.empty-row');
+      existingEmptyRows.forEach(row => row.remove());
+      // ซ่อนแถวทั้งหมดก่อน
+      originalDefectRows.forEach(row => {
+        row.style.display = 'none';
+      });
+      // แสดงแถวที่มีข้อมูล
+      for (let i = startIndex; i < endIndex; i++) {
+        if (filteredDefectRows[i]) {
+          filteredDefectRows[i].style.display = '';
+        }
+      }
+      // เพิ่มแถวว่างถ้าเป็นหน้าสุดท้ายและมีข้อมูลน้อยกว่า itemsPerPage
+      if (page === totalPages && endIndex - startIndex < itemsPerPage) {
+        const emptyRowsCount = itemsPerPage - (endIndex - startIndex);
+        for (let i = 0; i < emptyRowsCount; i++) {
+          const emptyRow = document.createElement('tr');
+          emptyRow.className = 'empty-row hover:bg-gray-700/50 transition-colors duration-150 group';
+          emptyRow.innerHTML = `
+            <td class="py-3 px-4 text-center" colspan="9">
+              <div class="text-gray-500 text-sm">-</div>
+            </td>
+          `;
+          defectsTableBody.appendChild(emptyRow);
+        }
+      }
+      if (currentPageSpan) {
+        currentPageSpan.textContent = page.toString();
+      }
+      updatePaginationButtons();
+      updateDefectsBadgeCount();
+    }
+    
+    function updatePaginationButtons() {
+      if (prevPageBtn) {
+        prevPageBtn.disabled = currentPage <= 1;
+        if (currentPage <= 1) {
+          prevPageBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+          prevPageBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      }
+      
+      if (nextPageBtn) {
+        nextPageBtn.disabled = currentPage >= totalPages;
+        if (currentPage >= totalPages) {
+          nextPageBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        } else {
+          nextPageBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      }
+      
+      if (paginationNumbers) {
+        paginationNumbers.innerHTML = '';
+        
+        let startPage = Math.max(1, currentPage - 1);
+        let endPage = Math.min(totalPages, startPage + 2);
+        
+        if (endPage - startPage < 2) {
+          startPage = Math.max(1, endPage - 2);
+        }
+        
+        for (let i = startPage; i <= endPage; i++) {
+          const btn = document.createElement('button');
+          btn.className = 'w-8 h-8 flex items-center justify-center rounded-md transition-colors';
+          btn.textContent = i.toString();
+          btn.dataset.page = i.toString();
+          
+          if (i === currentPage) {
+            btn.classList.add('bg-gradient-to-r', 'from-red-600', 'to-rose-700', 'text-white', 'shadow-sm');
+          } else {
+            btn.classList.add('bg-gray-700', 'hover:bg-gray-600', 'text-gray-300');
+          }
+          
+          btn.addEventListener('click', function() {
+            showPage(parseInt(this.dataset.page));
+          });
+          
+          paginationNumbers.appendChild(btn);
+        }
+      }
+    }
+    
+    // ----------------------- ฟังก์ชันค้นหา (Search) -----------------------
+    function setupSearch() {
+      const searchInput = document.querySelector('input[type="text"][placeholder="ค้นหา..."]');
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          const searchTerm = this.value.toLowerCase();
+          filteredDefectRows = originalDefectRows.filter(row => {
+            const content = row.textContent.toLowerCase();
+            return content.includes(searchTerm);
+          });
+          allDefectRows = [...filteredDefectRows];
+          totalDefects = filteredDefectRows.length;
+          totalPages = Math.ceil(totalDefects / itemsPerPage);
+          if (totalPagesSpan) {
+            totalPagesSpan.textContent = totalPages.toString();
+          }
+          originalDefectRows.forEach(row => {
+            row.style.display = 'none';
+          });
+          const startIndex = (currentPage - 1) * itemsPerPage;
+          const endIndex = Math.min(startIndex + itemsPerPage, totalDefects);
+          for (let i = startIndex; i < endIndex; i++) {
+            if (filteredDefectRows[i]) {
+              filteredDefectRows[i].style.display = '';
+            }
+          }
+          if (filteredDefectRows.length > 0 && startIndex >= filteredDefectRows.length) {
+            showPage(1);
+          } else {
+            updatePaginationButtons();
+            updateDefectsBadgeCount();
+          }
+        });
+      }
+    }
+    
+    // ----------------------- Tooltips -----------------------
+    function setupAdvancedTooltips() {
+      const tooltipContainer = document.createElement('div');
+      tooltipContainer.id = 'tooltip-container';
+      tooltipContainer.style.cssText = 'position: fixed; z-index: 99999; pointer-events: none; width: 100%; height: 100%; top: 0; left: 0; overflow: hidden;';
+      document.body.appendChild(tooltipContainer);
+      
+      const triggers = document.querySelectorAll('.defect-description-trigger');
+      
+      triggers.forEach(trigger => {
+        trigger.addEventListener('mouseenter', function(e) {
+          const defectId = this.dataset.defectId;
+          const description = this.dataset.defectDescription;
+          const reportedDate = this.dataset.reportedDate;
+          
+          const tooltip = document.createElement('div');
+          tooltip.className = 'super-tooltip';
+          tooltip.innerHTML = `
+            <div class="flex items-start space-x-3 p-4">
+              <div class="flex-shrink-0">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-red-600 to-rose-700 flex items-center justify-center">
+                  <i class="ri-information-line text-white"></i>
+                </div>
+              </div>
+              <div class="flex-1 min-w-0">
+                <p class="text-sm font-medium text-white mb-1">รายละเอียดข้อบกพร่อง #${defectId}</p>
+                <div class="text-sm text-gray-300 max-h-28 overflow-y-auto pr-1 tooltip-scrollbar">${description}</div>
+                <div class="mt-2 flex items-center text-xs text-gray-400">
+                  <i class="ri-time-line mr-1"></i>
+                  <span>รายงานเมื่อ: ${reportedDate}</span>
+                </div>
+              </div>
+            </div>
+            <div class="tooltip-arrow"></div>
+          `;
+          
+          tooltipContainer.appendChild(tooltip);
+          
+          const rect = this.getBoundingClientRect();
+          const tooltipRect = tooltip.getBoundingClientRect();
+          
+          let left = rect.left + (rect.width / 2) - (tooltipRect.width / 2);
+          let top = rect.top - tooltipRect.height - 10;
+          
+          if (left < 10) left = 10;
+          if (left + tooltipRect.width > window.innerWidth - 10) {
+            left = window.innerWidth - tooltipRect.width - 10;
+          }
+          
+          if (top < 10) {
+            top = rect.bottom + 10;
+            tooltip.classList.add('arrow-top');
+          } else {
+            tooltip.classList.add('arrow-bottom');
+          }
+          
+          tooltip.style.left = `${left}px`;
+          tooltip.style.top = `${top}px`;
+          
+          tooltip.style.opacity = '0';
+          tooltip.style.transform = 'translateY(10px)';
+          
+          requestAnimationFrame(() => {
+            tooltip.style.opacity = '1';
+            tooltip.style.transform = 'translateY(0)';
+          });
+          
+          const buttons = tooltip.querySelectorAll('.tooltip-button');
+          buttons.forEach(button => {
+            button.style.pointerEvents = 'auto';
+          });
+          
+          this._tooltip = tooltip;
+        });
+        
+        trigger.addEventListener('mouseleave', function() {
+          if (this._tooltip) {
+            this._tooltip.style.opacity = '0';
+            this._tooltip.style.transform = 'translateY(10px)';
+            
+            setTimeout(() => {
+              if (this._tooltip && this._tooltip.parentNode) {
+                this._tooltip.parentNode.removeChild(this._tooltip);
+              }
+              this._tooltip = null;
+            }, 200);
+          }
+        });
+      });
+    }
+    
+    // ----------------------- คำนวณ Time to Fix (real) -----------------------
+    function calculateTimeToFix() {
+      const today = new Date(); // ใช้วันปัจจุบันจริง
+      
+      document.querySelectorAll('.time-to-fix').forEach(element => {
+        const reportedDateStr = element.getAttribute('data-reported');
+        const reportedDate = new Date(reportedDateStr);
+        
+        // ถ้า reportedDate อยู่ในอนาคต ให้แสดง 0 วัน
+        let diffDays = 0;
+        if (reportedDate <= today) {
+          const diffTime = today - reportedDate;
+          diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
+        
+        const valueElement = element.querySelector('.time-value');
+        if (diffDays < 7) {
+          element.classList.add('text-blue-400');
+          valueElement.textContent = `${diffDays} วัน`;
+        } else if (diffDays < 14) {
+          element.classList.add('text-amber-400');
+          element.querySelector('i').className = 'ri-time-line mr-1 text-amber-400';
+          valueElement.textContent = `${diffDays} วัน`;
+        } else {
+          element.classList.add('text-red-400');
+          element.querySelector('i').className = 'ri-timer-flash-line mr-1 text-red-400';
+          valueElement.textContent = `${diffDays} วัน`;
+        }
+      });
+    }
+    
+    // ----------------------- Dropdown -----------------------
+    function initDropdowns() {
+      const dropdowns = document.querySelectorAll('.dropdown');
+      
+      dropdowns.forEach(dropdown => {
+        const toggle = dropdown.querySelector('.dropdown-toggle');
+        const menu = dropdown.querySelector('.dropdown-menu, .advanced-filters-menu, .export-menu');
+        
+        if (toggle && menu) {
+          toggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            
+            dropdowns.forEach(otherDropdown => {
+              if (otherDropdown !== dropdown) {
+                const otherMenu = otherDropdown.querySelector('.dropdown-menu, .advanced-filters-menu, .export-menu');
+                if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                  otherMenu.classList.add('hidden');
+                }
+              }
+            });
+            
+            menu.classList.toggle('hidden');
+            
+            if (!menu.classList.contains('hidden')) {
+              menu.style.opacity = '0';
+              menu.style.transform = 'translateY(-10px)';
+              setTimeout(() => {
+                menu.style.opacity = '1';
+                menu.style.transform = 'translateY(0)';
+                menu.style.transition = 'opacity 150ms ease-out, transform 150ms ease-out';
+              }, 10);
+            }
+          });
+        }
+      });
+      
+      document.addEventListener('click', function(e) {
+        dropdowns.forEach(dropdown => {
+          const toggle = dropdown.querySelector('.dropdown-toggle');
+          const menu = dropdown.querySelector('.dropdown-menu, .advanced-filters-menu, .export-menu');
+          
+          if (toggle && menu && !dropdown.contains(e.target)) {
+            menu.classList.add('hidden');
+          }
+        });
+      });
+    }
+    
+    // ----------------------- Hover effect ตรงแถวตาราง -----------------------
+    function setupTableRowEffects() {
+      const tableRows = document.querySelectorAll('tbody tr');
+      tableRows.forEach(row => {
+        row.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateX(3px)';
+        });
+        
+        row.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateX(0)';
+        });
+      });
+    }
+    
+    // ----------------------- ปุ่มเปลี่ยนหน้า -----------------------
+    function setupPaginationButtons() {
+      if (prevPageBtn) {
+        prevPageBtn.addEventListener('click', function() {
+          if (currentPage > 1) {
+            showPage(currentPage - 1);
+          }
+        });
+      }
+      
+      if (nextPageBtn) {
+        nextPageBtn.addEventListener('click', function() {
+          if (currentPage < totalPages) {
+            showPage(currentPage + 1);
+          }
+        });
+      }
+      
+      if (rowsPerPageSelect) {
+        rowsPerPageSelect.addEventListener('change', function() {
+          itemsPerPage = parseInt(this.value);
+          totalPages = Math.ceil(totalDefects / itemsPerPage);
+          if (totalPagesSpan) {
+            totalPagesSpan.textContent = totalPages.toString();
+          }
+          showPage(1);
+        });
+      }
+    }
+    
+    // ----------------------- Event สำหรับ Apply/Reset Filter -----------------------
+    if (filterApplyBtn) {
+      filterApplyBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        applyFilters();
+      });
+    }
+    if (filterResetBtn) {
+      filterResetBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        resetFilters();
+      });
+    }
+    
+    // ----------------------- เริ่มต้นใช้งานฟังก์ชันต่างๆ -----------------------
+    setupSorting();
+    setupSearch();
+    setupAdvancedTooltips();
+    calculateTimeToFix();
+    initDropdowns();
+    setupTableRowEffects();
+    setupPaginationButtons();
+    setupAllStatusCheckbox();
+    
+    // เริ่มต้นเรียงตาม ID และแสดงหน้าแรก
+    sortTable('issueId', 'asc');
+    showPage(1);
+
+    // (Optional) ถ้าไม่ได้ใช้ ก็ไม่เป็นไร
+    const toggleDistributionViewBtn = document.getElementById('toggle-distribution-view');
+    const distributionViewModeText = document.getElementById('distribution-view-mode');
+    const barChartsView = document.querySelectorAll('.module-chart, .page-chart');
+    const donutChartView = document.getElementById('donut-chart-view');
+    const donutChartLegends = document.getElementById('donut-chart-legends');
+    
+    // Define custom colors for charts (ถ้ามีการใช้งานส่วน Chart)
+    const chartColors = {
+      module: [
+        'rgb(244, 63, 94)', // rose-500
+        'rgb(99, 102, 241)', // indigo-500
+        'rgb(234, 88, 12)', // orange-500
+        'rgb(16, 185, 129)', // emerald-500
+        'rgb(217, 70, 239)', // fuchsia-500
+        'rgb(59, 130, 246)', // blue-500
+      ],
+      page: [
+        'rgb(37, 99, 235)', // blue-600
+        'rgb(220, 38, 38)', // red-600
+        'rgb(5, 150, 105)', // emerald-600
+        'rgb(124, 58, 237)', // violet-600
+        'rgb(245, 158, 11)', // amber-500
+        'rgb(6, 182, 212)', // cyan-500
+      ]
+    };
+    
+    // ถ้าไม่ได้ใช้ donut chart สามารถลบโค้ดต่อไปนี้ได้
+    if (toggleDistributionViewBtn) {
+      let isBarView = true;
+      
+      toggleDistributionViewBtn.addEventListener('click', function() {
+        isBarView = !isBarView;
+        
+        if (isBarView) {
+          // Show bar charts
+          barChartsView.forEach(element => element.classList.remove('hidden'));
+          donutChartView.classList.add('hidden');
+          donutChartLegends.classList.add('hidden');
+          distributionViewModeText.textContent = 'แบบแถบ';
+        } else {
+          // Show donut charts
+          barChartsView.forEach(element => element.classList.add('hidden'));
+          donutChartView.classList.remove('hidden');
+          donutChartLegends.classList.remove('hidden');
+          distributionViewModeText.textContent = 'แบบวงกลม';
+          
+          // ถ้ามี ApexCharts
+          if (typeof ApexCharts !== 'undefined') {
+            initDonutCharts();
+          } else {
+            const donutContainers = donutChartView.querySelectorAll('div');
+            donutContainers.forEach(container => {
+              container.innerHTML = '<div class="text-center text-sm text-gray-500">ApexCharts ไม่พร้อมใช้งาน</div>';
+            });
+          }
+        }
+      });
+      
+      function initDonutCharts() {
+        // ตัวอย่าง
+      }
+    }
+    
+    // Add animation for progress bars (ถ้ามี)
+    document.querySelectorAll('.progress-bar').forEach((bar, index) => {
+      setTimeout(() => {
+        bar.style.transition = 'width 1s ease-in-out';
+        bar.style.width = bar.style.width; 
+      }, index * 100);
+    });
+    
+    // ----------------------- อัปเดต badge ตัวเลข Recent Defects -----------------------
+    function updateDefectsBadgeCount() {
+      // นับจำนวน defect ที่ filter แล้ว (ไม่สน pagination)
+      document.getElementById('defects-badge-count').innerHTML =
+        '<i class="ri-error-warning-line mr-1"></i>' + filteredDefectRows.length;
+    }
+  });
+</script>
+
+<!-- Add CSS for chart animations -->
+<style>
+  /* Sort headers styling */
+  .sort-header {
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .sort-header:hover {
+    color: white;
+  }
+  
+  .sort-header:hover .sort-icon {
+    color: #F87171 !important;
+  }
+  
+  .sort-icon {
+    transition: all 0.2s ease;
+  }
+  
+  /* Super tooltip */
+  .super-tooltip {
+    position: absolute;
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    max-width: 350px;
+    min-width: 300px;
+    transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+  }
+  
+  /* Arrow styles */
+  .tooltip-arrow {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    transform: rotate(45deg);
+  }
+  
+  .arrow-bottom .tooltip-arrow {
+    bottom: -7px;
+    left: 20px;
+    border-top: none;
+    border-left: none;
+  }
+  
+  .arrow-top .tooltip-arrow {
+    top: -7px;
+    left: 20px;
+    border-bottom: none;
+    border-right: none;
+  }
+  
+  /* Scrollbar for long content */
+  .tooltip-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .tooltip-scrollbar::-webkit-scrollbar-track {
+    background: #2d3748;
+    border-radius: 2px;
+  }
+  
+  .tooltip-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+    border-radius: 2px;
+  }
+  
+  /* Make sure defect descriptions are clickable */
+  .defect-description-trigger {
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+  }
+  
+  /* Set fixed row height for table consistency */
+  tbody tr {
+    height: 60px;
+    min-height: 60px;
+    transition: transform 0.2s ease;
+  }
+  
+  /* Ensure description ellipsis works properly */
+  .description-cell {
+    max-width: 300px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.5;
+  }
+  
+  /* Popover transition styles */
+  [data-popover] {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  /* Severity age bars animation */
+  #critical-age-bar, #high-age-bar, #medium-age-bar, #low-age-bar {
+    transition: height 1s ease-out;
+  }
+  
+  /* Progress bar animation */
+  .progress-bar {
+    width: 0; /* Start at 0 width */
+    transition: width 1s ease-in-out; /* Will be set in JS */
+  }
+  
+  /* Animated load in effect for bars */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-on-load {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease forwards;
+  }
+  
+  /* Tooltip scrollbar */
+  .tooltip-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  .tooltip-scrollbar::-webkit-scrollbar-track {
+    background: #2d3748;
+    border-radius: 2px;
+  }
+  
+  .tooltip-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+    border-radius: 2px;
+  }
+</style>

@@ -1,0 +1,245 @@
+<!-- Notification Panel Component -->
+<div id="notification-panel" class="hidden absolute right-0 mt-2 w-80 bg-gray-800 border border-gray-700 rounded-lg shadow-xl overflow-hidden z-40">
+  <div class="p-3 bg-gray-800/80 border-b border-gray-700 flex justify-between items-center">
+    <h3 class="text-sm font-semibold text-white">การแจ้งเตือน | Notifications</h3>
+    <span class="text-xs font-medium bg-red-900/50 text-red-300 rounded-full px-2 py-0.5" id="notification-counter">1 ใหม่</span>
+  </div>
+  <div class="max-h-72 overflow-y-auto" id="notification-list">
+    <!-- Notifications will be dynamically inserted here by JavaScript -->
+    
+    <!-- Default Notifications - Will be shown until dynamic notifications are generated -->
+    <div id="default-notifications">
+      <!-- Velocity Risk Notification -->
+      <a href="#velocity-adjustment" class="block p-3 border-b border-gray-700 hover:bg-gray-700/50 transition-colors notification-item">
+        <div class="flex items-start">
+          <div class="flex-shrink-0 bg-red-900/30 rounded-full p-2 mr-3">
+            <i class="ri-error-warning-line text-red-400"></i>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-white">ข้อผิดพลาดในการคำนวณ</p>
+            <p class="text-xs text-gray-400">ไม่สามารถโหลดข้อมูลคำนวณความเสี่ยงได้</p>
+            <p class="text-xs text-gray-500 mt-1">เมื่อครู่นี้</p>
+          </div>
+        </div>
+      </a>
+      
+      <!-- Test Complete Notification -->
+      <a href="#" class="block p-3 border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
+        <div class="flex items-start">
+          <div class="flex-shrink-0 bg-green-900/30 rounded-full p-2 mr-3">
+            <i class="ri-check-double-line text-green-400"></i>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-white">ชุดทดสอบเสร็จสมบูรณ์</p>
+            <p class="text-xs text-gray-400">การทดสอบโมดูล Profile ผ่านเรียบร้อยแล้ว</p>
+            <p class="text-xs text-gray-500 mt-1">1 ชั่วโมงที่แล้ว</p>
+          </div>
+        </div>
+      </a>
+      
+      <!-- QA Report Notification -->
+      <a href="#" class="block p-3 border-b border-gray-700 hover:bg-gray-700/50 transition-colors">
+        <div class="flex items-start">
+          <div class="flex-shrink-0 bg-blue-900/30 rounded-full p-2 mr-3">
+            <i class="ri-information-line text-blue-400"></i>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-white">รายงาน QA ใหม่พร้อมใช้งาน</p>
+            <p class="text-xs text-gray-400">ตรวจสอบผลการทดสอบล่าสุด</p>
+            <p class="text-xs text-gray-500 mt-1">เมื่อวาน</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    
+    <!-- Template for risk notification -->
+    <template id="velocity-risk-template">
+      <a href="#velocity-adjustment" class="block p-3 border-b border-gray-700 hover:bg-gray-700/50 transition-colors notification-item">
+        <div class="flex items-start">
+          <div class="flex-shrink-0 bg-red-900/30 rounded-full p-2 mr-3">
+            <i class="ri-error-warning-line text-red-400"></i>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-white">ความเสี่ยงด้านความเร็ว</p>
+            <p class="text-xs text-gray-400">ต้องเพิ่มความเร็วอีก <span class="velocity-gap"></span>%/วัน</p>
+            <p class="text-xs text-gray-500 mt-1">เมื่อครู่นี้</p>
+          </div>
+        </div>
+      </a>
+    </template>
+    
+    <!-- Template for on-track notification -->
+    <template id="velocity-ontrack-template">
+      <a href="#velocity-adjustment" class="block p-3 border-b border-gray-700 hover:bg-gray-700/50 transition-colors notification-item">
+        <div class="flex items-start">
+          <div class="flex-shrink-0 bg-green-900/30 rounded-full p-2 mr-3">
+            <i class="ri-check-double-line text-green-400"></i>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-white">การดำเนินงานเป็นไปตามแผน</p>
+            <p class="text-xs text-gray-400">ความเร็วปัจจุบันเพียงพอต่อการส่งมอบตามกำหนด</p>
+            <p class="text-xs text-gray-500 mt-1">เมื่อครู่นี้</p>
+          </div>
+        </div>
+      </a>
+    </template>
+    
+    <!-- Template for error notification -->
+    <template id="error-template">
+      <a href="#" class="block p-3 border-b border-gray-700 hover:bg-gray-700/50 transition-colors notification-item">
+        <div class="flex items-start">
+          <div class="flex-shrink-0 bg-red-900/30 rounded-full p-2 mr-3">
+            <i class="ri-error-warning-line text-red-400"></i>
+          </div>
+          <div>
+            <p class="text-sm font-medium text-white">ข้อผิดพลาดในการคำนวณ</p>
+            <p class="text-xs text-gray-400 error-message"></p>
+            <p class="text-xs text-gray-500 mt-1">เมื่อครู่นี้</p>
+          </div>
+        </div>
+      </a>
+    </template>
+  </div>
+  <div class="p-2 bg-gray-800/80 border-t border-gray-700 text-center">
+    <a href="#" class="text-xs font-medium text-indigo-400 hover:text-indigo-300 transition-colors">ดูการแจ้งเตือนทั้งหมด</a>
+  </div>
+</div>
+
+<!-- Dynamically add script reference for velocity calculator -->
+<script src="/QAReportLibrary/Libraries/velocity_calculator.js"></script>
+
+<!-- JavaScript for Notification Functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Generate velocity risk notifications using the velocity calculator
+  async function generateVelocityRiskNotifications() {
+    try {
+      const notificationList = document.getElementById('notification-list');
+      const notificationCounter = document.getElementById('notification-counter');
+      const defaultNotifications = document.getElementById('default-notifications');
+      
+      // Always show at least one notification
+      notificationCounter.textContent = '1 ใหม่';
+      notificationCounter.classList.remove('hidden');
+      
+      // Add dot indicator to the notification icon
+      const notificationToggle = document.getElementById('notification-toggle');
+      if (notificationToggle) {
+        const indicator = notificationToggle.querySelector('span');
+        if (indicator) {
+          indicator.classList.remove('hidden');
+        }
+      }
+      
+      // Try to load velocity calculator
+      if (!window.velocityCalculator) {
+        console.warn('VelocityCalculator not found. Using default notifications.');
+        return; // Keep using default notifications
+      }
+      
+      try {
+        // Load project data
+        await window.velocityCalculator.loadProjectData();
+        
+        // Calculate risk based on the loaded data
+        const { riskAssessment, notification } = window.velocityCalculator.calculateProjectRisk();
+        
+        // Hide default notifications
+        if (defaultNotifications) {
+          defaultNotifications.style.display = 'none';
+        }
+        
+        // Clear any existing dynamic notifications
+        const existingDynamicNotifications = document.querySelectorAll('.notification-item:not([data-static])');
+        existingDynamicNotifications.forEach(notification => notification.remove());
+        
+        // Add velocity notification based on project status
+        if (riskAssessment.projectInfo.daysDifference > 0) {
+          // Project is behind schedule - Add velocity risk notification
+          const template = document.getElementById('velocity-risk-template');
+          if (template) {
+            const riskNotification = template.content.cloneNode(true);
+            const velocityGap = riskAssessment.velocityGap;
+            
+            // Set velocity gap info
+            riskNotification.querySelector('.velocity-gap').textContent = velocityGap.toFixed(2);
+            
+            // Add notification to list
+            notificationList.insertBefore(riskNotification, notificationList.firstChild);
+          }
+        } else {
+          // Project is on track - Add on-track notification
+          const template = document.getElementById('velocity-ontrack-template');
+          if (template) {
+            const onTrackNotification = template.content.cloneNode(true);
+            
+            // Add notification to list
+            notificationList.insertBefore(onTrackNotification, notificationList.firstChild);
+          }
+        }
+        
+        // Update notification counter - always show at least 1
+        notificationCounter.textContent = '1 ใหม่';
+        
+      } catch (error) {
+        console.error('Error calculating project risk:', error);
+        
+        // Show error notification
+        showErrorNotification('ไม่สามารถคำนวณข้อมูลได้ โปรดลองอีกครั้ง');
+      }
+    } catch (error) {
+      console.error('Error generating notifications:', error);
+    }
+  }
+  
+  // Create and show error notification
+  function showErrorNotification(message) {
+    try {
+      const notificationList = document.getElementById('notification-list');
+      const defaultNotifications = document.getElementById('default-notifications');
+      
+      // Hide default notifications
+      if (defaultNotifications) {
+        defaultNotifications.style.display = 'none';
+      }
+      
+      // Get error template
+      const template = document.getElementById('error-template');
+      if (template && notificationList) {
+        const errorNotification = template.content.cloneNode(true);
+        
+        // Set error message
+        errorNotification.querySelector('.error-message').textContent = message;
+        
+        // Add to notification list
+        notificationList.insertBefore(errorNotification, notificationList.firstChild);
+      }
+    } catch (e) {
+      console.error('Error showing error notification:', e);
+    }
+  }
+  
+  // Load velocity_calculator.js dynamically if it's not already loaded
+  function loadVelocityCalculator() {
+    if (typeof window.velocityCalculator !== 'undefined') {
+      // VelocityCalculator is already loaded
+      generateVelocityRiskNotifications();
+      return;
+    }
+    
+    const script = document.createElement('script');
+    script.src = '/QAReportLibrary/Libraries/velocity_calculator.js';
+    script.onload = generateVelocityRiskNotifications;
+    script.onerror = function() {
+      console.error('Failed to load velocity_calculator.js');
+    };
+    document.head.appendChild(script);
+  }
+  
+  // Call this function when the page loads
+  loadVelocityCalculator();
+  
+  // Refresh notifications every 15 minutes
+  setInterval(generateVelocityRiskNotifications, 15 * 60 * 1000);
+});
+</script> 

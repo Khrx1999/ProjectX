@@ -1,0 +1,970 @@
+<!-- Script สำหรับปุ่มเปิด/ปิด Fullscreen Mode รองรับทุก Browser -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const fullscreenButton = document.getElementById('fullscreen-button');
+    if (fullscreenButton) {
+      fullscreenButton.addEventListener('click', function() {
+        if (!document.fullscreenElement &&
+            !document.mozFullScreenElement &&
+            !document.webkitFullscreenElement && 
+            !document.msFullscreenElement) {
+          
+          if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+          } else if (document.documentElement.mozRequestFullScreen) {
+            document.documentElement.mozRequestFullScreen();
+          } else if (document.documentElement.webkitRequestFullscreen) {
+            document.documentElement.webkitRequestFullscreen();
+          } else if (document.documentElement.msRequestFullscreen) {
+            document.documentElement.msRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.webkitExitFullscreen) { 
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
+        }
+      });
+    }
+  });
+</script>
+
+<!-- Animation นับเลขแบบนับขึ้น (Count Up) ก่อนปิด tag body -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const animatedElements = new Set();
+    
+    function animateValue(element, start, end, duration) {
+      if (animatedElements.has(element)) return;
+      
+      let startTimestamp = null;
+      const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
+      
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        
+        const isProgressElement = element.closest('#progress-text') || 
+                                element.getAttribute('data-type') === 'progress-rate';
+        
+        let value;
+        if (isProgressElement) {
+          value = (easedProgress * (end - start) + start).toFixed(2);
+        } else {
+          value = Math.round(easedProgress * (end - start) + start);
+        }
+        
+        element.textContent = value + (isProgressElement ? '%' : '');
+        
+        element.style.transform = `scale(${1 + (1 - easedProgress) * 0.1})`;
+        element.style.opacity = Math.min(1, easedProgress * 2);
+        
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          if (isProgressElement) {
+            element.textContent = end.toFixed(2) + '%';
+          } else {
+            element.textContent = Math.round(end) + (element.dataset.suffix || '');
+          }
+          element.style.transform = 'scale(1)';
+          element.style.opacity = '1';
+          animatedElements.add(element);
+        }
+      };
+      
+      window.requestAnimationFrame(step);
+    }
+    
+    document.querySelectorAll('.count-animation').forEach(el => {
+      const finalValue = parseFloat(el.getAttribute('data-count'));
+      if (!isNaN(finalValue)) {
+        animateValue(el, 0, finalValue, 1500);
+      }
+    });
+  });
+</script>
+
+<!--Bar Progress Animation Overall Completion Progress -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const targetProgress = parseFloat(progressBar.dataset.progress);
+    
+    let currentProgress = 0;
+    const duration = 1500;
+    const startTime = performance.now();
+    
+    function animate(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      currentProgress = easeOutQuart * targetProgress;
+      
+      progressBar.style.width = `${currentProgress}%`;
+      progressText.textContent = `${currentProgress.toFixed(2)}%`;
+      
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      } else {
+        progressText.textContent = `${targetProgress.toFixed(2)}%`;
+      }
+    }
+    
+    requestAnimationFrame(animate);
+  });
+</script>
+
+<script>
+  // ====== Sidebar Toggle ======
+  document.addEventListener('DOMContentLoaded', function() {
+    const sidebarToggle = document.getElementById('sidebar-toggle');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.querySelector('.sidebar-overlay');
+    const mainContent = document.getElementById('mainContent');
+    
+    // Update sidebar margin and main content
+    const updateLayout = () => {
+      if (!sidebar.classList.contains('-translate-x-full')) {
+        // When sidebar is visible
+        mainContent.classList.add('md:ml-72');
+        mainContent.classList.add('md:w-[calc(100%-288px)]');
+        document.body.style.overflow = 'hidden'; // Prevent body scroll when sidebar is open
+        sidebarOverlay.classList.remove('hidden');
+      } else {
+        // When sidebar is hidden
+        mainContent.classList.remove('md:ml-72');
+        mainContent.classList.remove('md:w-[calc(100%-288px)]');
+        document.body.style.overflow = ''; // Restore body scroll
+        sidebarOverlay.classList.add('hidden');
+      }
+    };
+    
+    // Toggle sidebar
+    const toggleSidebar = () => {
+      sidebar.classList.toggle('-translate-x-full');
+      updateLayout();
+    };
+    
+    // Close sidebar
+    const closeSidebar = () => {
+      sidebar.classList.add('-translate-x-full');
+      updateLayout();
+    };
+    
+    // Add event listener for toggle button
+    sidebarToggle.addEventListener('click', (e) => {
+      e.stopPropagation(); // Prevent event bubbling to document
+      toggleSidebar();
+    });
+    
+    // Add event listener for overlay click (closes sidebar)
+    sidebarOverlay.addEventListener('click', closeSidebar);
+    
+    // Handle sidebar click outside
+    document.addEventListener('click', (e) => {
+      // Close sidebar if click is outside sidebar and toggle button
+      if (!sidebar.contains(e.target) && !sidebarToggle.contains(e.target) && 
+          !sidebar.classList.contains('-translate-x-full')) {
+        closeSidebar();
+      }
+    });
+    
+    // Prevent sidebar click propagation
+    sidebar.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+    
+    // Handle responsive sidebar behavior
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 768) {
+        // For desktop view, show sidebar
+        sidebar.classList.remove('-translate-x-full');
+        sidebarOverlay.classList.add('hidden'); // Hide overlay on desktop
+        mainContent.classList.add('md:ml-72');
+        mainContent.classList.add('md:w-[calc(100%-288px)]');
+      } else {
+        // For mobile view, hide sidebar
+        sidebar.classList.add('-translate-x-full');
+        updateLayout();
+      }
+    });
+    
+    // Initial setup
+    if (window.innerWidth < 768) {
+      // Mobile view: hide sidebar
+      sidebar.classList.add('-translate-x-full');
+      updateLayout();
+    } else {
+      // Desktop view: show sidebar
+      sidebar.classList.remove('-translate-x-full');
+      mainContent.classList.add('md:ml-72');
+      mainContent.classList.add('md:w-[calc(100%-288px)]');
+      sidebarOverlay.classList.add('hidden');
+    }
+    
+    // Handle dropdown menu toggle
+    if (submenu.classList.contains('max-h-0')) {
+      submenu.classList.remove('max-h-0');
+      submenu.classList.add('max-h-screen');
+      arrow.classList.add('rotate-90');
+    } else {
+      submenu.classList.add('max-h-0');
+      submenu.classList.remove('max-h-screen');
+      arrow.classList.remove('rotate-90');
+    }
+    
+    // Initialize sidebar progress bar animation
+    updateSidebarProgressBar();
+    
+    // Initialize dashboard progress bar
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      const progressPercent = '81';
+      progressBar.style.width = progressPercent + '%';
+    }
+    
+    // Initialize navigation menu with animations
+    setTimeout(() => {
+      // Setup Navigation Menu
+      setupNavigationMenu();
+      
+      if (typeof animateCenterPercent === 'function') animateCenterPercent();
+      if (typeof animateProgressBars === 'function') animateProgressBars();
+      if (typeof animateCoverageBar === 'function') animateCoverageBar();
+      
+      // Setup smooth scroll for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          
+          const targetId = this.getAttribute('href');
+          if (targetId === "#") return; // Skip empty anchors
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            
+            // Close sidebar on mobile after navigation
+            if (window.innerWidth < 768) {
+              closeSidebar();
+            }
+          }
+        });
+      });
+    }, 300);
+  });
+  
+  // ====== Sidebar Dropdown ======
+  document.querySelectorAll('.sidebar-dropdown-toggle').forEach(button => {
+    button.addEventListener('click', () => {
+      const submenu = button.nextElementSibling;
+      const arrow = button.querySelector('.sidebar-arrow');
+      
+      submenu.classList.toggle('hidden');
+      submenu.classList.toggle('max-h-0');
+      submenu.classList.toggle('max-h-screen');
+      
+      arrow.classList.toggle('rotate-90');
+    });
+  });
+  document.querySelectorAll('.sidebar-submenu').forEach(submenu => {
+    submenu.classList.add('hidden', 'max-h-0', 'overflow-hidden', 'transition-[max-height]', 'duration-300');
+  });
+
+  // ====== Dropdown (Popper) ======
+  const popperInstance = {};
+  document.querySelectorAll('.dropdown').forEach((item, index) => {
+    const toggle = item.querySelector('.dropdown-toggle');
+    const menu = item.querySelector('.dropdown-menu');
+    const popperId = 'popper-' + index;
+    menu.dataset.popperId = popperId; 
+
+    popperInstance[popperId] = Popper.createPopper(toggle, menu, {
+      placement: 'bottom-end',
+      modifiers: [
+        { name: 'offset', options: { offset: [0, 8] } },
+        { name: 'preventOverflow', options: { padding: 24 } },
+      ],
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const toggle = e.target.closest('.dropdown-toggle');
+    const menu = e.target.closest('.dropdown-menu');
+    if (toggle) {
+      const menuEl = toggle.closest('.dropdown').querySelector('.dropdown-menu');
+      const popperId = menuEl.dataset.popperId;
+      if (menuEl.classList.contains('hidden')) {
+        hideAllDropdowns();
+        menuEl.classList.remove('hidden');
+        showPopper(popperId);
+      } else {
+        menuEl.classList.add('hidden');
+        hidePopper(popperId);
+      }
+    } else if (!menu) {
+      hideAllDropdowns();
+    }
+  });
+  function hideAllDropdowns() {
+    document.querySelectorAll('.dropdown-menu').forEach((item) => {
+      item.classList.add('hidden');
+    });
+  }
+  function showPopper(popperId) {
+    popperInstance[popperId].setOptions((options) => ({
+      ...options,
+      modifiers: [...options.modifiers, { name: 'eventListeners', enabled: true }],
+    }));
+    popperInstance[popperId].update();
+  }
+  function hidePopper(popperId) {
+    popperInstance[popperId].setOptions((options) => ({
+      ...options,
+      modifiers: [...options.modifiers, { name: 'eventListeners', enabled: false }],
+    }));
+  }
+
+  // ====== Tab Switch (Notifications / Messages) ======
+  document.querySelectorAll('[data-tab]').forEach((tabBtn) => {
+    tabBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tabName = tabBtn.dataset.tab;
+      const pageName = tabBtn.dataset.tabPage;
+      document.querySelectorAll(`[data-tab-for="${tabName}"]`).forEach((p) => {
+        p.classList.add('hidden');
+      });
+      document.querySelectorAll(`[data-tab="${tabName}"]`).forEach((b) => {
+        b.classList.remove('active');
+      });
+      const target = document.querySelector(`[data-tab-for="${tabName}"][data-page="${pageName}"]`);
+      target.classList.remove('hidden');
+      tabBtn.classList.add('active');
+    });
+  });
+
+  // Line Chart (Trend Analysis)
+  const ctxLineChart = document.getElementById('order-chart').getContext('2d');
+  
+  // ????????????? gradient
+  const blueGradient = ctxLineChart.createLinearGradient(0, 0, 0, 400);
+  blueGradient.addColorStop(0, 'rgba(59, 130, 246, 0.5)');
+  blueGradient.addColorStop(1, 'rgba(59, 130, 246, 0.0)');
+  
+  const redGradient = ctxLineChart.createLinearGradient(0, 0, 0, 400);
+  redGradient.addColorStop(0, 'rgba(244, 63, 94, 0.5)');
+  redGradient.addColorStop(1, 'rgba(244, 63, 94, 0.0)');
+  
+  const greenGradient = ctxLineChart.createLinearGradient(0, 0, 0, 400);
+  greenGradient.addColorStop(0, 'rgba(16, 185, 129, 0.5)');
+  greenGradient.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
+  
+  // ????? Chart
+  const lineChart = new Chart(ctxLineChart, {
+    type: 'line',
+    data: {
+      labels: JSON.parse('["2025-02-03", "2025-02-10", "2025-02-17", "2025-02-24", "2025-03-03", "2025-03-10"]'), 
+      datasets: [
+        {
+          label: 'Test Cases Executed',
+          data: JSON.parse('[45, 62, 58, 45, 30, 18]'),
+          borderColor: 'rgb(59, 130, 246)',
+          backgroundColor: blueGradient,
+          borderWidth: 2,
+          pointBackgroundColor: 'rgb(255, 255, 255)',
+          pointBorderColor: 'rgb(59, 130, 246)',
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointHoverBackgroundColor: 'rgb(59, 130, 246)',
+          pointHoverBorderColor: 'rgb(255, 255, 255)',
+          tension: 0.3,
+          fill: true,
+        },
+        {
+          label: 'Defects Opened',
+          data: JSON.parse('[2, 3, 4, 3, 2, 0]'),
+          borderColor: 'rgb(244, 63, 94)',
+          backgroundColor: redGradient,
+          borderWidth: 2,
+          pointBackgroundColor: 'rgb(255, 255, 255)',
+          pointBorderColor: 'rgb(244, 63, 94)',
+          pointBorderWidth: 2,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointHoverBackgroundColor: 'rgb(244, 63, 94)',
+          pointHoverBorderColor: 'rgb(255, 255, 255)',
+          tension: 0.3,
+          fill: true,
+        },
+        {
+          label: 'Defects Closed',
+          data: JSON.parse('[0, 1, 1, 1, 2, 3]'),
+          borderColor: 'rgb(16, 185, 129)',
+          backgroundColor: greenGradient,
+          borderWidth: 2,
+          pointBackgroundColor: 'rgb(255, 255, 255)',
+          pointBorderColor: 'rgb(16, 185, 129)',
+          pointBorderWidth: 2, 
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          pointHoverBackgroundColor: 'rgb(16, 185, 129)',
+          pointHoverBorderColor: 'rgb(255, 255, 255)',
+          tension: 0.3,
+          fill: true,
+        },
+      ]
+    },
+    options: { 
+      responsive: true, 
+      maintainAspectRatio: false,
+      interaction: {
+        mode: 'index',
+        intersect: false,
+      },
+      hover: {
+        mode: 'nearest',
+        intersect: true
+      },
+      animations: {
+        tension: {
+          duration: 1000,
+          easing: 'linear',
+          from: 0.4,
+          to: 0.3,
+          loop: false
+        }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          position: 'left',
+          grid: {
+            drawBorder: false,
+            color: 'rgba(200, 200, 200, 0.2)',
+          },
+          ticks: {
+            font: {
+              size: 11
+            },
+            padding: 8,
+            color: 'rgba(100, 100, 100, 0.8)',
+          }
+        },
+        x: {
+          grid: {
+            drawBorder: false,
+            display: false,
+          },
+          ticks: {
+            font: {
+              size: 11
+            },
+            padding: 5,
+            color: 'rgba(100, 100, 100, 0.8)',
+            maxRotation: 30,
+            minRotation: 0
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          position: 'top',
+          align: 'end',
+          labels: {
+            boxWidth: 12,
+            usePointStyle: true,
+            pointStyle: 'circle',
+            padding: 15,
+            font: {
+              size: 12
+            }
+          }
+        },
+        tooltip: {
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          titleFont: {
+            size: 13,
+            weight: 'bold'
+          },
+          bodyFont: {
+            size: 12
+          },
+          padding: 12,
+          cornerRadius: 8,
+          bodySpacing: 6,
+          usePointStyle: true,
+          borderColor: 'rgba(255, 255, 255, 0.3)',
+          borderWidth: 1,
+          boxPadding: 4,
+          callbacks: {
+            labelPointStyle: function(context) {
+              return {
+                pointStyle: 'circle',
+                rotation: 0
+              };
+            }
+          }
+        }
+      }
+    }
+  });
+  
+  // Animate sections on scroll
+  const animateOnScroll = () => {
+    const chartSection = document.querySelector('.lazy-chart');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          lineChart.data.datasets.forEach((dataset, index) => {
+            setTimeout(() => {
+              dataset.hidden = false;
+              lineChart.update();
+            }, index * 300);
+          });
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    if (chartSection) {
+      lineChart.data.datasets.forEach(dataset => {
+        dataset.hidden = true;
+      });
+      lineChart.update();
+      observer.observe(chartSection);
+    }
+  };
+  
+  // Initialize animation on DOM content loaded
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', animateOnScroll);
+  } else {
+    animateOnScroll();
+  }
+
+  // Example: Doughnut Chart
+  const ctxDoughnut = document.getElementById('test-status-chart').getContext('2d');
+  
+  // สร้าง Doughnut Chart แสดงสถานะของ Test Cases
+  const doughnutChart = new Chart(ctxDoughnut, {
+    type: 'doughnut',
+    data: {
+      labels: ['Passed', 'Failed', 'Blocked', 'In Progress'],
+      datasets: [{
+        data: [50, 30, 15, 25], // ข้อมูลแต่ละสถานะ
+        backgroundColor: [
+          'rgb(16, 185, 129)', // Passed
+          'rgb(244, 63, 94)',  // Failed
+          'rgb(249, 115, 22)', // Blocked
+          'rgb(59, 130, 246)'  // In Progress
+        ],
+        borderColor: 'white',
+        borderWidth: 2,
+        hoverBorderWidth: 0,
+        hoverOffset: 10,
+        borderRadius: 4,
+      }]
+    },
+    options: { 
+      responsive: true, 
+      maintainAspectRatio: false,
+      cutout: '75%', // ขนาดรูตรงกลางโดนัท
+      plugins: {
+        legend: {
+          display: false // ปิดการแสดง legend
+        },
+        tooltip: {
+          backgroundColor: 'rgba(0, 0, 0, 0.8)',
+          titleFont: {
+            size: 13,
+            weight: 'bold'
+          },
+          bodyFont: {
+            size: 12
+          },
+          padding: 12,
+          cornerRadius: 8,
+          usePointStyle: true,
+          callbacks: {
+            label: function(context) { // ปรับแต่งข้อความใน Tooltip
+              const value = context.raw || 0;
+              const index = context.dataIndex;
+              if (index === 0) return 'Passed: ' + value + ' (42%)';
+              if (index === 1) return 'Failed: ' + value + ' (25%)';
+              if (index === 2) return 'Blocked: ' + value + ' (13%)';
+              return 'In Progress: ' + value + ' (20%)';
+            }
+          }
+        }
+      },
+      animation: {
+        animateScale: true,
+        animateRotate: true,
+        duration: 2000,
+        easing: 'easeOutQuart'
+      }
+    }
+  });
+
+  
+  // Animate center text
+  const animateCenterPercent = () => {
+    const centerText = document.getElementById('chart-center-percent');
+    
+    if (centerText) {
+      // Set initial text
+      centerText.textContent = '0%';
+      
+      // Simple timeout-based animation
+      setTimeout(() => {
+        centerText.textContent = '63%'; // ????????
+      }, 1500);
+    }
+  };
+  
+  // Animate progress bars
+  const animateProgressBars = () => {
+    setTimeout(() => {
+      const passBar = document.getElementById('pass-bar');
+      const failBar = document.getElementById('fail-bar');
+      const blockedBar = document.getElementById('blocked-bar');
+      const progressBarChart = document.getElementById('progress-bar-chart');
+      
+      if (passBar) passBar.style.width = '50%'; // ????????
+      if (failBar) failBar.style.width = '25%'; // ????????
+      if (blockedBar) blockedBar.style.width = '12%'; // ????????
+      if (progressBarChart) progressBarChart.style.width = '13%'; // ????????
+      
+      // Update counts in the DOM with ????????
+      const passCount = document.getElementById('pass-count');
+      const failCount = document.getElementById('fail-count');
+      const blockedCount = document.getElementById('blocked-count');
+      const progressCount = document.getElementById('progress-count');
+      
+      if (passCount) passCount.textContent = '50';
+      if (failCount) failCount.textContent = '30';
+      if (blockedCount) blockedCount.textContent = '15';
+      if (progressCount) progressCount.textContent = '25';
+    }, 300);
+  };
+  
+  // Example: Coverage bar with animation
+  const animateCoverageBar = () => {
+    const coverageValueText = document.getElementById('coverageValueText');
+    const coverageBar = document.getElementById('coverageBar');
+    
+    if (coverageValueText && coverageBar) {
+      coverageValueText.textContent = '0%';
+      coverageBar.style.width = '0%';
+      
+      setTimeout(() => {
+        const staticCoverageVal = 75; // ????????
+        coverageValueText.textContent = staticCoverageVal + '%';
+        coverageBar.style.width = staticCoverageVal + '%';
+      }, 500);
+    }
+  };
+  
+  // Initialize animations on DOM content loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set progress bar width from template variable
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      const progressPercent = '81';
+      progressBar.style.width = progressPercent + '%';
+    }
+    
+    // Start chart animations
+    animateCenterPercent();
+    animateProgressBars();
+    animateCoverageBar();
+  });
+
+  // Add shimmer effect CSS
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+    .shimmer {
+      animation: shimmer 2s infinite linear;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // อัปเดต Progress bar ที่ sidebar ตามค่าเปอร์เซ็นต์ที่กำหนด
+  function updateSidebarProgressBar() {
+    const progressValue = '81';
+    const progressBarInner = document.querySelector('.progress-bar-inner');
+    const progressPercentValue = document.getElementById('progress-percent-value');
+    
+    if (progressBarInner && progressPercentValue) {
+      progressBarInner.style.width = progressValue + '%';
+      progressPercentValue.textContent = progressValue + '%';
+    }
+  }
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+  // Initialize progress bar on sidebar
+  updateSidebarProgressBar();
+
+  // Initialize the navigation menu and set active page
+  setupNavigationMenu();
+});
+
+  // Function to setup navigation menu interactions
+  function setupNavigationMenu() {
+    const menuItems = document.querySelectorAll('.menu-item');
+    const subMenuItems = document.querySelectorAll('.submenu-item');
+    const currentPage = window.location.hash || '#dashboard';
+
+    // Function to update the active menu based on the current page
+    const setActiveMenu = (targetPage) => {
+      // Reset styling for all menu items
+      menuItems.forEach(item => {
+        const link = item.querySelector('a') || item.querySelector('button');
+        if (link) {
+          link.classList.remove('text-white', 'bg-gradient-to-r', 'from-red-500/20', 'to-transparent', 'backdrop-blur-sm');
+          link.classList.add('text-slate-300');
+        }
+        // Remove active class
+        item.classList.remove('active');
+      });
+
+      // Reset styling for submenu items
+      subMenuItems.forEach(item => {
+        item.classList.remove('bg-slate-700/50', 'text-white', 'active');
+        item.classList.add('text-slate-400');
+      });
+
+      // Variables to store active menu and submenu items
+      let activeMenu = null;
+      let activeSubmenu = null;
+
+      if (targetPage.includes('/')) {
+        // Split URL for subpages
+        const parts = targetPage.split('/');
+        const mainPage = '#' + parts[0];
+        const subPage = parts[1];
+
+        // Find active main menu
+        menuItems.forEach(item => {
+          if (item.dataset.page === parts[0]) {
+            activeMenu = item;
+          }
+        });
+
+        // Find active submenu
+        subMenuItems.forEach(item => {
+          if (item.dataset.subpage === subPage || item.getAttribute('href') === targetPage) {
+            activeSubmenu = item;
+          }
+        });
+      } else {
+        // Identify active main menu item without subpages
+        menuItems.forEach(item => {
+          if ('#' + item.dataset.page === targetPage) {
+            activeMenu = item;
+          }
+        });
+      }
+
+      // Apply styles to active menu
+      if (activeMenu) {
+        const link = activeMenu.querySelector('a') || activeMenu.querySelector('button');
+        if (link) {
+          link.classList.remove('text-slate-300');
+          link.classList.add('text-white');
+
+          // Mark menu as active
+          activeMenu.classList.add('active');
+
+          // Apply special style if dashboard
+          if (activeMenu.dataset.page === 'dashboard') {
+            link.classList.add('bg-gradient-to-r', 'from-red-500/20', 'to-transparent', 'backdrop-blur-sm');
+          } else {
+            link.classList.add('bg-slate-700/50');
+          }
+
+          // Expand dropdown and activate submenu if applicable
+          if (activeSubmenu && activeMenu.dataset.page === 'modules') {
+            const submenu = activeMenu.querySelector('.sidebar-submenu');
+            const arrow = activeMenu.querySelector('.sidebar-arrow');
+            if (submenu && arrow) {
+              submenu.classList.remove('max-h-0');
+              submenu.classList.add('max-h-screen');
+              arrow.classList.add('rotate-90');
+            }
+
+            // Activate submenu item
+            activeSubmenu.classList.remove('text-slate-400');
+            activeSubmenu.classList.add('bg-slate-700/50', 'text-white', 'active');
+          }
+        }
+      }
+
+      // Update breadcrumb text based on selected page
+      updatePageContent(targetPage);
+    };
+
+    // Function to update breadcrumb based on current page
+    const updatePageContent = (targetPage) => {
+      const breadcrumbText = document.querySelector('.breadcrumb-text');
+      if (!breadcrumbText) return;
+
+      let pageName = 'Dashboard';
+
+      // Determine breadcrumb text based on URL
+      if (targetPage.includes('/')) {
+        const parts = targetPage.split('/');
+        const subPage = parts[1];
+
+        // Identify specific subpage names
+        if (subPage === 'auth') pageName = 'Authentication Module';
+        else if (subPage === 'payment') pageName = 'Payment Module';
+        else if (subPage === 'profile') pageName = 'User Profile Module';
+      } else {
+        // Main page names
+        if (targetPage === '#defects') pageName = 'Defects';
+        else if (targetPage === '#modules') pageName = 'Modules';
+        else if (targetPage === '#reports') pageName = 'Reports';
+        else if (targetPage === '#settings') pageName = 'Settings';
+      }
+
+      // Set breadcrumb text
+      breadcrumbText.textContent = pageName;
+    };
+
+    // Attach click event listeners to menu items
+    menuItems.forEach(item => {
+      const link = item.querySelector('a');
+      if (link) {
+        link.addEventListener('click', (e) => {
+          const targetPage = link.getAttribute('href');
+          setActiveMenu(targetPage);
+
+          // Close sidebar on small screens
+          if (window.innerWidth < 768) {
+            closeSidebar();
+          }
+        });
+      }
+    });
+
+    // Attach click event listeners to submenu items
+    subMenuItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        const targetPage = item.getAttribute('href');
+        setActiveMenu(targetPage);
+
+        // Close sidebar on small screens
+        if (window.innerWidth < 768) {
+          closeSidebar();
+        }
+      });
+    });
+
+    // Initialize menu state based on current URL
+    setActiveMenu(currentPage);
+
+    // Update active menu on URL hash change
+    window.addEventListener('hashchange', () => {
+      setActiveMenu(window.location.hash || '#dashboard');
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    // Set progress bars width from data attributes
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+      const progress = progressBar.getAttribute('data-progress');
+      progressBar.style.width = progress + '%';
+    }
+    
+    // Set test coverage bar
+    const coverageBars = document.querySelectorAll('[data-coverage]');
+    coverageBars.forEach(bar => {
+      const coverage = bar.getAttribute('data-coverage');
+      bar.style.width = coverage + '%';
+    });
+    
+    // Set defect density bar
+    const defectDensityBar = document.getElementById('defect-density-bar');
+    if (defectDensityBar) {
+      const density = defectDensityBar.getAttribute('data-density');
+      defectDensityBar.style.width = density + '%';
+    }
+  });
+
+</script>
+
+<!-- Popper & Chart JS -->
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<!-- Include JavaScript files -->
+<script src="assets/js/main.js"></script>
+<script src="assets/js/charts.js"></script>
+
+<!-- Custom scripts specific to this page can stay here -->
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize any remaining components not covered in the main.js file
+    initCustomComponents();
+  });
+  
+  function initCustomComponents() {
+    // Initialize tooltips
+    const tooltips = document.querySelectorAll('[data-tooltip]');
+    
+    tooltips.forEach(tooltip => {
+      tooltip.addEventListener('mouseenter', function() {
+        const tooltipText = this.getAttribute('data-tooltip');
+        const tooltipElem = document.createElement('div');
+        tooltipElem.className = 'tooltip';
+        tooltipElem.textContent = tooltipText;
+        document.body.appendChild(tooltipElem);
+        
+        const rect = this.getBoundingClientRect();
+        tooltipElem.style.top = rect.bottom + 10 + 'px';
+        tooltipElem.style.left = rect.left + (rect.width / 2) - (tooltipElem.offsetWidth / 2) + 'px';
+        tooltipElem.style.opacity = '1';
+      });
+      
+      tooltip.addEventListener('mouseleave', function() {
+        const tooltips = document.querySelectorAll('.tooltip');
+        tooltips.forEach(t => t.remove());
+      });
+    });
+    
+    // Initialize notification close buttons
+    const notificationCloseButtons = document.querySelectorAll('.notification-close');
+    
+    notificationCloseButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const notification = this.closest('.notification');
+        notification.classList.add('fade-out');
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      });
+    });
+  }
+</script>
+
+

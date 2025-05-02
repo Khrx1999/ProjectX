@@ -1,0 +1,308 @@
+  <!-- ======== Advanced Sidebar ======== -->
+  <div id="sidebar" class="fixed left-0 top-0 w-72 h-full bg-gradient-to-b from-gray-900 to-black p-4 z-50 sidebar-menu transition-all duration-300 -translate-x-full shadow-2xl border-r border-gray-800/50 backdrop-blur-sm">
+    <!-- Logo / Title -->
+    <a href="#" class="flex items-center pb-4 border-b border-gray-700/60 group">
+      <div class="relative w-10 h-10 mr-3 overflow-hidden transform group-hover:scale-110 transition-all duration-500">
+        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-600 to-purple-500 rounded-md shadow-inner flex items-center justify-center">
+          <span class="text-white font-bold text-sm">QA</span>
+        </div>
+        <div class="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-green-500 border-2 border-gray-900 rounded-full animate-pulse"></div>
+      </div>
+      <div>
+        <h2 class="font-bold text-xl text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-purple-400 transition-all duration-500">Central<span class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-2 py-0.5 rounded-md ml-1 text-sm">Pattana</span></h2>
+        <p class="text-xs text-gray-400">QA Test Report</p>
+      </div>
+    </a>
+    
+    <!-- Quick Action Buttons -->
+    <div class="mt-4 border-b border-gray-700/60 pb-4 grid grid-cols-2 gap-2">
+      <button class="flex flex-col items-center justify-center bg-gray-800/50 hover:bg-gray-700/70 transition-colors duration-300 rounded-lg py-3 group">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 flex items-center justify-center mb-1 group-hover:from-indigo-600/40 group-hover:to-purple-600/40 transition-colors duration-300">
+          <i class="ri-file-upload-line text-lg text-indigo-400 group-hover:text-white transition-colors"></i>
+        </div>
+        <span class="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">Export</span>
+      </button>
+      
+      <button class="flex flex-col items-center justify-center bg-gray-800/50 hover:bg-gray-700/70 transition-colors duration-300 rounded-lg py-3 group">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-r from-indigo-600/20 to-purple-600/20 flex items-center justify-center mb-1 group-hover:from-indigo-600/40 group-hover:to-purple-600/40 transition-colors duration-300">
+          <i class="ri-refresh-line text-lg text-indigo-400 group-hover:text-white transition-colors"></i>
+        </div>
+        <span class="text-xs font-medium text-gray-300 group-hover:text-white transition-colors">Refresh</span>
+      </button>
+    </div>
+    
+    <!-- Debug Tools -->
+    <div class="mt-4 border-b border-gray-700/60 pt-2 pb-4">
+      <p class="text-gray-400 font-semibold text-xs uppercase tracking-widest mb-3 pl-2 flex items-center">
+        <i class="ri-code-box-line mr-1.5 text-indigo-400"></i>
+        Debug Tools
+      </p>
+      
+      <button id="validateDataBtn" 
+          class="w-full text-left bg-gradient-to-r from-indigo-500/10 to-transparent hover:from-indigo-500/20 text-white rounded-lg py-2 px-3 flex items-center transition-colors mb-2 group focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:ring-offset-2 focus:ring-offset-gray-900">
+        <i class="ri-check-double-line mr-2 text-indigo-400 group-hover:text-indigo-300 transition-colors"></i>
+        <span class="text-sm">ตรวจสอบความถูกต้องของข้อมูล</span>
+      </button>
+      
+      <button id="showModalBtn" 
+          class="w-full text-left bg-gradient-to-r from-indigo-500/10 to-transparent hover:from-indigo-500/20 text-white rounded-lg py-2 px-3 flex items-center transition-colors group focus:outline-none focus:ring-2 focus:ring-indigo-500/40 focus:ring-offset-2 focus:ring-offset-gray-900">
+        <i class="ri-error-warning-fill mr-2 text-indigo-400 group-hover:text-indigo-300 transition-colors"></i>
+        <span class="text-sm">แสดง Modal แจ้งเตือน</span>
+      </button>
+    </div>
+
+    <!-- Menu List -->
+    <div class="mt-5">
+      <p class="text-gray-400 font-semibold text-xs uppercase tracking-widest mb-4 pl-2 flex items-center">
+        <i class="ri-dashboard-3-line mr-1.5 text-indigo-400"></i>
+        Main Navigation
+      </p>
+      <ul class="space-y-1.5">
+        <li class="group relative menu-item active" data-page="dashboard">
+          <a href="#dashboard" class="flex font-medium items-center py-2.5 px-4 text-white bg-gradient-to-r from-indigo-600/30 to-purple-600/20 backdrop-blur-sm rounded-lg group-hover:from-indigo-600/40 group-hover:to-purple-600/30 transition-all duration-300 border-l-2 border-indigo-500">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-600/30 to-purple-600/30 flex items-center justify-center mr-3 group-hover:from-indigo-600/50 group-hover:to-purple-600/50 transition-all duration-300">
+              <i class="ri-dashboard-line text-lg text-white"></i>
+            </div>
+            <span class="text-sm font-medium">Dashboard</span>
+            <span class="ml-auto bg-indigo-500/50 text-xs font-medium text-white py-0.5 px-2 rounded-full">Home</span>
+          </a>
+        </li>
+        
+        <li class="group relative menu-item" data-page="defects">
+          <a href="#defects" class="flex font-medium items-center py-2.5 px-4 text-gray-300 hover:text-white rounded-lg hover:bg-gray-800/80 transition-all duration-300">
+            <div class="w-8 h-8 rounded-lg bg-gray-800/70 flex items-center justify-center mr-3 group-hover:bg-gradient-to-br group-hover:from-red-600/30 group-hover:to-red-600/10 transition-all duration-300">
+              <i class="ri-bug-line text-lg text-gray-400 group-hover:text-red-400 transition-colors"></i>
+            </div>
+            <span class="text-sm">Defects</span>
+            <span class="ml-auto bg-red-900/30 text-xs font-medium text-red-400 py-0.5 px-2 rounded-full border border-red-800/30">8 New</span>
+          </a>
+        </li>
+        
+        <!-- Dropdown Module with Animation -->
+        <li class="group menu-item" data-page="modules">
+          <button type="button" class="w-full flex font-medium items-center py-2.5 px-4 text-gray-300 hover:text-white rounded-lg hover:bg-gray-800/80 transition-all duration-300 sidebar-dropdown-toggle focus:outline-none">
+            <div class="w-8 h-8 rounded-lg bg-gray-800/70 flex items-center justify-center mr-3 group-hover:bg-gradient-to-br group-hover:from-blue-600/30 group-hover:to-blue-600/10 transition-all duration-300">
+              <i class="ri-stack-line text-lg text-gray-400 group-hover:text-blue-400 transition-colors"></i>
+            </div>
+            <span class="text-sm">Modules</span>
+            <i class="ri-arrow-down-s-line ml-auto transition-transform duration-300 sidebar-arrow text-gray-500 group-hover:text-white"></i>
+          </button>
+          <ul class="mt-1 space-y-1 max-h-0 overflow-hidden sidebar-submenu transition-all duration-500 pl-11">
+            <li class="transform translate-y-2 opacity-0 transition-all duration-300 submenu-item-1">
+              <a href="#modules/auth" class="flex items-center py-2 px-3 text-sm text-gray-400 rounded-md hover:bg-gray-800/70 hover:text-white transition-colors duration-200" data-subpage="authentication">
+                <i class="ri-shield-keyhole-line mr-2 text-blue-400"></i>
+                Authentication
+              </a>
+            </li>
+            <li class="transform translate-y-2 opacity-0 transition-all duration-300 submenu-item-2">
+              <a href="#modules/payment" class="flex items-center py-2 px-3 text-sm text-gray-400 rounded-md hover:bg-gray-800/70 hover:text-white transition-colors duration-200" data-subpage="payment">
+                <i class="ri-bank-card-line mr-2 text-green-400"></i>
+                Payment
+              </a>
+            </li>
+            <li class="transform translate-y-2 opacity-0 transition-all duration-300 submenu-item-3">
+              <a href="#modules/profile" class="flex items-center py-2 px-3 text-sm text-gray-400 rounded-md hover:bg-gray-800/70 hover:text-white transition-colors duration-200" data-subpage="user-profile">
+                <i class="ri-user-settings-line mr-2 text-purple-400"></i>
+                User Profile
+              </a>
+            </li>
+          </ul>
+        </li>
+        
+        <li class="group relative menu-item" data-page="reports">
+          <a href="#reports" class="flex font-medium items-center py-2.5 px-4 text-gray-300 hover:text-white rounded-lg hover:bg-gray-800/80 transition-all duration-300">
+            <div class="w-8 h-8 rounded-lg bg-gray-800/70 flex items-center justify-center mr-3 group-hover:bg-gradient-to-br group-hover:from-amber-600/30 group-hover:to-amber-600/10 transition-all duration-300">
+              <i class="ri-file-chart-line text-lg text-gray-400 group-hover:text-amber-400 transition-colors"></i>
+            </div>
+            <span class="text-sm">Reports</span>
+          </a>
+        </li>
+        
+        <li class="group relative menu-item" data-page="settings">
+          <a href="#settings" class="flex font-medium items-center py-2.5 px-4 text-gray-300 hover:text-white rounded-lg hover:bg-gray-800/80 transition-all duration-300">
+            <div class="w-8 h-8 rounded-lg bg-gray-800/70 flex items-center justify-center mr-3 group-hover:bg-gradient-to-br group-hover:from-gray-600/30 group-hover:to-gray-600/10 transition-all duration-300">
+              <i class="ri-settings-3-line text-lg text-gray-400 group-hover:text-gray-300 transition-colors"></i>
+            </div>
+            <span class="text-sm">Settings</span>
+          </a>
+        </li>
+      </ul>
+      
+      <!-- Enhanced Quick Stats Section -->
+      <div class="mt-8 pt-4 border-t border-gray-700/40">
+        <p class="text-gray-400 font-semibold text-xs uppercase tracking-widest mb-4 pl-2 flex items-center">
+          <i class="ri-pie-chart-line mr-1.5 text-indigo-400"></i>
+          Quick Stats
+        </p>
+        
+        <div class="p-4 bg-gradient-to-b from-gray-800/80 to-gray-900/90 rounded-xl border border-gray-700/50 shadow-lg">
+          <h3 class="text-xs font-medium text-gray-300 mb-4 flex items-center">
+            <i class="ri-rocket-line mr-1.5 text-indigo-400"></i>
+            Test Progress
+          </h3>
+          
+          <div class="mb-4">
+            <div class="flex justify-between mb-1.5">
+              <span class="text-xs text-gray-400">Overall Completion</span>
+              <span class="text-xs font-medium text-indigo-400" id="progress-percent-value">76%</span>
+            </div>
+            <div class="w-full h-2 bg-gray-700/70 rounded-full overflow-hidden">
+              <div class="progress-bar-inner h-full bg-gradient-to-r from-indigo-600 to-purple-500 rounded-full" style="width: 76%"></div>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-2 text-center mb-3">
+            <div class="p-2 bg-gray-800/80 rounded-lg border border-gray-700/50 hover:border-green-700/30 transition-colors">
+              <p class="text-xs text-gray-400 mb-1 flex items-center justify-center">
+                <i class="ri-check-double-line mr-1 text-green-400"></i>
+                <span>Passed</span>
+              </p>
+              <p class="text-sm font-semibold text-green-400">264</p>
+            </div>
+            <div class="p-2 bg-gray-800/80 rounded-lg border border-gray-700/50 hover:border-red-700/30 transition-colors">
+              <p class="text-xs text-gray-400 mb-1 flex items-center justify-center">
+                <i class="ri-close-circle-line mr-1 text-red-400"></i>
+                <span>Failed</span>
+              </p>
+              <p class="text-sm font-semibold text-red-400">47</p>
+            </div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-2 text-center">
+            <div class="p-2 bg-gray-800/80 rounded-lg border border-gray-700/50 hover:border-amber-700/30 transition-colors">
+              <p class="text-xs text-gray-400 mb-1 flex items-center justify-center">
+                <i class="ri-time-line mr-1 text-amber-400"></i>
+                <span>Pending</span>
+              </p>
+              <p class="text-sm font-semibold text-amber-400">31</p>
+            </div>
+            <div class="p-2 bg-gray-800/80 rounded-lg border border-gray-700/50 hover:border-blue-700/30 transition-colors">
+              <p class="text-xs text-gray-400 mb-1 flex items-center justify-center">
+                <i class="ri-skip-forward-line mr-1 text-blue-400"></i>
+                <span>Skipped</span>
+              </p>
+              <p class="text-sm font-semibold text-blue-400">18</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Mini Calendar -->
+        <div class="mt-4 p-3 bg-gradient-to-b from-gray-800/80 to-gray-900/90 rounded-xl border border-gray-700/50 shadow-lg text-center">
+          <h3 class="text-xs font-medium text-gray-300 mb-2 flex items-center justify-center">
+            <i class="ri-calendar-line mr-1.5 text-indigo-400"></i>
+            <span>Today's Summary</span>
+          </h3>
+          <p class="text-xl font-bold text-white">23 May 2023</p>
+          <p class="text-xs text-gray-400 mt-1">3 Test Suites Scheduled</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Backdrop Overlay -->
+  <div class="fixed top-0 left-0 w-full h-full bg-black/50 z-40 md:hidden sidebar-overlay hidden backdrop-blur-sm transition-all duration-300"></div>
+
+  <!-- ลบปุ่ม Mobile Sidebar Toggle Button (เพราะมีใน navbar.html แล้ว) -->
+  <!-- ======== End Advanced Sidebar ======== -->
+  
+  <!-- Sidebar JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Toggle Dropdown
+      const dropdownToggles = document.querySelectorAll('.sidebar-dropdown-toggle');
+      
+      dropdownToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+          // Get the parent menu-item
+          const parent = this.closest('.menu-item');
+          // Get the arrow icon
+          const arrow = this.querySelector('.sidebar-arrow');
+          // Get the submenu
+          const submenu = this.nextElementSibling;
+          
+          // Check if submenu is open
+          const isOpen = !submenu.classList.contains('max-h-0');
+          
+          // Close all other dropdowns
+          document.querySelectorAll('.sidebar-submenu').forEach(menu => {
+            if (menu !== submenu) {
+              menu.style.maxHeight = '0px';
+              menu.classList.add('max-h-0');
+              
+              // Reset transform and opacity for submenu items
+              const parentMenuItem = menu.closest('.menu-item');
+              if (parentMenuItem) {
+                const itemArrow = parentMenuItem.querySelector('.sidebar-arrow');
+                if (itemArrow) itemArrow.style.transform = 'rotate(0deg)';
+                
+                const subItems = menu.querySelectorAll('li');
+                subItems.forEach((item, index) => {
+                  item.style.transform = 'translateY(10px)';
+                  item.style.opacity = '0';
+                });
+              }
+            }
+          });
+          
+          // Toggle current dropdown
+          if (isOpen) {
+            // Close
+            submenu.style.maxHeight = '0px';
+            submenu.classList.add('max-h-0');
+            arrow.style.transform = 'rotate(0deg)';
+            
+            // Hide submenu items with staggered animation
+            const subItems = submenu.querySelectorAll('li');
+            subItems.forEach((item, index) => {
+              item.style.transform = 'translateY(10px)';
+              item.style.opacity = '0';
+            });
+          } else {
+            // Open
+            submenu.classList.remove('max-h-0');
+            submenu.style.maxHeight = submenu.scrollHeight + 'px';
+            arrow.style.transform = 'rotate(180deg)';
+            
+            // Show submenu items with staggered animation
+            const subItems = submenu.querySelectorAll('li');
+            subItems.forEach((item, index) => {
+              setTimeout(() => {
+                item.style.transform = 'translateY(0)';
+                item.style.opacity = '1';
+              }, 50 + (index * 50)); // Staggered delay
+            });
+          }
+        });
+      });
+      
+      // Update progress bar (for demo)
+      const progressBar = document.querySelector('.progress-bar-inner');
+      const progressValue = document.getElementById('progress-percent-value');
+      
+      if (progressBar && progressValue) {
+        const value = 76; // Example value
+        progressBar.style.width = value + '%';
+        progressValue.textContent = value + '%';
+      }
+      
+      // Handle debug buttons
+      const validateDataBtn = document.getElementById('validateDataBtn');
+      const showModalBtn = document.getElementById('showModalBtn');
+      
+      if (validateDataBtn) {
+        validateDataBtn.addEventListener('click', function() {
+          console.log('Validating data...');
+          // You would typically call a validation function here
+          alert('Data validation complete. No issues found.');
+        });
+      }
+      
+      if (showModalBtn) {
+        showModalBtn.addEventListener('click', function() {
+          console.log('Showing debug modal...');
+          // You would typically show a modal here
+          alert('This would show a debug modal in a real application.');
+        });
+      }
+    });
+  </script>

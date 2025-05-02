@@ -1,0 +1,1220 @@
+    <!-- Start: Advanced Test Trend Analysis -->
+    <div class="bg-gradient-to-b from-gray-900 to-black rounded-xl border border-gray-800/80 p-8 shadow-xl shadow-black/20 mb-8 backdrop-blur-sm hover:shadow-2xl transition-all duration-500 relative overflow-hidden">
+      <!-- Background Effects -->
+      <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-pattern-grid opacity-5"></div>
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-indigo-900/20 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-blue-900/20 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/4 left-1/3 w-12 h-12 bg-indigo-600/30 rounded-full blur-xl animate-pulse"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-8 h-8 bg-blue-600/30 rounded-full blur-xl animate-pulse" style="animation-delay: 1s;"></div>
+      </div>
+      
+      <div class="relative z-10">
+        <!-- Header Section with Filter Controls -->
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 border-b border-gray-700/80 pb-6">
+          <div>
+            <div class="flex items-center space-x-3">
+              <div class="bg-gradient-to-r from-indigo-600 to-blue-700 p-2.5 rounded-lg shadow-lg shadow-indigo-500/20 group-hover:shadow-indigo-500/40 transition duration-300">
+                <i class="ri-line-chart-line text-white text-xl"></i>
+              </div>
+              <div>
+                <h2 class="text-2xl font-bold text-white tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-400 group-hover:to-blue-400 transition-all duration-500">Test Trend Analysis</h2>
+                <p class="text-sm text-gray-400 mt-1">แนวโน้มการทดสอบและข้อบกพร่องตามระยะเวลา</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Filter Controls with enhanced UI -->
+          <div class="flex flex-col space-y-3 md:space-y-0 md:flex-row md:space-x-3 mt-4 lg:mt-0 w-full lg:w-auto">
+            <!-- Date Range Selector -->
+            <div class="dropdown relative">
+              <button class="dropdown-toggle w-full md:w-auto text-sm bg-gray-800/80 hover:bg-gray-700/90 border border-gray-700 text-gray-200 px-4 py-2 rounded-lg transition-colors flex items-center justify-between space-x-1 shadow-sm focus:ring-2 focus:ring-indigo-500/50 focus:outline-none">
+                <div class="flex items-center">
+                  <i class="ri-calendar-line mr-2 text-indigo-400"></i>
+                  <span>Sprint {{PROJECT_VERSION}}</span>
+                </div>
+                <i class="ri-arrow-down-s-line ml-2"></i>
+              </button>
+              <div class="dropdown-menu hidden py-2 rounded-lg bg-gray-800/90 backdrop-blur-sm border border-gray-700 w-full md:w-48 shadow-lg z-10 absolute left-0 md:right-0 mt-1">
+                <p class="px-4 py-1 text-xs text-gray-400 border-b border-gray-700/50">Select Sprint</p>
+                <a href="#" class="block text-sm py-2.5 px-4 text-gray-300 hover:bg-gray-700/70 hover:text-white transition-colors flex items-center">
+                  <i class="ri-check-line mr-2 text-indigo-500"></i>
+                  <span>Sprint {{PROJECT_VERSION}} (Current)</span>
+                </a>
+                <a href="#" class="block text-sm py-2.5 px-4 text-gray-300 hover:bg-gray-700/70 hover:text-white transition-colors flex items-center">
+                  <i class="ri-git-branch-line mr-2 text-gray-500"></i>
+                  <span>Previous Sprint</span>
+                </a>
+                <a href="#" class="block text-sm py-2.5 px-4 text-gray-300 hover:bg-gray-700/70 hover:text-white transition-colors flex items-center">
+                  <i class="ri-calendar-2-line mr-2 text-gray-500"></i>
+                  <span>Select Custom Period</span>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Period Selector -->
+            <div class="relative">
+              <div class="flex flex-wrap gap-1 border border-gray-700 rounded-lg overflow-hidden bg-gray-800/80 p-0.5">
+                <button class="period-btn text-xs px-4 py-2 bg-gradient-to-r from-indigo-600 to-blue-600 text-white font-medium rounded transition-all duration-300 shadow-lg shadow-indigo-900/30" data-period="7">7 วัน</button>
+                <button class="period-btn text-xs px-4 py-2 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white font-medium rounded transition-all duration-300" data-period="14">14 วัน</button>
+                <button class="period-btn text-xs px-4 py-2 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white font-medium rounded transition-all duration-300" data-period="30">30 วัน</button>
+                <button class="period-btn text-xs px-4 py-2 bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white font-medium rounded transition-all duration-300" data-period="90">90 วัน</button>
+              </div>
+            </div>
+            
+            <!-- Export & Settings -->
+            <div class="flex items-center space-x-2">
+              <button class="trend-download-btn bg-gray-800/80 hover:bg-gray-700/90 text-gray-300 hover:text-white rounded-lg p-2 transition-colors border border-gray-700 flex items-center justify-center tooltip-trigger focus:ring-2 focus:ring-indigo-500/50 focus:outline-none relative group" aria-label="Export data">
+                <i class="ri-download-2-line text-sm"></i>
+                <div class="tooltip-content hidden group-hover:block absolute -top-9 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-xs text-gray-300 rounded whitespace-nowrap border border-gray-700">
+                  Export Chart
+                </div>
+              </button>
+              <button class="bg-gray-800/80 hover:bg-gray-700/90 text-gray-300 hover:text-white rounded-lg p-2 transition-colors border border-gray-700 flex items-center justify-center tooltip-trigger focus:ring-2 focus:ring-indigo-500/50 focus:outline-none relative group" aria-label="Chart settings">
+                <i class="ri-settings-4-line text-sm"></i>
+                <div class="tooltip-content hidden group-hover:block absolute -top-9 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-xs text-gray-300 rounded whitespace-nowrap border border-gray-700">
+                  Chart Settings
+                </div>
+              </button>
+              <button class="bg-gray-800/80 hover:bg-gray-700/90 text-gray-300 hover:text-white rounded-lg p-2 transition-colors border border-gray-700 flex items-center justify-center tooltip-trigger focus:ring-2 focus:ring-indigo-500/50 focus:outline-none relative group" aria-label="Refresh data">
+                <i class="ri-refresh-line text-sm"></i>
+                <div class="tooltip-content hidden group-hover:block absolute -top-9 left-1/2 -translate-x-1/2 px-2 py-1 bg-gray-800 text-xs text-gray-300 rounded whitespace-nowrap border border-gray-700">
+                  Refresh Data
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Enhanced KPI Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <!-- Test Execution -->
+          <div class="relative group">
+            <!-- Glow Effect -->
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-blue-700/40 to-indigo-700/40 rounded-xl blur opacity-30 group-hover:opacity-70 transition duration-500 group-hover:duration-200"></div>
+            <!-- Main Card -->
+            <div class="relative bg-gray-900/90 backdrop-blur-sm rounded-xl p-5 shadow-xl border border-gray-800/80 hover:border-indigo-800/30 transition-all duration-300 h-full overflow-hidden">
+              <!-- Floating particles -->
+              <div class="absolute top-1/4 right-1/4 w-1.5 h-1.5 rounded-full bg-indigo-500/30 animate-float"></div>
+              <div class="absolute bottom-1/4 left-1/3 w-1 h-1 rounded-full bg-blue-500/30 animate-float-delayed"></div>
+              <div class="absolute top-1/3 right-1/3 w-1 h-1 rounded-full bg-indigo-500/30 animate-float-slow"></div>
+              
+              <div class="flex items-center mb-2 justify-between">
+                <span class="text-sm font-medium text-gray-400">Test Cases Executed</span>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-600/90 to-indigo-600/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-blue-500/30">
+                  <i class="ri-checkbox-circle-line text-white text-xl"></i>
+                </div>
+              </div>
+              <div class="mt-3 flex items-baseline justify-between">
+                <div>
+                  <div class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400 count-animation neon-text" data-count="{{TREND_ANALYSIS_TOTAL_TEST_CASES|default('0')}}">0</div>
+                  <div class="text-xs text-gray-400 mt-1.5">Tests executed</div>
+                </div>
+                <span class="text-xs font-medium text-emerald-400 bg-emerald-900/30 px-2 py-1 rounded-full flex items-center border border-emerald-900/30">
+                  <i class="ri-arrow-up-s-line mr-0.5"></i>+{{TODAY_EXECUTED|default('0')}}
+                </span>
+              </div>
+              
+              <!-- Mini Sparkline Chart -->
+              <div class="w-full h-8 mt-3">
+                <svg class="w-full h-full" viewBox="0 0 100 25" preserveAspectRatio="none">
+                  <path d="M0,25 L5,20 L10,22 L15,18 L20,15 L25,20 L30,18 L35,16 L40,12 L45,15 L50,10 L55,14 L60,8 L65,12 L70,5 L75,9 L80,3 L85,7 L90,2 L95,5 L100,0" 
+                        fill="none" 
+                        stroke="rgba(99, 102, 241, 0.5)" 
+                        stroke-width="1.5" 
+                        class="trend-path"
+                        stroke-dasharray="200" 
+                        stroke-dashoffset="200">
+                  </path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Test Coverage -->
+          <div class="relative group">
+            <!-- Glow Effect -->
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-700/40 to-purple-700/40 rounded-xl blur opacity-30 group-hover:opacity-70 transition duration-500 group-hover:duration-200"></div>
+            <!-- Main Card -->
+            <div class="relative bg-gray-900/90 backdrop-blur-sm rounded-xl p-5 shadow-xl border border-gray-800/80 hover:border-purple-800/30 transition-all duration-300 h-full overflow-hidden">
+              <!-- Floating particles -->
+              <div class="absolute top-1/4 right-1/4 w-1.5 h-1.5 rounded-full bg-purple-500/30 animate-float"></div>
+              <div class="absolute bottom-1/3 left-1/4 w-1 h-1 rounded-full bg-indigo-500/30 animate-float-delayed"></div>
+              <div class="absolute top-1/3 right-1/2 w-1 h-1 rounded-full bg-purple-500/30 animate-float-slow"></div>
+              
+              <div class="flex items-center mb-2 justify-between">
+                <span class="text-sm font-medium text-gray-400">Test Coverage</span>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-600/90 to-purple-600/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-indigo-500/30">
+                  <i class="ri-shield-check-line text-white text-xl"></i>
+                </div>
+              </div>
+              <div class="mt-3 flex items-baseline justify-between">
+                <div>
+                  <div class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-purple-400 count-animation neon-text" data-count="{{TREND_ANALYSIS_LATEST_COVERAGE|default('0')}}">0</div>
+                  <div class="text-xs text-gray-400 mt-1.5">% coverage</div>
+                </div>
+                <span class="text-xs font-medium text-emerald-400 bg-emerald-900/30 px-2 py-1 rounded-full flex items-center border border-emerald-900/30">
+                  <i class="ri-arrow-up-s-line mr-0.5"></i>+{{TREND_ANALYSIS_COVERAGE_CHANGE|default('0')}}%
+                </span>
+              </div>
+              
+              <!-- Circular Progress Indicator -->
+              <div class="w-full h-8 mt-3 flex items-center justify-start">
+                <div class="relative">
+                  <svg class="w-8 h-8" viewBox="0 0 36 36">
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(79, 70, 229, 0.2)" stroke-width="3"></circle>
+                    <circle cx="18" cy="18" r="16" fill="none" stroke="rgba(139, 92, 246, 0.8)" stroke-width="3" 
+                        stroke-dasharray="100" stroke-dashoffset="25" transform="rotate(-90 18 18)" class="circle-animation">
+                    </circle>
+                  </svg>
+                  <div class="absolute inset-0 flex items-center justify-center text-[10px] font-medium text-purple-400">75%</div>
+                </div>
+                <div class="w-full h-2 bg-gray-800 rounded-full ml-2 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-indigo-600 to-purple-600 rounded-full" style="width: 75%" class="bar-animation"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Defects Opened -->
+          <div class="relative group">
+            <!-- Glow Effect -->
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-red-700/40 to-pink-700/40 rounded-xl blur opacity-30 group-hover:opacity-70 transition duration-500 group-hover:duration-200"></div>
+            <!-- Main Card -->
+            <div class="relative bg-gray-900/90 backdrop-blur-sm rounded-xl p-5 shadow-xl border border-gray-800/80 hover:border-red-800/30 transition-all duration-300 h-full overflow-hidden">
+              <!-- Floating particles -->
+              <div class="absolute top-1/3 right-1/5 w-1.5 h-1.5 rounded-full bg-red-500/30 animate-float"></div>
+              <div class="absolute bottom-1/4 left-1/4 w-1 h-1 rounded-full bg-pink-500/30 animate-float-delayed"></div>
+              <div class="absolute top-1/2 right-1/3 w-1 h-1 rounded-full bg-red-500/30 animate-float-slow"></div>
+              
+              <div class="flex items-center mb-2 justify-between">
+                <span class="text-sm font-medium text-gray-400">Defects Opened</span>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-red-600/90 to-pink-600/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-red-500/30">
+                  <i class="ri-bug-line text-white text-xl"></i>
+                </div>
+              </div>
+              <div class="mt-3 flex items-baseline justify-between">
+                <div>
+                  <div class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-red-400 to-pink-400 count-animation neon-text" data-count="{{TREND_ANALYSIS_TOTAL_DEFECTS_OPENED|default('0')}}">0</div>
+                  <div class="text-xs text-gray-400 mt-1.5">Defects found</div>
+                </div>
+                <span class="text-xs font-medium {{defects_opened_color|default('text-amber-400 bg-amber-900/30')}} px-2 py-1 rounded-full flex items-center border border-amber-900/30">
+                  <i class="ri-add-line mr-0.5"></i>+{{TREND_ANALYSIS_TODAY_OPENED|default('0')}}
+                </span>
+              </div>
+              
+              <!-- Mini Bar Chart -->
+              <div class="w-full h-8 mt-3 flex items-end space-x-1 px-1">
+                <div class="w-1/9 h-3/6 bg-gradient-to-t from-red-600 to-red-500 rounded-sm opacity-60"></div>
+                <div class="w-1/9 h-4/6 bg-gradient-to-t from-red-600 to-red-500 rounded-sm opacity-70"></div>
+                <div class="w-1/9 h-5/6 bg-gradient-to-t from-red-600 to-red-500 rounded-sm opacity-80"></div>
+                <div class="w-1/9 h-3/6 bg-gradient-to-t from-red-600 to-red-500 rounded-sm opacity-60"></div>
+                <div class="w-1/9 h-4/6 bg-gradient-to-t from-red-600 to-red-500 rounded-sm opacity-70"></div>
+                <div class="w-1/9 h-5/6 bg-gradient-to-t from-red-600 to-red-500 rounded-sm opacity-80"></div>
+                <div class="w-1/9 h-full bg-gradient-to-t from-red-600 to-red-500 rounded-sm"></div>
+                <div class="w-1/9 h-5/6 bg-gradient-to-t from-red-600 to-red-500 rounded-sm opacity-80"></div>
+                <div class="w-1/9 h-4/6 bg-gradient-to-t from-red-600 to-red-500 rounded-sm opacity-70"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Defects Closed -->
+          <div class="relative group">
+            <!-- Glow Effect -->
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-green-700/40 to-emerald-700/40 rounded-xl blur opacity-30 group-hover:opacity-70 transition duration-500 group-hover:duration-200"></div>
+            <!-- Main Card -->
+            <div class="relative bg-gray-900/90 backdrop-blur-sm rounded-xl p-5 shadow-xl border border-gray-800/80 hover:border-green-800/30 transition-all duration-300 h-full overflow-hidden">
+              <!-- Floating particles -->
+              <div class="absolute top-1/4 right-1/4 w-1.5 h-1.5 rounded-full bg-green-500/30 animate-float"></div>
+              <div class="absolute bottom-1/3 left-1/4 w-1 h-1 rounded-full bg-emerald-500/30 animate-float-delayed"></div>
+              <div class="absolute top-1/2 right-1/3 w-1 h-1 rounded-full bg-green-500/30 animate-float-slow"></div>
+              
+              <div class="flex items-center mb-2 justify-between">
+                <span class="text-sm font-medium text-gray-400">Defects Closed</span>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-600/90 to-emerald-600/90 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-green-500/30">
+                  <i class="ri-check-double-line text-white text-xl"></i>
+                </div>
+              </div>
+              <div class="mt-3 flex items-baseline justify-between">
+                <div>
+                  <div class="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-emerald-400 count-animation neon-text" data-count="{{TREND_ANALYSIS_TOTAL_DEFECTS_CLOSED|default('0')}}">0</div>
+                  <div class="text-xs text-gray-400 mt-1.5">Defects fixed</div>
+                </div>
+                <span class="text-xs font-medium text-emerald-400 bg-emerald-900/30 px-2 py-1 rounded-full flex items-center border border-emerald-900/30">
+                  <i class="ri-subtract-line mr-0.5"></i>+{{TREND_ANALYSIS_TODAY_CLOSED|default('0')}}
+                </span>
+              </div>
+              
+              <!-- Resolution Rate Meter -->
+              <div class="w-full mt-3 flex items-center space-x-2">
+                <div class="text-[10px] font-medium text-gray-500">0%</div>
+                <div class="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-green-600 to-emerald-500" style="width: {{TREND_ANALYSIS_DEFECT_FIX_RATE|default('0')}}%"></div>
+                </div>
+                <div class="text-[10px] font-medium text-emerald-500">{{TREND_ANALYSIS_DEFECT_FIX_RATE|default('0')}}%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Chart Container -->
+        <div class="bg-gray-900 rounded-xl p-6 shadow-2xl border border-gray-800 hover:shadow-2xl transition-all duration-300 mb-4 z-0">
+          <div class="flex flex-wrap justify-between items-center mb-4">
+            <h3 class="text-base font-semibold text-white flex items-center">
+              <i class="ri-line-chart-line text-indigo-400 mr-2"></i>
+              Daily Test Progress
+            </h3>
+            <div class="flex space-x-2 mt-2 sm:mt-0">
+              <div class="text-xs font-medium text-gray-400 bg-gray-800 rounded-full px-3 py-1 flex items-center">
+                <i class="ri-calendar-check-line mr-1"></i>
+                <span class="trend-date-range">{{TREND_ANALYSIS_FIRST_TEST_DATE}} - {{TREND_ANALYSIS_LAST_TEST_DATE}}</span>
+              </div>
+              <button class="trend-download-btn bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-full p-1.5 transition-colors">
+                <i class="ri-download-2-line"></i>
+              </button>
+            </div>
+          </div>
+          
+          <div class="h-[400px] relative rounded-lg p-2">
+            <canvas id="trendChart" class="chart-canvas w-full h-full"></canvas>
+            <!-- Loading placeholder -->
+            <div id="chartLoading" class="absolute inset-0 bg-gray-900/80 backdrop-blur-sm flex items-center justify-center">
+              <div class="flex flex-col items-center">
+                <div class="w-12 h-12 rounded-full border-4 border-indigo-900 border-t-indigo-400 animate-spin"></div>
+                <p class="mt-3 text-sm text-gray-400">กำลังโหลดข้อมูล...</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chart Legend with Toggle Controls -->
+          <div class="mt-5 flex flex-wrap justify-center gap-x-3 gap-y-3 bg-gray-800/50 rounded-xl p-4 border border-gray-700 shadow-sm">
+            <div class="flex items-center" data-series="executed">
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" checked class="hidden chart-toggle" data-index="0">
+                <span class="toggle-switch w-8 h-4 bg-gray-700 rounded-full relative mr-2 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-blue-500 before:rounded-full before:left-0.5 before:top-0.5 before:transition-transform checked:before:translate-x-4 checked:bg-gray-600"></span>
+                <span class="inline-block w-3 h-3 mr-1.5 rounded-full bg-[rgb(59,130,246)] ring-2 ring-gray-900 shadow-sm"></span>
+                <span class="text-sm font-medium text-gray-300">Test Cases Executed</span>
+              </label>
+            </div>
+            <div class="flex items-center" data-series="defects-opened">
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" checked class="hidden chart-toggle" data-index="1">
+                <span class="toggle-switch w-8 h-4 bg-gray-700 rounded-full relative mr-2 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-red-500 before:rounded-full before:left-0.5 before:top-0.5 before:transition-transform checked:before:translate-x-4 checked:bg-gray-600"></span>
+                <span class="inline-block w-3 h-3 mr-1.5 rounded-full bg-[rgb(244,63,94)] ring-2 ring-gray-900 shadow-sm"></span>
+                <span class="text-sm font-medium text-gray-300">Defects Opened</span>
+              </label>
+            </div>
+            <div class="flex items-center" data-series="defects-closed">
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" checked class="hidden chart-toggle" data-index="2">
+                <span class="toggle-switch w-8 h-4 bg-gray-700 rounded-full relative mr-2 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-green-500 before:rounded-full before:left-0.5 before:top-0.5 before:transition-transform checked:before:translate-x-4 checked:bg-gray-600"></span>
+                <span class="inline-block w-3 h-3 mr-1.5 rounded-full bg-[rgb(16,185,129)] ring-2 ring-gray-900 shadow-sm"></span>
+                <span class="text-sm font-medium text-gray-300">Defects Closed</span>
+              </label>
+            </div>
+            <div class="flex items-center" data-series="coverage">
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" checked class="hidden chart-toggle" data-index="3">
+                <span class="toggle-switch w-8 h-4 bg-gray-700 rounded-full relative mr-2 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-purple-500 before:rounded-full before:left-0.5 before:top-0.5 before:transition-transform checked:before:translate-x-4 checked:bg-gray-600"></span>
+                <span class="inline-block w-3 h-3 mr-1.5 rounded-full bg-[rgb(139,92,246)] ring-2 ring-gray-900 shadow-sm"></span>
+                <span class="text-sm font-medium text-gray-300">Test Coverage</span>
+              </label>
+            </div>
+            <div class="flex items-center" data-series="blocked">
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" class="hidden chart-toggle" data-index="4">
+                <span class="toggle-switch w-8 h-4 bg-gray-700 rounded-full relative mr-2 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-amber-500 before:rounded-full before:left-0.5 before:top-0.5 before:transition-transform before:translate-x-0 before:bg-gray-600"></span>
+                <span class="inline-block w-3 h-3 mr-1.5 rounded-full bg-[rgb(251,191,36)] ring-2 ring-gray-900 shadow-sm"></span>
+                <span class="text-sm font-medium text-gray-300">Blocked</span>
+              </label>
+            </div>
+            <div class="flex items-center" data-series="in-progress">
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" class="hidden chart-toggle" data-index="5">
+                <span class="toggle-switch w-8 h-4 bg-gray-700 rounded-full relative mr-2 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-purple-400 before:rounded-full before:left-0.5 before:top-0.5 before:transition-transform before:translate-x-0 before:bg-gray-600"></span>
+                <span class="inline-block w-3 h-3 mr-1.5 rounded-full bg-[rgb(192,132,252)] ring-2 ring-gray-900 shadow-sm"></span>
+                <span class="text-sm font-medium text-gray-300">In Progress</span>
+              </label>
+            </div>
+            <div class="flex items-center" data-series="not-started">
+              <label class="flex items-center cursor-pointer">
+                <input type="checkbox" class="hidden chart-toggle" data-index="6">
+                <span class="toggle-switch w-8 h-4 bg-gray-700 rounded-full relative mr-2 before:content-[''] before:absolute before:w-3 before:h-3 before:bg-slate-400 before:rounded-full before:left-0.5 before:top-0.5 before:transition-transform before:translate-x-0 before:bg-gray-600"></span>
+                <span class="inline-block w-3 h-3 mr-1.5 rounded-full bg-[rgb(148,163,184)] ring-2 ring-gray-900 shadow-sm"></span>
+                <span class="text-sm font-medium text-gray-300">Not Started</span>
+              </label>
+            </div>
+          </div>
+          
+          <!-- ข้อความอธิบายกราฟ -->
+          <div class="mt-2 text-xs text-gray-500 text-center italic">
+            <span>* Test Coverage แสดงผลบนแกน Y ด้านขวา (เปอร์เซ็นต์), ส่วนอื่นๆ แสดงผลบนแกน Y ด้านซ้าย (จำนวน)</span>
+          </div>
+        </div>
+
+        <!-- Insights Panel -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 z-0">
+          <!-- Insights & Recommendations -->
+          <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl z-0">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-400 to-indigo-600 flex items-center justify-center shadow-md text-white">
+                <i class="ri-lightbulb-flash-line text-xl"></i>
+              </div>
+              <h3 class="ml-3 text-base font-semibold text-white">Insights & Recommendations</h3>
+            </div>
+            
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <div class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-indigo-900/50 flex items-center justify-center">
+                  <i class="ri-checkbox-circle-fill text-indigo-400 text-sm"></i>
+                </div>
+                <span class="ml-2 text-sm text-gray-300">Test coverage {{COVERAGE_TREND_TEXT}} จาก {{PREV_COVERAGE}}% เป็น {{TEST_COVERAGE}}% ในช่วง {{COVERAGE_PERIOD}} วันที่ผ่านมา</span>
+              </li>
+              <li class="flex items-start">
+                <div class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-green-900/50 flex items-center justify-center">
+                  <i class="ri-checkbox-circle-fill text-green-400 text-sm"></i>
+                </div>
+                <span class="ml-2 text-sm text-gray-300">มีการแก้ไข defects เสร็จสิ้น {{DEFECT_FIX_RATE}}% ของ defects ที่เปิดทั้งหมด ({{TOTAL_DEFECTS_CLOSED}}/{{TOTAL_DEFECTS_OPENED}})</span>
+              </li>
+              <li class="flex items-start">
+                <div class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-amber-900/50 flex items-center justify-center">
+                  <i class="ri-alert-line text-amber-400 text-sm"></i>
+                </div>
+                <span class="ml-2 text-sm text-gray-300">Module ที่มี defects มากที่สุดคือ <strong class="text-amber-400">{{TOP_DEFECT_MODULE}}</strong> ({{TOP_DEFECT_MODULE_COUNT}} defects)</span>
+              </li>
+              <li class="flex items-start">
+                <div class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-red-900/50 flex items-center justify-center">
+                  <i class="ri-focus-3-fill text-red-400 text-sm"></i>
+                </div>
+                <span class="ml-2 text-sm text-gray-300">ควรเร่งแก้ไข critical defects จำนวน {{CRITICAL_DEFECTS}} รายการที่ยังไม่ได้แก้ไข</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Average Metrics -->
+          <div class="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-2xl z-0">
+            <div class="flex items-center mb-4">
+              <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-400 to-green-600 flex items-center justify-center shadow-md text-white">
+                <i class="ri-calculator-line text-xl"></i>
+              </div>
+              <h3 class="ml-3 text-base font-semibold text-white">Trend Metrics</h3>
+            </div>
+            
+            <div class="grid grid-cols-2 gap-4">
+              <div class="bg-gray-800/50 rounded-xl p-4">
+                <p class="text-xs text-gray-400 mb-2">Test Velocity</p>
+                <div class="flex items-baseline">
+                  <span class="text-2xl font-bold text-white">{{TEST_VELOCITY}}</span>
+                  <span class="ml-1 text-sm text-gray-400">tests/day</span>
+                </div>
+                <div class="flex items-center mt-2 text-xs">
+                  <div class="flex-1 bg-gray-700 h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-blue-500 h-full rounded-full" style="width: {{TEST_VELOCITY_RATIO}}%"></div>
+                  </div>
+                  <span class="ml-2 text-gray-400">{{TEST_VELOCITY_RATIO}}%</span>
+                </div>
+              </div>
+              
+              <div class="bg-gray-800/50 rounded-xl p-4">
+                <p class="text-xs text-gray-400 mb-2">Defect Rate</p>
+                <div class="flex items-baseline">
+                  <span class="text-2xl font-bold text-white">{{DEFECT_RATE}}</span>
+                  <span class="ml-1 text-sm text-gray-400">per 100 tests</span>
+                </div>
+                <div class="flex items-center mt-2 text-xs">
+                  <div class="flex-1 bg-gray-700 h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-amber-500 h-full rounded-full" style="width: {{DEFECT_RATE_RATIO}}%"></div>
+                  </div>
+                  <span class="ml-2 text-gray-400">{{DEFECT_RATE_RATIO}}%</span>
+                </div>
+              </div>
+              
+              <div class="bg-gray-800/50 rounded-xl p-4">
+                <p class="text-xs text-gray-400 mb-2">Time to Fix</p>
+                <div class="flex items-baseline">
+                  <span class="text-2xl font-bold text-white">{{AVG_FIX_TIME}}</span>
+                  <span class="ml-1 text-sm text-gray-400">days avg.</span>
+                </div>
+                <div class="flex items-center mt-2 text-xs">
+                  <div class="flex-1 bg-gray-700 h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-green-500 h-full rounded-full" style="width: {{TIME_TO_FIX_RATIO}}%"></div>
+                  </div>
+                  <span class="ml-2 text-gray-400">{{TIME_TO_FIX_RATIO}}%</span>
+                </div>
+              </div>
+              
+              <div class="bg-gray-800/50 rounded-xl p-4">
+                <p class="text-xs text-gray-400 mb-2">Coverage Growth</p>
+                <div class="flex items-baseline">
+                  <span class="text-2xl font-bold text-white">{{COVERAGE_GROWTH}}</span>
+                  <span class="ml-1 text-sm text-gray-400">% per day</span>
+                </div>
+                <div class="flex items-center mt-2 text-xs">
+                  <div class="flex-1 bg-gray-700 h-1.5 rounded-full overflow-hidden">
+                    <div class="bg-purple-500 h-full rounded-full" style="width: {{COVERAGE_GROWTH_RATIO}}%"></div>
+                  </div>
+                  <span class="ml-2 text-gray-400">{{COVERAGE_GROWTH_RATIO}}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-6 flex flex-wrap justify-between items-center text-xs text-gray-400">
+          <p class="flex items-center">
+            <i class="ri-information-line mr-1"></i>
+            <span>ข้อมูลอัพเดทอัตโนมัติทุกวันเวลา 00:00 น. (ICT)</span>
+          </p>
+          <p class="flex items-center mt-2 sm:mt-0">
+            <i class="ri-time-line mr-1"></i>
+            <span>อัพเดทล่าสุด: {{LAST_UPDATED}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript for Test Trend Chart -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // ซ่อน loading หลังจากโหลดกราฟเสร็จ
+        setTimeout(() => {
+          const chartLoading = document.getElementById('chartLoading');
+          if (chartLoading) {
+            chartLoading.classList.add('opacity-0');
+            setTimeout(() => chartLoading.style.display = 'none', 500);
+          }
+        }, 1000);
+        
+        // Animation for numbers
+        document.querySelectorAll('.count-animation').forEach(element => {
+          const countTo = parseInt(element.getAttribute('data-count'));
+          let count = 0;
+          const interval = setInterval(() => {
+            const increment = Math.ceil(countTo / 20);
+            count = Math.min(count + increment, countTo);
+            element.textContent = count.toFixed(countTo % 1 > 0 ? 1 : 0);
+            if (count >= countTo) {
+              clearInterval(interval);
+            }
+          }, 50);
+        });
+        
+        // ตั้งค่า Progress Bar
+        document.querySelectorAll('.progress-bar').forEach(bar => {
+          const percentage = bar.getAttribute('data-percentage') || 0;
+          setTimeout(() => {
+            bar.style.width = percentage + '%';
+          }, 300);
+        });
+        
+        // ตั้งค่าปุ่มเลือกช่วงเวลา
+        document.querySelectorAll('.period-btn').forEach(btn => {
+          btn.addEventListener('click', function() {
+            document.querySelectorAll('.period-btn').forEach(b => {
+              b.classList.remove('bg-indigo-600', 'text-white');
+              b.classList.add('bg-gray-800', 'text-gray-300', 'hover:bg-gray-700');
+            });
+            this.classList.remove('bg-gray-800', 'text-gray-300', 'hover:bg-gray-700');
+            this.classList.add('bg-indigo-600', 'text-white');
+            
+            // ในอนาคตจะเพิ่มการเรียก API เพื่อดึงข้อมูลตามช่วงเวลา
+            const period = this.getAttribute('data-period');
+            updateChart(period);
+          });
+        });
+        
+        // ตั้งค่าปุ่มดาวน์โหลดกราฟ
+        document.querySelector('.trend-download-btn').addEventListener('click', function() {
+          // ฟังก์ชันดาวน์โหลดกราฟเป็น PNG
+          const canvas = document.getElementById('trendChart');
+          if (canvas) {
+            const image = canvas.toDataURL('image/png');
+            const link = document.createElement('a');
+            link.download = 'test-trend-analysis.png';
+            link.href = image;
+            link.click();
+          }
+        });
+        
+        // Dropdown toggle functionality
+        document.querySelectorAll('.dropdown-toggle').forEach(button => {
+          button.addEventListener('click', function() {
+            const dropdownMenu = this.nextElementSibling;
+            if (dropdownMenu.classList.contains('hidden')) {
+              document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.add('hidden');
+              });
+              dropdownMenu.classList.remove('hidden');
+            } else {
+              dropdownMenu.classList.add('hidden');
+            }
+          });
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(event) {
+          if (!event.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+              menu.classList.add('hidden');
+            });
+          }
+        });
+        
+        // Add shimmer animation
+        if (!document.querySelector('#shimmer-animation')) {
+          const style = document.createElement('style');
+          style.id = 'shimmer-animation';
+          style.textContent = `
+            @keyframes shimmer {
+              0% {
+                transform: translateX(-100%);
+              }
+              100% {
+                transform: translateX(100%);
+              }
+            }
+            .animate-shimmer {
+              animation: shimmer 2s infinite;
+            }
+          `;
+          document.head.appendChild(style);
+        }
+        
+        // สร้างกราฟด้วย Chart.js
+        const createTrendChart = () => {
+          const ctx = document.getElementById('trendChart').getContext('2d');
+          
+          // สร้าง gradient สำหรับพื้นหลังกราฟเส้น
+          const blueGradient = ctx.createLinearGradient(0, 0, 0, 400);
+          blueGradient.addColorStop(0, 'rgba(59, 130, 246, 0.2)');
+          blueGradient.addColorStop(1, 'rgba(59, 130, 246, 0.0)');
+          
+          const redGradient = ctx.createLinearGradient(0, 0, 0, 400);
+          redGradient.addColorStop(0, 'rgba(244, 63, 94, 0.2)');
+          redGradient.addColorStop(1, 'rgba(244, 63, 94, 0.0)');
+          
+          const greenGradient = ctx.createLinearGradient(0, 0, 0, 400);
+          greenGradient.addColorStop(0, 'rgba(16, 185, 129, 0.2)');
+          greenGradient.addColorStop(1, 'rgba(16, 185, 129, 0.0)');
+          
+          const purpleGradient = ctx.createLinearGradient(0, 0, 0, 400);
+          purpleGradient.addColorStop(0, 'rgba(139, 92, 246, 0.2)');
+          purpleGradient.addColorStop(1, 'rgba(139, 92, 246, 0.0)');
+          
+          // ค่าที่ควรจะได้รับจาก template
+          const trendLabels = {{TEST_TREND_LABELS|default('[]')|safe}};
+          const trendTestCasesExecuted = {{TEST_TREND_EXECUTED|default('[]')|safe}};
+          const trendTestCasesPassed = {{TEST_TREND_PASSED|default('[]')|safe}};
+          const trendTestCasesFailed = {{TEST_TREND_FAILED|default('[]')|safe}};
+          const trendTestCasesBlocked = {{TEST_TREND_BLOCKED|default('[]')|safe}};
+          const trendTestCasesInProgress = {{TEST_TREND_IN_PROGRESS|default('[]')|safe}};
+          const trendTestCasesNotStarted = {{TEST_TREND_NOT_STARTED|default('[]')|safe}};
+          const trendTestCoverage = {{TEST_TREND_COVERAGE|default('[]')|safe}};
+          
+          // ดึงข้อมูล Defects จาก TEST_TREND_DATA
+          const trendData = {{TEST_TREND_DATA|default('[]')|safe}};
+          const trendDefectsOpened = trendData && trendData.length > 0 ? 
+            trendData.map(item => item.DEFECT_TREND_OPENED || 0) : [];
+          const trendDefectsClosed = trendData && trendData.length > 0 ? 
+            trendData.map(item => item.DEFECT_TREND_CLOSED || 0) : [];
+          
+          // สร้างกราฟด้วย Chart.js
+          return new Chart(ctx, {
+            type: 'line',
+            data: {
+              labels: trendLabels,
+              datasets: [
+                {
+                  label: 'Test Cases Executed',
+                  data: trendTestCasesExecuted,
+                  borderColor: 'rgb(59, 130, 246)',
+                  backgroundColor: blueGradient,
+                  borderWidth: 2,
+                  pointBackgroundColor: 'rgb(255, 255, 255)',
+                  pointBorderColor: 'rgb(59, 130, 246)',
+                  pointBorderWidth: 2,
+                  pointRadius: 4,
+                  pointHoverRadius: 6,
+                  yAxisID: 'y',
+                  tension: 0.3,
+                  fill: true,
+                  order: 1
+                },
+                {
+                  label: 'Defects Opened',
+                  data: trendDefectsOpened,
+                  borderColor: 'rgb(244, 63, 94)',
+                  backgroundColor: redGradient,
+                  borderWidth: 2,
+                  pointBackgroundColor: 'rgb(255, 255, 255)',
+                  pointBorderColor: 'rgb(244, 63, 94)',
+                  pointBorderWidth: 2,
+                  pointRadius: 4,
+                  pointHoverRadius: 6,
+                  yAxisID: 'y',
+                  tension: 0.3,
+                  fill: true,
+                  order: 3
+                },
+                {
+                  label: 'Defects Closed',
+                  data: trendDefectsClosed,
+                  borderColor: 'rgb(16, 185, 129)',
+                  backgroundColor: greenGradient,
+                  borderWidth: 2,
+                  pointBackgroundColor: 'rgb(255, 255, 255)',
+                  pointBorderColor: 'rgb(16, 185, 129)',
+                  pointBorderWidth: 2,
+                  pointRadius: 4,
+                  pointHoverRadius: 6,
+                  yAxisID: 'y',
+                  tension: 0.3,
+                  fill: true,
+                  order: 2
+                },
+                {
+                  label: 'Test Coverage (%)',
+                  data: trendTestCoverage,
+                  borderColor: 'rgb(139, 92, 246)',
+                  backgroundColor: purpleGradient,
+                  borderWidth: 2,
+                  pointBackgroundColor: 'rgb(255, 255, 255)',
+                  pointBorderColor: 'rgb(139, 92, 246)',
+                  pointBorderWidth: 2,
+                  pointRadius: 4,
+                  pointHoverRadius: 6,
+                  yAxisID: 'y1',
+                  tension: 0.3,
+                  fill: false,
+                  order: 0
+                },
+                {
+                  label: 'Blocked',
+                  data: trendTestCasesBlocked,
+                  borderColor: 'rgb(251, 191, 36)',
+                  backgroundColor: 'rgba(251, 191, 36, 0.3)',
+                  borderWidth: 2,
+                  pointBackgroundColor: 'rgb(255, 255, 255)',
+                  pointBorderColor: 'rgb(251, 191, 36)',
+                  pointBorderWidth: 2,
+                  pointRadius: 3,
+                  pointHoverRadius: 5,
+                  yAxisID: 'y',
+                  tension: 0.3,
+                  fill: false,
+                  order: 4,
+                  hidden: true
+                },
+                {
+                  label: 'In Progress',
+                  data: trendTestCasesInProgress,
+                  borderColor: 'rgb(192, 132, 252)',
+                  backgroundColor: 'rgba(192, 132, 252, 0.3)',
+                  borderWidth: 2,
+                  pointBackgroundColor: 'rgb(255, 255, 255)',
+                  pointBorderColor: 'rgb(192, 132, 252)',
+                  pointBorderWidth: 2,
+                  pointRadius: 3,
+                  pointHoverRadius: 5,
+                  yAxisID: 'y',
+                  tension: 0.3,
+                  fill: false,
+                  order: 5,
+                  hidden: true
+                },
+                {
+                  label: 'Not Started',
+                  data: trendTestCasesNotStarted,
+                  borderColor: 'rgb(148, 163, 184)',
+                  backgroundColor: 'rgba(148, 163, 184, 0.3)',
+                  borderWidth: 2,
+                  pointBackgroundColor: 'rgb(255, 255, 255)',
+                  pointBorderColor: 'rgb(148, 163, 184)',
+                  pointBorderWidth: 2,
+                  pointRadius: 3,
+                  pointHoverRadius: 5,
+                  yAxisID: 'y',
+                  tension: 0.3,
+                  fill: false,
+                  order: 6,
+                  hidden: true
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              interaction: {
+                mode: 'index',
+                intersect: false,
+              },
+              hover: {
+                mode: 'nearest',
+                intersect: true
+              },
+              animations: {
+                tension: {
+                  duration: 1000,
+                  easing: 'linear',
+                  from: 0.4,
+                  to: 0.3,
+                  loop: false
+                }
+              },
+              scales: {
+                y: {
+                  beginAtZero: true,
+                  position: 'left',
+                  grid: {
+                    drawBorder: false,
+                    color: 'rgba(75, 85, 99, 0.2)',
+                  },
+                  ticks: {
+                    font: {
+                      size: 11
+                    },
+                    padding: 8,
+                    color: 'rgba(156, 163, 175, 0.8)',
+                  }
+                },
+                y1: {
+                  beginAtZero: true,
+                  position: 'right',
+                  max: 100,
+                  grid: {
+                    drawBorder: false,
+                    display: false,
+                  },
+                  ticks: {
+                    font: {
+                      size: 11
+                    },
+                    callback: function(value) {
+                      return value + '%';
+                    },
+                    padding: 8,
+                    color: 'rgba(139, 92, 246, 0.8)',
+                  }
+                },
+                x: {
+                  grid: {
+                    drawBorder: false,
+                    display: false,
+                  },
+                  ticks: {
+                    font: {
+                      size: 11
+                    },
+                    padding: 5,
+                    color: 'rgba(156, 163, 175, 0.8)',
+                    maxRotation: 30,
+                    minRotation: 0
+                  }
+                }
+              },
+              plugins: {
+                legend: {
+                  display: false
+                },
+                tooltip: {
+                  backgroundColor: 'rgba(17, 24, 39, 0.8)',
+                  titleFont: {
+                    size: 13,
+                    weight: 'bold'
+                  },
+                  bodyFont: {
+                    size: 12
+                  },
+                  padding: 12,
+                  cornerRadius: 8,
+                  bodySpacing: 6,
+                  usePointStyle: true,
+                  borderColor: 'rgba(255, 255, 255, 0.2)',
+                  borderWidth: 1,
+                  boxPadding: 4,
+                  callbacks: {
+                    labelPointStyle: function(context) {
+                      return {
+                        pointStyle: 'circle',
+                        rotation: 0
+                      };
+                    },
+                    label: function(context) {
+                      let label = context.dataset.label || '';
+                      if (label) {
+                        label += ': ';
+                      }
+                      if (context.dataset.yAxisID === 'y1') {
+                        label += context.parsed.y + '%';
+                      } else {
+                        label += context.parsed.y;
+                      }
+                      return label;
+                    }
+                  }
+                }
+              }
+            }
+          });
+        };
+        
+        // สร้างกราฟเริ่มต้น
+        const trendChart = createTrendChart();
+        
+        // จัดการการ toggle dataset
+        document.querySelectorAll('.chart-toggle').forEach(toggle => {
+          toggle.addEventListener('change', function() {
+            const datasetIndex = parseInt(this.getAttribute('data-index'));
+            const checked = this.checked;
+            
+            // อัพเดท UI ของ toggle switch
+            const toggleSwitch = this.nextElementSibling;
+            if (checked) {
+              toggleSwitch.classList.add('checked');
+              toggleSwitch.querySelector('span').classList.add('translate-x-4');
+            } else {
+              toggleSwitch.classList.remove('checked');
+              toggleSwitch.querySelector('span').classList.remove('translate-x-4');
+            }
+            
+            // อัพเดทการแสดงผลของ dataset
+            trendChart.data.datasets[datasetIndex].hidden = !checked;
+            trendChart.update();
+            
+            // แสดงข้อความแจ้งเตือนการอัพเดท
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-gray-800 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-out';
+            notification.textContent = checked 
+              ? `แสดงข้อมูล ${trendChart.data.datasets[datasetIndex].label} แล้ว` 
+              : `ซ่อนข้อมูล ${trendChart.data.datasets[datasetIndex].label} แล้ว`;
+            document.body.appendChild(notification);
+            
+            // ลบข้อความแจ้งเตือนหลังจาก 2 วินาที
+            setTimeout(() => {
+              notification.remove();
+            }, 2000);
+          });
+        });
+        
+        // เพิ่ม preset configuration buttons
+        const addPresetButtons = () => {
+          const presetContainer = document.createElement('div');
+          presetContainer.className = 'flex flex-wrap gap-2 mt-2 justify-center';
+          presetContainer.innerHTML = `
+            <button class="preset-btn px-3 py-1 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-full transition-colors border border-gray-700" data-preset="all">แสดงทั้งหมด</button>
+            <button class="preset-btn px-3 py-1 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-full transition-colors border border-gray-700" data-preset="basic">พื้นฐาน</button>
+            <button class="preset-btn px-3 py-1 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-full transition-colors border border-gray-700" data-preset="defects">เฉพาะ Defects</button>
+            <button class="preset-btn px-3 py-1 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-full transition-colors border border-gray-700" data-preset="testcases">เฉพาะ Test Cases</button>
+            <button class="preset-btn px-3 py-1 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-full transition-colors border border-gray-700" data-preset="status">สถานะ Test Cases</button>
+            <button class="preset-btn px-3 py-1 text-xs bg-indigo-700 hover:bg-indigo-600 text-white rounded-full transition-colors border border-indigo-600" id="save-config">บันทึกการตั้งค่า</button>
+            <button class="preset-btn px-3 py-1 text-xs bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-full transition-colors border border-gray-700" id="load-config">โหลดการตั้งค่า</button>
+          `;
+          
+          document.querySelector('.mt-5').insertAdjacentElement('afterend', presetContainer);
+          
+          // จัดการการคลิกปุ่ม preset
+          document.querySelectorAll('.preset-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+              if (this.id === 'save-config') {
+                saveCurrentConfig();
+                return;
+              }
+              
+              if (this.id === 'load-config') {
+                loadSavedConfig();
+                return;
+              }
+              
+              const preset = this.getAttribute('data-preset');
+              const toggles = document.querySelectorAll('.chart-toggle');
+              
+              // รีเซ็ตการแสดงผลทั้งหมด
+              toggles.forEach(toggle => {
+                toggle.checked = false;
+                const toggleSwitch = toggle.nextElementSibling;
+                toggleSwitch.classList.remove('checked');
+                toggleSwitch.querySelector('span')?.classList.remove('translate-x-4');
+                
+                const datasetIndex = parseInt(toggle.getAttribute('data-index'));
+                trendChart.data.datasets[datasetIndex].hidden = true;
+              });
+              
+              // เลือกการแสดงผลตาม preset
+              switch(preset) {
+                case 'all':
+                  toggles.forEach(toggle => {
+                    toggle.checked = true;
+                    const toggleSwitch = toggle.nextElementSibling;
+                    toggleSwitch.classList.add('checked');
+                    toggleSwitch.querySelector('span')?.classList.add('translate-x-4');
+                    
+                    const datasetIndex = parseInt(toggle.getAttribute('data-index'));
+                    trendChart.data.datasets[datasetIndex].hidden = false;
+                  });
+                  break;
+                  
+                case 'basic':
+                  // แสดงเฉพาะ Test Cases Executed และ Test Coverage
+                  [0, 3].forEach(idx => {
+                    toggles[idx].checked = true;
+                    const toggleSwitch = toggles[idx].nextElementSibling;
+                    toggleSwitch.classList.add('checked');
+                    toggleSwitch.querySelector('span')?.classList.add('translate-x-4');
+                    trendChart.data.datasets[idx].hidden = false;
+                  });
+                  break;
+                  
+                case 'defects':
+                  // แสดงเฉพาะ Defects Opened, Defects Closed
+                  [1, 2].forEach(idx => {
+                    toggles[idx].checked = true;
+                    const toggleSwitch = toggles[idx].nextElementSibling;
+                    toggleSwitch.classList.add('checked');
+                    toggleSwitch.querySelector('span')?.classList.add('translate-x-4');
+                    trendChart.data.datasets[idx].hidden = false;
+                  });
+                  break;
+                  
+                case 'testcases':
+                  // แสดงเฉพาะ Test Cases Executed และ Test Coverage
+                  [0, 3].forEach(idx => {
+                    toggles[idx].checked = true;
+                    const toggleSwitch = toggles[idx].nextElementSibling;
+                    toggleSwitch.classList.add('checked');
+                    toggleSwitch.querySelector('span')?.classList.add('translate-x-4');
+                    trendChart.data.datasets[idx].hidden = false;
+                  });
+                  break;
+                  
+                case 'status':
+                  // แสดงเฉพาะ Blocked, In Progress, Not Started
+                  [4, 5, 6].forEach(idx => {
+                    toggles[idx].checked = true;
+                    const toggleSwitch = toggles[idx].nextElementSibling;
+                    toggleSwitch.classList.add('checked');
+                    toggleSwitch.querySelector('span')?.classList.add('translate-x-4');
+                    trendChart.data.datasets[idx].hidden = false;
+                  });
+                  break;
+              }
+              
+              trendChart.update();
+            });
+          });
+          
+          // ฟังก์ชันบันทึกการตั้งค่าปัจจุบัน
+          function saveCurrentConfig() {
+            const config = [];
+            document.querySelectorAll('.chart-toggle').forEach(toggle => {
+              config.push({
+                index: parseInt(toggle.getAttribute('data-index')),
+                checked: toggle.checked
+              });
+            });
+            
+            localStorage.setItem('trendChartConfig', JSON.stringify(config));
+            
+            // แสดงข้อความแจ้งเตือนการบันทึก
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-green-800 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-out';
+            notification.textContent = 'บันทึกการตั้งค่าเรียบร้อย';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+              notification.remove();
+            }, 2000);
+          }
+          
+          // ฟังก์ชันโหลดการตั้งค่าที่บันทึกไว้
+          function loadSavedConfig() {
+            const savedConfig = localStorage.getItem('trendChartConfig');
+            
+            if (!savedConfig) {
+              // แสดงข้อความแจ้งเตือนว่าไม่พบการตั้งค่าที่บันทึกไว้
+              const notification = document.createElement('div');
+              notification.className = 'fixed top-4 right-4 bg-amber-800 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-out';
+              notification.textContent = 'ไม่พบการตั้งค่าที่บันทึกไว้';
+              document.body.appendChild(notification);
+              
+              setTimeout(() => {
+                notification.remove();
+              }, 2000);
+              
+              return;
+            }
+            
+            const config = JSON.parse(savedConfig);
+            const toggles = document.querySelectorAll('.chart-toggle');
+            
+            config.forEach(item => {
+              if (item.index < toggles.length) {
+                const toggle = toggles[item.index];
+                toggle.checked = item.checked;
+                
+                const toggleSwitch = toggle.nextElementSibling;
+                if (item.checked) {
+                  toggleSwitch.classList.add('checked');
+                  toggleSwitch.querySelector('span')?.classList.add('translate-x-4');
+                } else {
+                  toggleSwitch.classList.remove('checked');
+                  toggleSwitch.querySelector('span')?.classList.remove('translate-x-4');
+                }
+                
+                trendChart.data.datasets[item.index].hidden = !item.checked;
+              }
+            });
+            
+            trendChart.update();
+            
+            // แสดงข้อความแจ้งเตือนการโหลด
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 right-4 bg-indigo-800 text-white px-4 py-2 rounded-lg shadow-lg z-50 animate-fade-in-out';
+            notification.textContent = 'โหลดการตั้งค่าเรียบร้อย';
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+              notification.remove();
+            }, 2000);
+          }
+        };
+        
+        // เรียกใช้ฟังก์ชันเพิ่มปุ่ม preset
+        addPresetButtons();
+      });
+    </script>
+    <!-- End: Advanced Test Trend Analysis -->
+
+    <!-- Add custom animation and style to head -->
+    <style>
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+        100% { transform: translateY(0px); }
+      }
+      
+      @keyframes float-delayed {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-3px); }
+        100% { transform: translateY(0px); }
+      }
+      
+      @keyframes float-slow {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-2px); }
+        100% { transform: translateY(0px); }
+      }
+      
+      .animate-float {
+        animation: float 4s ease-in-out infinite;
+      }
+      
+      .animate-float-delayed {
+        animation: float-delayed 3s ease-in-out infinite;
+        animation-delay: 1s;
+      }
+      
+      .animate-float-slow {
+        animation: float-slow 5s ease-in-out infinite;
+        animation-delay: 0.5s;
+      }
+      
+      .circle-animation {
+        animation: progress 1.5s ease-out forwards;
+      }
+      
+      .bar-animation {
+        animation: grow 1.5s ease-out forwards;
+      }
+      
+      .trend-path {
+        animation: drawPath 2s ease-out forwards;
+      }
+      
+      @keyframes progress {
+        from { stroke-dashoffset: 100; }
+        to { stroke-dashoffset: 25; }
+      }
+      
+      @keyframes grow {
+        from { width: 0%; }
+        to { width: var(--target-width, 100%); }
+      }
+      
+      @keyframes drawPath {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      
+      .neon-text {
+        text-shadow: 0 0 8px rgba(131, 94, 251, 0.4);
+      }
+      
+      /* Pattern grid background */
+      .bg-pattern-grid {
+        background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+      
+      /* Toggle switch styles */
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        transition: all 0.3s ease;
+      }
+      
+      .toggle-switch.checked {
+        background-color: rgba(75, 85, 99, 0.5);
+      }
+      
+      .toggle-switch:before {
+        content: '';
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        left: 2px;
+        top: 2px;
+        background-color: #6b7280;
+        transition: transform 0.3s ease;
+      }
+      
+      .toggle-switch.checked:before {
+        transform: translateX(16px);
+      }
+      
+      /* Notification animation */
+      @keyframes fadeInOut {
+        0% { opacity: 0; transform: translateY(-10px); }
+        10% { opacity: 1; transform: translateY(0); }
+        90% { opacity: 1; transform: translateY(0); }
+        100% { opacity: 0; transform: translateY(-10px); }
+      }
+      
+      .animate-fade-in-out {
+        animation: fadeInOut 2s ease-in-out forwards;
+      }
+      
+      /* Preset buttons container */
+      .preset-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 0.5rem;
+      }
+      
+      .preset-btn {
+        transition: all 0.2s ease;
+      }
+      
+      .preset-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      }
+      
+      .preset-btn:active {
+        transform: translateY(0);
+      }
+    </style>

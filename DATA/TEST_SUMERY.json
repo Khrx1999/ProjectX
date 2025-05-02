@@ -1,0 +1,399 @@
+{
+  "dashboard": {
+    "ICON": "https://www.korwattana.com/images/content/original-1723979042172.jpg",
+    "PROJECT_NAME": "Central Pattana",
+    "START_DATE": "2025-02-01",
+    "END_DATE": "2025-04-29",
+    "VERSION": "1.0.0",
+    "NAME": "Tassana Khrueawan",
+    "STATUS": "In Progress",
+    "ENVIRONMENT": "Dev",
+    "BRANCH": "Version 920",
+    "TEST_CYCLE": "Sprint 8"
+  },
+  "testCases": {
+    "TOTAL": 484,
+    "PASS": 0,
+    "FAIL": 0,
+    "BLOCK": 0,
+    "IN_PROGRESS": 0,
+    "NOT_STARTED": 0
+  },
+  "modules": [
+    {
+      "name": "Tenant",
+      "description": "ทดสอบระบบ",
+      "testCases": {
+        "total": 231,
+        "passed": 144,
+        "failed": 19,
+        "blocked": 0,
+        "inProgress": 0,
+        "notStarted": 68
+      },
+      "remark": "No issues found"
+    },
+    {
+      "name": "App User And Admin",
+      "description": "ทดสอบฟังก์ชัน",
+      "testCases": {
+        "total": 253,
+        "passed": 0,
+        "failed": 0,
+        "blocked": 0,
+        "inProgress": 0,
+        "notStarted": 0
+      },
+      "remark": "No issues found"
+    }
+  ],
+  "TREND_ANALYSIS": {
+    "DATA": [
+      {
+        "DATE": "2025-04-01",
+        "TEST_CASES_EXECUTED": 10,
+        "TEST_CASES_PASSED": 8,
+        "TEST_CASES_FAILED": 2,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 12,
+        "DEFECTS_OPENED": 3,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-02",
+        "TEST_CASES_EXECUTED": 20,
+        "TEST_CASES_PASSED": 16,
+        "TEST_CASES_FAILED": 4,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 15,
+        "DEFECTS_OPENED": 4,
+        "DEFECTS_CLOSED": 2
+      },
+      {
+        "DATE": "2025-04-03",
+        "TEST_CASES_EXECUTED": 30,
+        "TEST_CASES_PASSED": 27,
+        "TEST_CASES_FAILED": 3,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 19,
+        "DEFECTS_OPENED": 3,
+        "DEFECTS_CLOSED": 3
+      },
+      {
+        "DATE": "2025-04-04",
+        "TEST_CASES_EXECUTED": 40,
+        "TEST_CASES_PASSED": 35,
+        "TEST_CASES_FAILED": 5,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 25,
+        "DEFECTS_OPENED": 5,
+        "DEFECTS_CLOSED": 4
+      },
+      {
+        "DATE": "2025-04-05",
+        "TEST_CASES_EXECUTED": 8,
+        "TEST_CASES_PASSED": 7,
+        "TEST_CASES_FAILED": 1,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 27,
+        "DEFECTS_OPENED": 2,
+        "DEFECTS_CLOSED": 3
+      },
+      {
+        "DATE": "2025-04-06",
+        "TEST_CASES_EXECUTED": 9,
+        "TEST_CASES_PASSED": 8,
+        "TEST_CASES_FAILED": 1,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 29,
+        "DEFECTS_OPENED": 1,
+        "DEFECTS_CLOSED": 2
+      },
+      {
+        "DATE": "2025-04-07",
+        "TEST_CASES_EXECUTED": 6,
+        "TEST_CASES_PASSED": 5,
+        "TEST_CASES_FAILED": 1,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 31,
+        "DEFECTS_OPENED": 1,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-08",
+        "TEST_CASES_EXECUTED": 5,
+        "TEST_CASES_PASSED": 4,
+        "TEST_CASES_FAILED": 1,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 33,
+        "DEFECTS_OPENED": 2,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-09",
+        "TEST_CASES_EXECUTED": 2,
+        "TEST_CASES_PASSED": 2,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 35,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 2
+      },
+      {
+        "DATE": "2025-04-10",
+        "TEST_CASES_EXECUTED": 3,
+        "TEST_CASES_PASSED": 3,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 36,
+        "DEFECTS_OPENED": 1,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-11",
+        "TEST_CASES_EXECUTED": 2,
+        "TEST_CASES_PASSED": 1,
+        "TEST_CASES_FAILED": 1,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 37,
+        "DEFECTS_OPENED": 1,
+        "DEFECTS_CLOSED": 0
+      },
+      {
+        "DATE": "2025-04-12",
+        "TEST_CASES_EXECUTED": 1,
+        "TEST_CASES_PASSED": 1,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 38,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 1
+      },  
+      {
+        "DATE": "2025-04-13",
+        "TEST_CASES_EXECUTED": 1,
+        "TEST_CASES_PASSED": 1,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 39,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-14",
+        "TEST_CASES_EXECUTED": 1,
+        "TEST_CASES_PASSED": 0,
+        "TEST_CASES_FAILED": 1,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 40,
+        "DEFECTS_OPENED": 1,
+        "DEFECTS_CLOSED": 0
+      },
+      {
+        "DATE": "2025-04-15",
+        "TEST_CASES_EXECUTED": 1,
+        "TEST_CASES_PASSED": 1,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 42,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-16",
+        "TEST_CASES_EXECUTED": 2,
+        "TEST_CASES_PASSED": 2,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 44,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 0
+      },
+      {
+        "DATE": "2025-04-17",
+        "TEST_CASES_EXECUTED": 3,
+        "TEST_CASES_PASSED": 2,
+        "TEST_CASES_FAILED": 1,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 46,
+        "DEFECTS_OPENED": 1,
+        "DEFECTS_CLOSED": 0
+      },
+      {
+        "DATE": "2025-04-18",
+        "TEST_CASES_EXECUTED": 2,
+        "TEST_CASES_PASSED": 1,
+        "TEST_CASES_FAILED": 1,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 48,
+        "DEFECTS_OPENED": 1,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-19",
+        "TEST_CASES_EXECUTED": 1,
+        "TEST_CASES_PASSED": 1,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 50,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-20",
+        "TEST_CASES_EXECUTED": 1,
+        "TEST_CASES_PASSED": 1,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 52,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 0
+      },
+      {
+        "DATE": "2025-04-21",
+        "TEST_CASES_EXECUTED": 2,
+        "TEST_CASES_PASSED": 2,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 55,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-22",
+        "TEST_CASES_EXECUTED": 3,
+        "TEST_CASES_PASSED": 3,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 58,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-23",
+        "TEST_CASES_EXECUTED": 1,
+        "TEST_CASES_PASSED": 1,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 61,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 1
+      },
+      {
+        "DATE": "2025-04-24",
+        "TEST_CASES_EXECUTED": 3,
+        "TEST_CASES_PASSED": 2,
+        "TEST_CASES_FAILED": 1,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 64,
+        "DEFECTS_OPENED": 1,
+        "DEFECTS_CLOSED": 0
+      },
+      {
+        "DATE": "2025-04-25",
+        "TEST_CASES_EXECUTED": 4,
+        "TEST_CASES_PASSED": 4,
+        "TEST_CASES_FAILED": 0,
+        "TEST_CASES_BLOCKED": 0,
+        "TEST_CASES_IN_PROGRESS": 0,
+        "TEST_CASES_NOT_STARTED": 0,
+        "TEST_COVERAGE": 68,
+        "DEFECTS_OPENED": 0,
+        "DEFECTS_CLOSED": 2
+      }
+    ],
+    "SUMMARY": {
+      "COVERAGE_GROWTH": 2.24,
+      "PASS_RATE_GROWTH": 1.5,
+      "TEST_VELOCITY": 6.44,
+      "DEFECT_RATE": 0.17,
+      "TIME_TO_FIX": 1.8,
+      "FIRST_TEST_DATE": "2025-04-01",
+      "LAST_TEST_DATE": "2025-04-25",
+      "HIGHEST_EXECUTED_DAY": "2025-04-04",
+      "HIGHEST_EXECUTION_COUNT": 40
+    },
+    "METRICS": {
+      "TEST_VELOCITY_RATIO": 65,
+      "DEFECT_RATE_RATIO": 45,
+      "TIME_TO_FIX_RATIO": 82,
+      "COVERAGE_GROWTH_RATIO": 78
+    },
+    "STATUS": {
+      "COVERAGE_TREND": "increasing",
+      "EXECUTION_TREND": "stable",
+      "DEFECT_TREND": "decreasing",
+      "FIX_RATE_TREND": "improving"
+    },
+    "TOTALS": {
+      "TOTAL_TEST_CASES": 161,
+      "TOTAL_PASSED": 124,
+      "TOTAL_FAILED": 37,
+      "TOTAL_DEFECTS_OPENED": 27,
+      "TOTAL_DEFECTS_CLOSED": 23,
+      "LATEST_COVERAGE": 68,
+      "COVERAGE_CHANGE": 5.2,
+      "DEFECT_FIX_RATE": 85,
+      "TODAY_EXECUTED": 4,
+      "TODAY_OPENED": 0,
+      "TODAY_CLOSED": 2
+    },
+    "INSIGHTS": {
+      "TOP_DEFECT_MODULE": "Authentication",
+      "TOP_DEFECT_MODULE_COUNT": 8,
+      "CRITICAL_DEFECTS": 4,
+      "TOP_TESTS_MODULE": "Payment",
+      "TOP_TESTS_MODULE_COUNT": 45,
+      "AVG_PASS_RATE": 77,
+      "AVG_FIX_TIME_IN_DAYS": 2.3
+    }
+  }
+} 

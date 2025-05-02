@@ -1,0 +1,6 @@
+2025-05-02 22:34:48,071 - root - INFO - Logging to file: D:\ProjectX2\LOG\qa_report_2025-05-02.log
+2025-05-02 22:34:48,163 - QAReportLibrary.Setup - INFO - Logging setup complete. Log file: D:\LOG\qa_report_2025-05-02.log
+2025-05-02 22:34:48,163 - QAReportLibrary - INFO - QAReportLibrary initialized from: D:\ProjectX2
+2025-05-02 22:34:48,643 - root - INFO - Logging to file: D:\ProjectX2\LOG\qa_report_2025-05-02.log
+2025-05-02 22:34:48,686 - QAReportLibrary.Setup - INFO - Logging setup complete. Log file: D:\LOG\qa_report_2025-05-02.log
+2025-05-02 22:34:48,686 - QAReportLibrary - INFO - QAReportLibrary initialized from: D:\ProjectX2

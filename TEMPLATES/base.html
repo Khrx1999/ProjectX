@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QA Dashboard - {{ PROJECT_NAME }} v{{ PROJECT_VERSION }}</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.bunny.net">
+  <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+  
+  <!-- Alpine.js -->
+  <script defer src="https://unpkg.com/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Style -->
+  <style>
+    {% include "partials/styles.html" %}
+    {% include "assets/css/styles.css" %}
+  </style>
+
+  <!-- Additional Scripts -->
+  <script>
+    {% include "partials/head_scripts.html" %}
+  </script>
+</head>
+<body class="text-gray-300 font-inter">
+  {% include "partials/background.html" %}
+
+  <main id="mainContent" class="w-full min-h-screen transition-all duration-300 main">
+
+
+    <!-- Content Section -->
+    <div class="container mx-auto py-6">
+
+      <!-- Test Summary -->
+      {% include "partials/test_summary.html" %}
+      
+      <!-- Test Trend Analysis -->
+      {% include "partials/test_trend_analysis.html" %}
+
+    </div>
+  </main>
+
+  <!-- Core JavaScript -->
+  <script>
+    {% include "partials/main_scripts.html" %}
+  </script>
+</body>
+</html> 

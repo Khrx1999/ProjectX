@@ -1,0 +1,611 @@
+<!-- Sprint Progress Dashboard - Enterprise Edition -->
+<div class="bg-gradient-to-b from-slate-900 via-gray-900 to-black rounded-2xl p-6 shadow-2xl border border-gray-800/30 backdrop-blur-sm transition-all duration-500 relative overflow-hidden mb-8 font-inter">
+  <!-- Abstract Background Elements - Improved Glow Effects -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 z-0 animate-pulse-slow"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-500/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 z-0 animate-pulse-slow"></div>
+  <div class="absolute top-1/2 left-1/3 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl -translate-y-1/2 z-0 animate-pulse-slow-delayed"></div>
+  
+  <!-- Subtle Grid Pattern Overlay -->
+  <div class="absolute inset-0 bg-grid-pattern opacity-5 z-0"></div>
+
+  <!-- Dashboard Header Section - Modernized with Better Typography -->
+  <div class="flex justify-between items-start mb-8 z-10 relative">
+    <div class="flex items-center">
+      <div class="flex-shrink-0">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center shadow-lg relative overflow-hidden group border border-blue-500/20">
+          <div class="absolute inset-0 bg-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <i class="ri-dashboard-3-line text-white text-2xl"></i>
+        </div>
+      </div>
+      <div class="ml-5">
+        <h2 class="text-3xl font-extrabold text-white tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-300">Sprint Progress</h2>
+        <div class="flex items-center mt-1.5 gap-3">
+          <p class="text-sm text-gray-400 font-medium">Enterprise Analytics Dashboard</p>
+          <div class="flex items-center space-x-3 ml-2">
+            <span class="px-2.5 py-1 text-xs font-medium bg-blue-900/30 text-blue-400 border border-blue-800/50 rounded-full flex items-center">
+              <i class="ri-calendar-line mr-1.5 text-blue-300"></i>{{ DAYS_PASSED }} / {{ TOTAL_DAYS }} days
+            </span>
+            <span class="px-2.5 py-1 text-xs font-medium {{ 'bg-red-900/30 text-red-400 border-red-800/50' if COMPLETION_PROGRESS < EXPECTED_PROGRESS else 'bg-green-900/30 text-green-400 border-green-800/50' }} rounded-full flex items-center">
+              <i class="{{ 'ri-error-warning-line mr-1.5' if COMPLETION_PROGRESS < EXPECTED_PROGRESS else 'ri-check-double-line mr-1.5' }}"></i>
+              {{ 'Behind Schedule' if COMPLETION_PROGRESS < EXPECTED_PROGRESS else 'On Track' }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Progress Percentage Badge - Enhanced with Animation -->
+    <div class="px-5 py-3 bg-gradient-to-r from-blue-900/40 to-indigo-900/40 backdrop-blur-sm border border-blue-800/50 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group">
+      <div class="flex items-baseline gap-1.5">
+        <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 group-hover:from-blue-300 group-hover:to-indigo-300 transition-all duration-300 tabular-nums">{{ COMPLETION_PROGRESS }}</div>
+        <div class="text-xl font-bold text-blue-400/90">%</div>
+      </div>
+      <div class="text-xs text-gray-400 mt-0.5 text-right">Overall Completion</div>
+    </div>
+  </div>
+
+  <!-- Enhanced Progress Bar -->
+  <div class="relative w-full h-8 bg-gray-800/80 rounded-xl overflow-hidden mb-2 backdrop-blur-sm border border-gray-700/50 shadow-inner z-10 group">
+    <!-- Subtle Track Pattern -->
+    <div class="absolute inset-0 bg-grid-pattern-fine opacity-5 z-5"></div>
+    
+    <!-- Track Markers -->
+    <div class="absolute inset-0 flex justify-between px-1 items-center z-10">
+      <div class="h-full w-px bg-gray-700/30"></div>
+      <div class="h-full w-px bg-gray-700/30"></div>
+      <div class="h-full w-px bg-gray-700/30"></div>
+      <div class="h-full w-px bg-gray-700/30"></div>
+    </div>
+    
+    <!-- Expected Progress Marker -->
+    <div class="absolute h-8 w-0.5 bg-indigo-400/70 right-0 z-30" 
+         data-right-pos="{{ EXPECTED_PROGRESS }}">
+      <div class="absolute -top-1 -translate-x-1/2 w-3 h-3 bg-indigo-400 rounded-full shadow-lg shadow-indigo-500/50"></div>
+      <div class="absolute -bottom-1 -translate-x-1/2 text-xs text-indigo-400 font-medium w-14 text-center">Target</div>
+    </div>
+    
+    <!-- Progress Fill -->
+    <div class="h-full transition-all duration-1000 ease-out relative z-20 group-hover:brightness-110"
+         data-width="{{ COMPLETION_PROGRESS }}">
+      <!-- Primary Fill -->
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600"></div>
+      <!-- Shine/Glow Effect -->
+      <div class="absolute inset-0 opacity-75 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+      <!-- Edge Glow -->
+      <div class="absolute right-0 inset-y-0 w-1 bg-indigo-400/80 blur-[1px]"></div>
+      <!-- Completion Percentage Inside Bar -->
+      <div class="absolute inset-0 flex items-center px-4">
+        <div class="text-xs font-medium text-white/90">{{ COMPLETION_PROGRESS }}% Completed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Progress Labels -->
+  <div class="flex justify-between text-xs text-gray-500 mb-8 z-10 relative">
+    <span>0%</span>
+    <span>25%</span>
+    <span>50%</span>
+    <span>75%</span>
+    <span>100%</span>
+  </div>
+
+  <!-- Main Dashboard Content -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 z-10 relative">
+    {% set necessary_velocity = ((REMAINING_PROGRESS) / (TOTAL_DAYS - DAYS_PASSED)) if (TOTAL_DAYS - DAYS_PASSED) > 0 else PROGRESS_PER_DAY * 2 %}
+    {% set ACTUAL_PROGRESS_RATE = (COMPLETION_PROGRESS / DAYS_PASSED) if DAYS_PASSED > 0 else 0 %}
+    <!-- Left Column: Sprint Stats and Timeline -->
+    <div class="space-y-6 flex flex-col">
+      <!-- Sprint Timeline Card - Enhanced Modern Design -->
+      <div class="bg-gradient-to-br from-slate-900 to-gray-900 border border-gray-800/40 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden relative group h-full flex-grow">
+        <!-- Card Background Effects -->
+        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-indigo-500/5 rounded-full blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute inset-0 bg-grid-pattern-fine opacity-5 z-0"></div>
+        
+        <!-- Card Header with Highlights -->
+        <div class="flex items-center mb-5">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-600 to-blue-700 flex items-center justify-center mr-4 shadow-lg relative border border-indigo-500/20">
+            <div class="absolute inset-0 rounded-xl bg-indigo-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <i class="ri-calendar-line text-white text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white tracking-tight">Sprint Timeline</h3>
+            <p class="text-xs text-gray-400 mt-0.5">Progress tracking and forecasting</p>
+          </div>
+          
+          <!-- Mini Project Stats -->
+          <div class="ml-auto flex space-x-2">
+            <div class="bg-gray-800/60 rounded-lg px-2.5 py-1.5 border border-gray-700/40">
+              <div class="text-xs text-gray-400">Tests</div>
+              <div class="text-sm font-bold text-white flex items-baseline">
+                <span>{{ TOTAL_TEST_CASES }}</span>
+                <span class="text-xs text-gray-500 ml-1">total</span>
+              </div>
+            </div>
+            <div class="bg-blue-900/30 rounded-lg px-2.5 py-1.5 border border-blue-900/30">
+              <div class="text-xs text-blue-400">Pass</div>
+              <div class="text-sm font-bold text-white flex items-baseline">
+                <span>{{ PASSED_TEST_CASES }}</span>
+                <span class="text-green-400 text-xs ml-1">{{ (PASSED_TEST_CASES / TOTAL_TEST_CASES * 100) | default(0) | round }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <!-- Enhanced Timeline Bar with Animations -->
+          <div class="relative h-3 bg-gray-800/80 rounded-full mb-3 shadow-inner border border-gray-700/40 overflow-hidden group">
+            <!-- Subtle Track Pattern -->
+            <div class="absolute inset-0 bg-grid-pattern-fine opacity-5 z-0"></div>
+            
+            <!-- End Marker -->
+            <div class="absolute right-0 -translate-y-1/2 -translate-x-1 w-2 h-6 bg-gray-700/80 rounded-full"></div>
+            
+            <!-- Milestone Markers -->
+            <div class="absolute inset-0 flex justify-between px-8 items-center z-10">
+              <div class="h-5 w-px bg-gray-700/40"></div>
+              <div class="h-5 w-px bg-gray-700/40"></div>
+              <div class="h-5 w-px bg-gray-700/40"></div>
+            </div>
+            
+            <!-- Progress Fill with Animation -->
+            <div class="absolute h-full left-0 rounded-full bg-gradient-to-r from-indigo-500 to-blue-500 group-hover:brightness-110 transition-all duration-300" 
+                data-width="{{ (DAYS_PASSED / TOTAL_DAYS) * 100 }}">
+              <!-- Shine Effect -->
+              <div class="absolute inset-0 opacity-50 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+              
+              <!-- Current Position Marker -->
+              <div class="absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 bg-white rounded-full shadow-lg shadow-indigo-500/50 translate-x-1/2 pulse-animation z-20"></div>
+            </div>
+          </div>
+
+          <!-- Timeline Info Redesigned -->
+          <div class="grid grid-cols-3 gap-4 text-xs mt-5">
+            <div class="flex flex-col items-start bg-gray-800/50 rounded-lg p-3 border border-gray-800/30 hover:border-indigo-800/30 transition-colors">
+              <span class="text-indigo-400 font-medium flex items-center mb-1">
+                <i class="ri-calendar-check-line mr-1"></i>
+                Start Date
+              </span>
+              <span class="text-white font-bold">{{ START_DATE }}</span>
+            </div>
+            <div class="flex flex-col items-center bg-gray-800/50 rounded-lg p-3 border border-gray-800/30 hover:border-indigo-800/30 transition-colors">
+              <span class="text-indigo-400 font-medium flex items-center mb-1">
+                <i class="ri-calendar-line mr-1"></i>
+                Duration
+              </span>
+              <span class="text-white font-bold">{{ TOTAL_DAYS }} days</span>
+            </div>
+            <div class="flex flex-col items-end bg-gray-800/50 rounded-lg p-3 border border-gray-800/30 hover:border-indigo-800/30 transition-colors">
+              <span class="text-indigo-400 font-medium flex items-center mb-1">
+                <i class="ri-calendar-todo-line mr-1"></i>
+                End Date
+              </span>
+              <span class="text-white font-bold">{{ END_DATE }}</span>
+            </div>
+          </div>
+          
+          <!-- Estimated Finish Section - Enhanced Visual Appeal -->
+          <div class="mt-5 bg-gray-800/60 border border-gray-800/50 rounded-lg p-4 backdrop-blur-sm relative overflow-hidden">
+            <div class="absolute -inset-0.5 bg-gradient-to-r {{ 'from-red-500/10 to-amber-500/10' if DAYS_DIFFERENCE > 0 else 'from-emerald-500/10 to-green-500/10' }} rounded-lg opacity-40 blur-sm"></div>
+            
+            <!-- Subtle Direction Indicators -->
+            {% if DAYS_DIFFERENCE > 0 %}
+              <div class="absolute top-1 right-1 w-24 h-24 bg-red-500/5 rounded-full blur-2xl"></div>
+            {% else %}
+              <div class="absolute top-1 right-1 w-24 h-24 bg-green-500/5 rounded-full blur-2xl"></div>
+            {% endif %}
+            
+            <div class="relative">
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center text-gray-300 text-sm font-medium">
+                  <i class="{{ 'ri-alert-fill text-red-400 mr-2' if DAYS_DIFFERENCE > 0 else 'ri-check-fill text-green-400 mr-2' }}"></i>
+                  Estimated Completion
+                </div>
+                <div class="w-8 h-8 rounded-full {{ 'bg-red-900/30' if DAYS_DIFFERENCE > 0 else 'bg-green-900/30' }} flex items-center justify-center">
+                  <i class="ri-calendar-event-fill {{ 'text-red-400' if DAYS_DIFFERENCE > 0 else 'text-green-400' }}"></i>
+                </div>
+              </div>
+              
+              <div class="flex justify-between items-end">
+                <div>
+                  <div class="{{ 'text-red-400' if DAYS_DIFFERENCE > 0 else 'text-green-400' }} text-2xl font-bold flex items-baseline">
+                    <span>Day {{ DAYS_PASSED + DAYS_TO_COMPLETION }}</span>
+                    <span class="text-sm ml-2 text-gray-400">/ {{ TOTAL_DAYS }}</span>
+                  </div>
+                  <div class="mt-1 text-xs {{ 'text-red-300' if DAYS_DIFFERENCE > 0 else 'text-green-300' }} flex items-center">
+                    <i class="{{ 'ri-arrow-right-line mr-1.5' if DAYS_DIFFERENCE > 0 else 'ri-arrow-left-line mr-1.5' }}"></i>
+                    {% if DAYS_DIFFERENCE > 0 %}
+                      <span>{{ DAYS_DIFFERENCE }} days after deadline</span>
+                    {% else %}
+                      <span>{{ (DAYS_DIFFERENCE * -1) }} days before deadline</span>
+                    {% endif %}
+                  </div>
+                </div>
+                
+                <div class="flex flex-col items-end">
+                  <div class="text-sm text-gray-400">Days Needed</div>
+                  <div class="text-lg text-white font-medium">{{ DAYS_TO_COMPLETION }}</div>
+                </div>
+              </div>
+              
+              <!-- Mini progress indicator with Animation -->
+              <div class="mt-3 w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                <div class="h-full {{ 'bg-gradient-to-r from-red-600 to-amber-500' if DAYS_DIFFERENCE > 0 else 'bg-gradient-to-r from-emerald-500 to-green-500' }} rounded-full relative" 
+                     data-width="{{ (COMPLETION_PROGRESS) }}%">
+                  <div class="absolute inset-0 opacity-50 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer"></div>
+                </div>
+              </div>
+              <div class="flex justify-between text-2xs text-gray-500 mt-1">
+                <span>{{ COMPLETION_PROGRESS }}% Complete</span>
+                <span>{{ REMAINING_PROGRESS | default(0) | round }}% Remaining</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Time Details Cards - Enhanced Visual Design -->
+          <div class="grid grid-cols-2 gap-4 mt-5">
+            <div class="bg-gradient-to-br from-blue-900/20 to-blue-800/10 border border-blue-900/20 rounded-lg p-4 text-center relative overflow-hidden group hover:border-blue-700/30 transition-all duration-300">
+              <div class="absolute inset-0 bg-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="text-sm text-blue-400 font-medium flex items-center justify-center">
+                <i class="ri-time-line mr-1.5"></i>
+                Time Elapsed
+              </div>
+              <div class="text-2xl text-white font-bold mt-2 flex justify-center items-baseline">
+                <span class="tabular-nums">{{ DAYS_PASSED }}</span>
+                <span class="text-sm text-gray-400 ml-1.5">days</span>
+              </div>
+              <div class="text-xs text-gray-400 mt-1">{{ ((DAYS_PASSED / TOTAL_DAYS) * 100) | default(0) | round }}% of sprint</div>
+              <!-- Progress Indicator with Animation -->
+              <div class="w-full h-1 bg-gray-800 rounded-full mt-2 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-full relative" data-width="{{ ((DAYS_PASSED / TOTAL_DAYS) * 100) | default(0) | round }}">
+                  <div class="absolute inset-0 opacity-40 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-gradient-to-br from-purple-900/20 to-purple-800/10 border border-purple-900/20 rounded-lg p-4 text-center relative overflow-hidden group hover:border-purple-700/30 transition-all duration-300">
+              <div class="absolute inset-0 bg-purple-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="text-sm text-purple-400 font-medium flex items-center justify-center">
+                <i class="ri-hourglass-line mr-1.5"></i>
+                Time Left
+              </div>
+              <div class="text-2xl text-white font-bold mt-2 flex justify-center items-baseline">
+                <span class="tabular-nums">{{ TOTAL_DAYS - DAYS_PASSED }}</span>
+                <span class="text-sm text-gray-400 ml-1.5">days</span>
+              </div>
+              <div class="text-xs text-gray-400 mt-1">{{ (100 - ((DAYS_PASSED / TOTAL_DAYS) * 100)) | default(0) | round }}% remaining</div>
+              <!-- Progress Indicator with Animation -->
+              <div class="w-full h-1 bg-gray-800 rounded-full mt-2 overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-purple-600 to-purple-400 rounded-full relative" data-width="{{ (100 - ((DAYS_PASSED / TOTAL_DAYS) * 100)) | default(0) | round }}">
+                  <div class="absolute inset-0 opacity-40 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right Column: Velocity Analysis -->
+    <div class="space-y-6 flex flex-col">
+      <!-- Velocity Analysis Card - Modernized Design -->
+      <div class="bg-gradient-to-br from-slate-900 to-gray-900 border border-gray-800/40 rounded-xl p-5 shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden relative group h-full flex-grow">
+        <!-- Card Background Effects -->
+        <div class="absolute -left-10 -top-10 w-40 h-40 bg-blue-500/5 rounded-full blur-xl opacity-70 group-hover:opacity-100 transition-opacity duration-500"></div>
+        <div class="absolute inset-0 bg-grid-pattern-fine opacity-5 z-0"></div>
+        
+        <!-- Card Header with Status Indicator -->
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-700 flex items-center justify-center mr-4 shadow-lg relative border border-blue-500/20">
+            <div class="absolute inset-0 rounded-xl bg-blue-400/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <i class="ri-line-chart-line text-white text-xl"></i>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold text-white tracking-tight">Velocity Analysis</h3>
+            <p class="text-xs text-gray-400 mt-0.5">Sprint performance metrics</p>
+          </div>
+          
+          <!-- Status Indicator -->
+          <div class="ml-auto {{ 'bg-red-900/20 border-red-900/30 text-red-400' if necessary_velocity > ACTUAL_PROGRESS_RATE else 'bg-green-900/20 border-green-900/30 text-green-400' }} px-3 py-1 rounded-lg border text-xs font-medium flex items-center">
+            <i class="{{ 'ri-speed-down-line mr-1.5' if necessary_velocity > ACTUAL_PROGRESS_RATE else 'ri-speed-up-line mr-1.5' }}"></i>
+            {{ 'Need to Accelerate' if necessary_velocity > ACTUAL_PROGRESS_RATE else 'Good Pace' }}
+          </div>
+        </div>
+        
+        <div class="space-y-6">
+          <!-- Current Velocity - Redesigned for Better Clarity -->
+          <div class="relative bg-gray-800/50 rounded-lg p-4 border border-gray-800/30 hover:border-blue-800/30 transition-colors overflow-hidden group/velocity">
+            <!-- Subtle Glow Effect -->
+            <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-blue-500/10 rounded-full blur-xl opacity-0 group-hover/velocity:opacity-100 transition-opacity duration-500"></div>
+            
+            <div class="flex justify-between items-center mb-3 relative">
+              <span class="text-sm text-gray-300 font-medium flex items-center">
+                <i class="ri-speed-line text-blue-400 mr-2"></i>
+                Current Velocity
+              </span>
+              <div class="flex items-center space-x-2">
+                <span class="text-blue-400 font-bold px-2.5 py-1 bg-blue-900/30 rounded-md text-sm">{{ ACTUAL_PROGRESS_RATE | default(0) | round(2) }}%/day</span>
+                <span class="{{ 'text-red-400 bg-red-900/20' if ACTUAL_PROGRESS_RATE < PROGRESS_PER_DAY else 'text-green-400 bg-green-900/20' }} px-2 py-0.5 rounded text-xs font-medium">
+                  {{ (ACTUAL_PROGRESS_RATE - PROGRESS_PER_DAY) | default(0) | round(2) }}%
+                </span>
+              </div>
+            </div>
+            
+            <!-- Enhanced Progress Bar with Animation -->
+            <div class="h-5 bg-gray-900 rounded-lg overflow-hidden shadow-inner border border-gray-800/40 group-hover/velocity:border-blue-800/30 transition-colors">
+              <div class="h-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-full relative" data-width="{{ (ACTUAL_PROGRESS_RATE / (PROGRESS_PER_DAY * 2)) * 100 }}">
+                <div class="absolute inset-0 opacity-50 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                <!-- Velocity Label Inside Bar -->
+                <div class="absolute inset-0 flex items-center justify-end pr-2">
+                  <div class="text-xs font-medium text-white/90">{{ ACTUAL_PROGRESS_RATE | default(0) | round(2) }}%</div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Gauge markers with Better Readability -->
+            <div class="flex justify-between text-2xs text-gray-500 mt-2 px-1">
+              <span>0%</span>
+              <span class="relative">
+                <span class="absolute -top-5 h-4 w-px bg-purple-500/50 left-1/2 -translate-x-1/2"></span>
+                {{ PROGRESS_PER_DAY }}%
+              </span>
+              <span>{{ PROGRESS_PER_DAY * 2 }}%</span>
+            </div>
+            
+            <!-- Target Rate Info - Enhanced Visual Design -->
+            <div class="flex justify-between items-center mt-4 pt-3 border-t border-gray-800/50">
+              <div class="flex items-center text-xs text-gray-400">
+                <i class="ri-focus-3-line text-purple-400 mr-1.5"></i>
+                <span>Target Rate:</span>
+              </div>
+              <div class="flex items-center">
+                <span class="text-purple-400 font-medium text-xs">{{ necessary_velocity | default(0) | round(2) }}% / day</span>
+                <span class="{{ 'text-red-400' if necessary_velocity > ACTUAL_PROGRESS_RATE else 'text-green-400' }} text-xs ml-2">
+                  ({{ 'need ' if necessary_velocity > ACTUAL_PROGRESS_RATE }}{{ (necessary_velocity - ACTUAL_PROGRESS_RATE) | abs | default(0) | round(2) }}% {{ 'more' if necessary_velocity > ACTUAL_PROGRESS_RATE else 'buffer' }})
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Progress Metrics - Redesigned as Cards Grid -->
+          <div class="grid grid-cols-2 gap-4">
+            <!-- Completion Card -->
+            <div class="bg-gray-800/50 border border-gray-800/30 rounded-lg p-4 text-center relative overflow-hidden group/card hover:border-blue-800/30 transition-colors">
+              <div class="absolute -inset-1 bg-blue-500/5 rounded-lg opacity-0 group-hover/card:opacity-100 blur-xl transition-opacity duration-300"></div>
+              <div class="relative">
+                <div class="text-sm text-blue-400 font-medium flex items-center justify-center">
+                  <i class="ri-check-double-line mr-1.5"></i>
+                  Completion
+                </div>
+                <div class="text-2xl text-white font-bold mt-2 flex justify-center items-baseline">
+                  <span class="tabular-nums">{{ COMPLETION_PROGRESS }}</span>
+                  <span class="text-sm text-gray-400 ml-1">%</span>
+                </div>
+                <div class="w-full h-1.5 bg-gray-900 rounded-full mt-3 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-blue-600 to-blue-400 rounded-full relative" data-width="{{ COMPLETION_PROGRESS }}">
+                    <div class="absolute inset-0 opacity-40 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Remaining Card -->
+            <div class="bg-gray-800/50 border border-gray-800/30 rounded-lg p-4 text-center relative overflow-hidden group/card hover:border-purple-800/30 transition-colors">
+              <div class="absolute -inset-1 bg-purple-500/5 rounded-lg opacity-0 group-hover/card:opacity-100 blur-xl transition-opacity duration-300"></div>
+              <div class="relative">
+                <div class="text-sm text-purple-400 font-medium flex items-center justify-center">
+                  <i class="ri-bookmark-line mr-1.5"></i>
+                  Remaining
+                </div>
+                <div class="text-2xl text-white font-bold mt-2 flex justify-center items-baseline">
+                  <span class="tabular-nums">{{ REMAINING_PROGRESS | default(0) | round }}</span>
+                  <span class="text-sm text-gray-400 ml-1">%</span>
+                </div>
+                <div class="w-full h-1.5 bg-gray-900 rounded-full mt-3 overflow-hidden">
+                  <div class="h-full bg-gradient-to-r from-purple-600 to-purple-400 rounded-full relative" data-width="{{ REMAINING_PROGRESS }}">
+                    <div class="absolute inset-0 opacity-40 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Summary Stats Cards - New Component for Better Data Overview -->
+          <div class="bg-gray-800/50 border border-gray-800/30 rounded-lg p-4 relative overflow-hidden group/stats hover:border-gray-700 transition-colors">
+            <div class="absolute -inset-1 bg-indigo-500/5 rounded-lg opacity-0 group-hover/stats:opacity-100 blur-xl transition-opacity duration-300"></div>
+            
+            <div class="flex items-center justify-between mb-3">
+              <h4 class="text-sm font-medium text-gray-300 flex items-center">
+                <i class="ri-bar-chart-grouped-line text-indigo-400 mr-1.5"></i>
+                Performance Metrics
+              </h4>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-3">
+              <!-- Daily Progress -->
+              <div class="bg-gray-900/70 rounded-lg p-3 border border-gray-800/30 group-hover/stats:border-indigo-900/30 transition-colors">
+                <div class="text-xs text-indigo-400 font-medium">Daily Progress</div>
+                <div class="text-lg text-white font-bold mt-1 flex items-baseline">
+                  <span class="tabular-nums">{{ ACTUAL_PROGRESS_RATE | default(0) | round(2) }}</span>
+                  <span class="text-xs text-gray-500 ml-1">%/day</span>
+                </div>
+              </div>
+              
+              <!-- Required Rate -->
+              <div class="bg-gray-900/70 rounded-lg p-3 border border-gray-800/30 group-hover/stats:border-blue-900/30 transition-colors">
+                <div class="text-xs text-blue-400 font-medium">Required Rate</div>
+                <div class="text-lg text-white font-bold mt-1 flex items-baseline">
+                  <span class="tabular-nums">{{ PROGRESS_PER_DAY }}</span>
+                  <span class="text-xs text-gray-500 ml-1">%/day</span>
+                </div>
+              </div>
+              
+              <!-- Necessary Rate -->
+              <div class="bg-gray-900/70 rounded-lg p-3 border border-gray-800/30 group-hover/stats:{{ 'border-red-900/30' if necessary_velocity > ACTUAL_PROGRESS_RATE else 'border-green-900/30' }} transition-colors">
+                <div class="text-xs {{ 'text-red-400' if necessary_velocity > ACTUAL_PROGRESS_RATE else 'text-green-400' }} font-medium">Necessary Rate</div>
+                <div class="text-lg text-white font-bold mt-1 flex items-baseline">
+                  <span class="tabular-nums">{{ necessary_velocity | default(0) | round(2) }}</span>
+                  <span class="text-xs text-gray-500 ml-1">%/day</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Legend with Improved Visuals -->
+            <div class="flex items-center justify-between px-2 mt-4 text-xs text-gray-400 pt-3 border-t border-gray-800/30">
+              <div class="flex items-center">
+                <div class="w-3 h-3 bg-gradient-to-r from-blue-600 to-blue-400 rounded-full mr-2"></div>
+                <span>Current</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-3 h-3 bg-purple-500 rounded-full mr-2"></div>
+                <span>Required</span>
+              </div>
+              <div class="flex items-center">
+                <div class="w-3 h-3 {{ 'bg-red-500' if necessary_velocity > ACTUAL_PROGRESS_RATE else 'bg-green-500' }} rounded-full mr-2"></div>
+                <span>Necessary</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Enhanced Styling */
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  
+  .font-inter {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  .bg-grid-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M0 0h100v100H0z' fill='none'/%3E%3Cpath d='M0 0h1v100H0zm20 0h1v100h-1zm20 0h1v100h-1zm20 0h1v100h-1zm20 0h1v100h-1zM0 0v1h100V0zm0 20v1h100v-1zm0 20v1h100v-1zm0 20v1h100v-1zm0 20v1h100v-1z' fill='currentColor'/%3E%3C/svg%3E");
+  }
+  
+  .bg-grid-pattern-fine {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M0 0h40v40H0z' fill='none'/%3E%3Cpath d='M0 0h.5v40H0zm10 0h.5v40h-.5zm10 0h.5v40h-.5zm10 0h.5v40h-.5zM0 0v.5h40V0zm0 10v.5h40v-.5zm0 10v.5h40v-.5zm0 10v.5h40v-.5z' fill='currentColor'/%3E%3C/svg%3E");
+  }
+
+  .bg-pattern-stripes {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.1) 5px, rgba(255,255,255,0.1) 10px);
+  }
+  
+  .bg-pattern-diagonal {
+    background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(255,255,255,0.1) 5px, rgba(255,255,255,0.1) 10px);
+  }
+  
+  .bg-stripes {
+    background-image: repeating-linear-gradient(135deg, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 20px);
+  }
+  
+  .dashed-line {
+    background-image: linear-gradient(to bottom, currentColor 50%, transparent 50%);
+    background-size: 1px 6px;
+    background-repeat: repeat-y;
+  }
+  
+  .glow-white {
+    box-shadow: 0 0 5px rgba(255,255,255,0.7);
+  }
+  
+  .pulse-animation {
+    animation: pulse 2s infinite;
+  }
+  
+  .pulse-animation-subtle {
+    animation: pulse-subtle 3s infinite;
+  }
+  
+  .animate-spin-slow {
+    animation: spin 3s linear infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse-glow 6s infinite;
+  }
+  
+  .animate-pulse-slow-delayed {
+    animation: pulse-glow 6s infinite 2s;
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+  
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+  
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7); }
+    70% { box-shadow: 0 0 0 5px rgba(255, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+  }
+  
+  @keyframes pulse-subtle {
+    0% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.5); }
+    70% { box-shadow: 0 0 0 3px rgba(250, 204, 21, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(250, 204, 21, 0); }
+  }
+  
+  @keyframes pulse-glow {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
+  }
+  
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .text-2xs {
+    font-size: 0.625rem;
+  }
+</style>
+
+<script>
+  // Enhanced JavaScript for better animations and interactions
+  document.addEventListener('DOMContentLoaded', function() {
+    // Apply all data-width attributes to width style
+    document.querySelectorAll('[data-width]').forEach(function(el) {
+      el.style.width = el.getAttribute('data-width') + '%';
+    });
+    
+    // Apply all data-right-pos attributes to right style
+    document.querySelectorAll('[data-right-pos]').forEach(function(el) {
+      el.style.right = 'calc(100% - ' + el.getAttribute('data-right-pos') + '%)';
+    });
+    
+    // Apply all data-left attributes to left style
+    document.querySelectorAll('[data-left]').forEach(function(el) {
+      el.style.left = el.getAttribute('data-left') + '%';
+    });
+    
+    // Added event listener for notifications
+    document.dispatchEvent(new CustomEvent('qa-report-loaded'));
+    
+    // Added recalculation for ACTUAL_PROGRESS_RATE - use calculated progress per day from Data.json
+    const completionProgress = parseFloat(document.querySelector('[data-completion-progress]')?.getAttribute('data-completion-progress') || 0);
+    const daysPassed = parseFloat(document.querySelector('[data-days-passed]')?.getAttribute('data-days-passed') || 1);
+    
+    if (completionProgress && daysPassed) {
+      const actualProgressRate = (completionProgress / daysPassed).toFixed(2);
+      document.querySelectorAll('[data-actual-progress-rate]').forEach(function(el) {
+        el.textContent = actualProgressRate;
+      });
+    }
+    
+    // Remove click event handlers for notification links that were removed
+    document.removeEventListener('click', function(e) {
+      if (e.target && (e.target.id === 'show-velocity-notification' || e.target.id === 'notification-link')) {
+        e.preventDefault();
+      }
+    });
+  });
+</script> 

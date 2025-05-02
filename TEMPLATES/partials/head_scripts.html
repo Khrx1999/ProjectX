@@ -1,0 +1,76 @@
+// สำหรับตรวจจับ Dark Mode
+if (localStorage.getItem('darkMode') === 'true' ||
+    (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+  document.documentElement.classList.add('dark');
+}
+
+// กำหนดค่า tailwind theme
+tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      fontFamily: {
+        'inter': ['Inter', 'sans-serif'],
+      },
+      colors: {
+        'primary': '#3b82f6',
+        'secondary': '#9333ea',
+      }
+    }
+  }
+}
+
+// Add Chart.js
+document.write('<script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"><\/script>');
+
+// Utility Functions
+function formatNumber(num, decimals = 0) {
+  return parseFloat(num).toLocaleString('th-TH', {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  });
+}
+
+function formatThaiDate(date) {
+  if (!date) return '';
+  
+  const options = { 
+    year: 'numeric', 
+    month: 'short', 
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
+  };
+  
+  return new Date(date).toLocaleDateString('th-TH', options);
+}
+
+// Add print functionality
+function printReport() {
+  window.print();
+}
+
+// Initialize theme
+const userPreference = localStorage.getItem('darkMode') === 'true';
+const systemPreference = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+const darkModeEnabled = userPreference ?? systemPreference;
+
+// Initial theme setup
+if (darkModeEnabled) {
+  document.documentElement.classList.add('dark');
+} else {
+  document.documentElement.classList.remove('dark');
+}
+
+// Function to toggle theme
+function toggleDarkMode() {
+  const isDark = document.documentElement.classList.toggle('dark');
+  localStorage.setItem('darkMode', isDark);
+}
+
+// For tooltips - using Tippy.js via CDN
+document.write('<script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"><\/script>');
+document.write('<script src="https://unpkg.com/tippy.js@6.3.7/dist/tippy-bundle.umd.min.js"><\/script>');
+
+// Add ApexCharts for more advanced charts
+document.write('<script src="https://cdn.jsdelivr.net/npm/apexcharts"><\/script>'); 

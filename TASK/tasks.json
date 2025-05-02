@@ -1,0 +1,129 @@
+{
+  "taskManager": {
+    "version": "1.0.0",
+    "lastUpdated": "2025-05-02T15:55:00",
+    "configuration": {
+      "defaultPriority": "medium",
+      "defaultStatus": "pending",
+      "statusOptions": ["pending", "in-progress", "completed", "blocked", "cancelled"],
+      "priorityOptions": ["critical", "high", "medium", "low"],
+      "categoryColors": {
+        "development": "#4287f5",
+        "testing": "#f542a1",
+        "design": "#42f5b3",
+        "documentation": "#f5ce42",
+        "meeting": "#8442f5",
+        "research": "#f56642"
+      }
+    },
+    "tasks": [
+      {
+        "id": "TASK-001",
+        "title": "เริ่มต้นโปรเจค Playwright Automation",
+        "description": "สร้างโครงสร้างโปรเจคและติดตั้ง dependencies สำหรับการทำ automation testing ด้วย Playwright",
+        "category": "development",
+        "priority": "high",
+        "status": "completed",
+        "assignee": "Tassana",
+        "createdAt": "2025-04-25T10:00:00",
+        "dueDate": "2025-04-30T17:00:00",
+        "completedAt": "2025-04-29T15:30:00",
+        "tags": ["automation", "playwright", "setup"],
+        "subtasks": [
+          {
+            "id": "SUBTASK-001-1",
+            "title": "ติดตั้ง Node.js และ npm",
+            "completed": true
+          },
+          {
+            "id": "SUBTASK-001-2",
+            "title": "ติดตั้ง Playwright",
+            "completed": true
+          },
+          {
+            "id": "SUBTASK-001-3",
+            "title": "ตั้งค่า config สำหรับ CI/CD",
+            "completed": true
+          }
+        ],
+        "comments": [
+          {
+            "user": "Tassana",
+            "timestamp": "2025-04-26T11:15:00",
+            "text": "ติดตั้ง dependencies เรียบร้อยแล้ว กำลังเริ่มเขียน test cases"
+          }
+        ],
+        "attachments": []
+      },
+      {
+        "id": "TASK-002",
+        "title": "สร้าง Test Cases สำหรับหน้า Login",
+        "description": "เขียน automation test สำหรับทดสอบฟังก์ชันการ login ทั้งกรณีสำเร็จและไม่สำเร็จ",
+        "category": "testing",
+        "priority": "high",
+        "status": "in-progress",
+        "assignee": "Tassana",
+        "createdAt": "2025-04-30T09:00:00",
+        "dueDate": "2025-05-05T17:00:00",
+        "tags": ["automation", "login", "test-case"],
+        "subtasks": [
+          {
+            "id": "SUBTASK-002-1",
+            "title": "เขียน test case สำหรับ login สำเร็จ",
+            "completed": true
+          },
+          {
+            "id": "SUBTASK-002-2",
+            "title": "เขียน test case สำหรับ login ไม่สำเร็จ (รหัสผ่านผิด)",
+            "completed": false
+          },
+          {
+            "id": "SUBTASK-002-3",
+            "title": "เขียน test case สำหรับ login ไม่สำเร็จ (ผู้ใช้ไม่มีอยู่)",
+            "completed": false
+          }
+        ],
+        "comments": [],
+        "attachments": []
+      },
+      {
+        "id": "TASK-003",
+        "title": "ศึกษาการทำงานของ n8n workflows",
+        "description": "ศึกษาวิธีการสร้างและจัดการ workflows ใน n8n พร้อมทดลองใช้งาน",
+        "category": "research",
+        "priority": "medium",
+        "status": "pending",
+        "assignee": "Tassana",
+        "createdAt": "2025-05-01T14:00:00",
+        "dueDate": "2025-05-08T17:00:00",
+        "tags": ["n8n", "automation", "workflow"],
+        "subtasks": [
+          {
+            "id": "SUBTASK-003-1",
+            "title": "ติดตั้ง n8n",
+            "completed": true
+          },
+          {
+            "id": "SUBTASK-003-2",
+            "title": "สร้าง workflow ตัวอย่าง",
+            "completed": false
+          },
+          {
+            "id": "SUBTASK-003-3",
+            "title": "ศึกษาการใช้งาน AI nodes",
+            "completed": false
+          }
+        ],
+        "comments": [],
+        "attachments": []
+      }
+    ],
+    "statistics": {
+      "totalTasks": 3,
+      "completedTasks": 1,
+      "inProgressTasks": 1,
+      "pendingTasks": 1,
+      "overdueTaskIds": []
+    }
+  }
+}

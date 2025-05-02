@@ -1,0 +1,1435 @@
+{
+  "defects": [
+    {
+      "issueId": "OFX-1452",
+      "module": "BE",
+      "page": "Mobile App",
+      "description": "เมื่อผู้ใช้ลบบัญชีของตนเองแล้วพยายามเข้าสู่ระบบอีกครั้งด้วยอีเมลเดิม ระบบควรแสดงข้อความ popup แจ้งว่าบัญชีนั้นไม่มีอยู่แล้ว หากผู้ใช้เข้าสู่ระบบด้วยอีเมลที่มี ตัวพิมพ์เล็ก-ใหญ่ต่างกัน เช่น Tassana.khr@gmail.com ระบบกลับ พาไปยังหน้ากรอก OTP แทนที่จะแสดง popup ว่าบัญชีไม่มีอยู่แล้ว",
+      "severity": "High",
+      "status": "Ready To Test",
+      "reportedDate": "2025-02-26",
+      "closedDate": null
+    },
+    {
+      "issueId": "OFX-1749",
+      "module": "Admin",
+      "page": "Onboarding Tenant",
+      "description": "Dropdown List ควรแสดงผลด้านล่างของ Filter Building Code โดยไม่บังช่องกรอกข้อมูล",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-17",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1771",
+      "module": "Admin",
+      "page": "Pending Onboarding",
+      "description": "Dropdown List ควรแสดงผลด้านล่างของ Filter Building Code โดยไม่บังช่องกรอกข้อมูล",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-03-18",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1835",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "Dropdown ของ Filter Building Code ควรแสดงเฉพาะ Building ที่ผ่านการ Onboarding แล้ว หรือข้อมูลที่มีอยู่ใน Tenant Info เท่านั้น",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-03-20",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1836",
+      "module": "BE",
+      "page": "Pending Onboarding",
+      "description": "Dropdown ของ Filter Building Code ควรแสดงเฉพาะ Tenant ที่ยังอยู่ในสถานะ Pending Onboarding เท่านั้น",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-03-20",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1838",
+      "module": "Admin",
+      "page": "Onboarding Tenant",
+      "description": "ในหน้า Tenant and Building Access, ควรแสดง Tenant Status แต่ในหน้า Set Up Tenant, ไม่ควรแสดง Tenant Status",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-20",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1842",
+      "module": "Admin",
+      "page": "Onboarding Tenant",
+      "description": "เมื่อ Onboarding Tenant เสร็จสิ้น สถานะของ Tenant ควรเปลี่ยนเป็น Waiting to start",
+      "severity": "Medium",
+      "status": "Ready To Test",
+      "reportedDate": "2025-03-20",
+      "closedDate": null
+    },
+    {
+      "issueId": "OFX-1845",
+      "module": "Admin",
+      "page": "Pending Onboarding",
+      "description": "หน้าบ้านสามารถดึง building_code มาแสดงได้เลยครับ หลังบ้านมีการต่อไปให้แล้วครับ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-20",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1846",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "หน้าบ้านสามารถดึง building_code มาแสดงได้เลยครับ หลังบ้านมีการต่อไปให้แล้วครับ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-21",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1852",
+      "module": "BE",
+      "page": "Pending Onboarding",
+      "description": "ในหน้า Pending Onboarding ของ tenant ต้องไม่แสดง Tenant ที่ ตึกนั้นยังไม่ได้ Onboarding",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-03-21",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1862",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ผู้ใช้ควรสามารถพิมพ์ชื่อบริษัทเพื่อกรองรายการใน Filter Company ได้",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-24",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1863",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "รายการสถานะที่แสดงไม่ถูกต้องและลำดับไม่ถูกต้อง",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-03-24",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1864",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ไฟล์ที่ Export ควรแสดงเฉพาะข้อมูลตามที่กรองหรือเลือกไว้",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-24",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1872",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ระบบไม่แสดงปุ่ม Delete Account",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-25",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1873",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ควรปรับปรุง UI ให้แสดงข้อมูลและฟังก์ชันครบตาม Figma ที่ออกแบบไว้",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-25",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1874",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "หน้าบ้านไม่แสดงชื่อบริษัท, แม้ว่าใน response มีค่า bp_name:บริษัท ทีธทอล์ค จำกัด",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-25",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1876",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "หลังจากสร้างผู้ใช้ ระบบแสดง Last Update เป็นเวลาไม่ถูกต้อง (เช่น 25 มี.ค. 2025 07:29) ซึ่งไม่ใช่เวลาปัจจุบันจริง ไม่ได้บวก 7 ชั่วโมง",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-21",
+      "closedDate": "2025-03-28"
+    },
+    {
+      "issueId": "OFX-1877",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "หลังจากแก้ไขข้อมูลผู้ใช้ เวลา Last Update ไม่อัปเดตเป็นเวลาล่าสุด ไม่ได้บวก 7 ชั่วโมง",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-25",
+      "closedDate": "2025-04-04"
+    },
+    {
+      "issueId": "OFX-1878",
+      "module": "BE",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details เมื่อมีการแก้ไขสิทธิ์การเข้าถึง Floor (ชั้นของอาคาร) ระบบควรบันทึกการเปลี่ยนแปลงนั้นอย่างถูกต้อง",
+      "severity": "High",
+      "status": "Implementation Complete",
+      "reportedDate": "2025-03-25",
+      "closedDate": null
+    },
+    {
+      "issueId": "OFX-1879",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ระบบควร Redirect ไปที่หน้า App users and admins และแสดงข้อความ Account added successfully",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-03-25",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1881",
+      "module": "Admin",
+      "page": "Tenant and Building Access",
+      "description": "เมื่อเปลี่ยน Status Tenant เป็น Inactive ควรไม่สามารถแก้ไขฟิลด์ได้",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-03-26",
+      "closedDate": "2025-04-16"
+    },
+    {
+      "issueId": "OFX-1940",
+      "module": "Admin",
+      "page": "Onboarding Tenant",
+      "description": "หลังจากกด Activate Tenant แล้ว ข้อมูลในฟิลด์ Optional เหล่านี้ไม่ถูกบันทึก และไม่แสดงในรายละเอียด Tenant",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-04",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1942",
+      "module": "BE",
+      "page": "Pending Onboarding",
+      "description": "ในหน้า Pending Onboarding ระบบแสดง Building Code ที่ยังอยู่ในสถานะ Building Pending ซึ่งไม่ควรแสดง",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-04",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1943",
+      "module": "Admin",
+      "page": "Onboarding Tenant",
+      "description": "ระบบแสดง Building ที่ยังอยู่ในสถานะ Pending (ยังไม่ได้ Onboarding) ซึ่งไม่ควรแสดง",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-04",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1944",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ระบบแสดงชื่อ Tenant ซ้ำในผลลัพธ์การค้นหา",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-04",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1947",
+      "module": "Admin",
+      "page": "Onboarding Tenant",
+      "description": "เมื่อเข้าหน้า Set Up Tenant, ชั้นทั้งหมดไม่ถูก Active, ผู้ใช้ต้องมากด Active เองทีละชั้น ซึ่งไม่ตรงตามเงื่อนไข",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-04",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1948",
+      "module": "BE",
+      "page": "Onboarding Tenant",
+      "description": "ในหน้า Set Up Tenant, ฟิลด์ Add Email Domain ต้องสามารถเพิ่ม Domain Email ซ้ำกันได้ในกรณีเป็นคนละ Tenant แต่ ไม่สามารถเพิ่มซ้ำกันได้ใน Tenant เดียวกัน",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-04",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1949",
+      "module": "BE",
+      "page": "Pending Onboarding",
+      "description": "ระบบแสดง Status อื่น ๆ เช่น In grace period และ Expired ซึ่งไม่ควรแสดง",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-04",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1957",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ระบบควร Redirect กลับไปหน้า App users and admins และแสดงข้อความ Account deleted successfully",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1958",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "หลังจากกด Save แล้ว เวลาไม่อัปเดตทันที ต้องออกจากหน้าแล้วกลับเข้ามาใหม่จึงจะเห็นเวลาที่อัปเดตล่าสุด",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-16"
+    },
+    {
+      "issueId": "OFX-1959",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "หลังจากกด Active Floor และบันทึก แล้วออกจากหน้าและกลับเข้ามาใหม่ สถานะ Floor ไม่แสดงเป็น Active ตามที่เลือกไว้",
+      "severity": "High",
+      "status": "Ready To Test",
+      "reportedDate": "2025-04-06",
+      "closedDate": null
+    },
+    {
+      "issueId": "OFX-1960",
+      "module": "BE",
+      "page": "Create Account",
+      "description": "ระบบแสดงข้อความ Email not in allowed domain email list ทั้งที่ domain ดังกล่าวควรได้รับอนุญาต",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1962",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "หลังจากล้างคำค้นหา รายชื่อผู้ใช้งาน ไม่กลับมาแสดงทั้งหมด",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1963",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ระบบควรแสดงข้อความ: Email domain format is incorrect",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1965",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ชั้นในระดับ Tenant ไม่ได้ถูกตั้งเป็น Inactive แม้จะมีการติ๊ก Maintenance room ที่ Building แล้ว",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1967",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ระบบควรแสดงเป็นชื่ออาคาร",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1968",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ระบบควรแก้ไขข้อมูลจาก All เป็น None",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-16"
+    },
+    {
+      "issueId": "OFX-1969",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "รูปแบบของ Dropdown เช่น ขนาด ไม่ตรงกับดีไซน์",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-10"
+    },
+    {
+      "issueId": "OFX-1970",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ค่า Default floor for elevator calls ควรคงค่าเดิมไว้ เว้นแต่ผู้ใช้จะเป็นคนแก้ไขเอง",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-06",
+      "closedDate": "2025-04-16"
+    },
+    {
+      "issueId": "OFX-1971",
+      "module": "BE",
+      "page": "Tenant and Building Access",
+      "description": "ระบบสามารถ ลบ Domain Email ได้ ทั้งที่ยังมีผู้ใช้ใช้งาน Domain นั้นอยู่",
+      "severity": "High",
+      "status": "Ready To Test",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-11"
+    },
+    {
+      "issueId": "OFX-1983",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ในหน้า App Users and Admins เมื่อผู้ใช้ทำการค้นหา Company (บริษัท) ในช่องค้นหาแบบ dropdown ระบบแสดง รายการซ้ำกัน (duplicate entries) ของชื่อบริษัท",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1985",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ต้องสามารถ Sort  Last Update ได้ใน Excel หรือ google sheet มันจะต้องเป็น format ที่สามารถ sort ได้ครับ ตอนนี้มันเป็น format ที่ไม่สามารถ sort ได้",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1986",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ต้องสามารถ Sort  Last Update ได้ใน Excel หรือ google sheet มันจะต้องเป็น format ที่สามารถ sort ได้ครับ ตอนนี้มันเป็น format ที่ไม่สามารถ sort ได้ เหมือนกับ Tenant info ครับ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1987",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ข้อมูลที่ Export ออกมาต้องเป็นของ เฉพาะอาคารที่ Onboarding สำเร็จแล้วเท่านั้น",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-2059",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ต้องแสดงเฉพาะ Building Code ของอาคารที่ผ่านการ Onboarding แล้วเท่านั้น",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-18"
+    },
+    {
+      "issueId": "OFX-1989",
+      "module": "Admin",
+      "page": "Pending Onboarding",
+      "description": "ต้องเรียง Building Code ตามลำดับตัวอักษร A-Z เพื่อให้ง่ายต่อการค้นหา",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1990",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ต้องแสดงเฉพาะ User หรือ Admin เท่านั้น",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-18"
+    },
+    {
+      "issueId": "OFX-1991",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ต้องแสดงข้อมูล ทั้ง User และ Admin ตอนนี้เหมือนมันกรองมาเฉพาะ User ครับ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-16"
+    },
+    {
+      "issueId": "OFX-1992",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ระบบต้องสามารถ กรองรายการผู้ใช้งานตามอาคารที่เลือกได้อย่างถูกต้อง",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-25"
+    },
+    {
+      "issueId": "OFX-1993",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ต้องแสดง Name ตรงตาม Figma ที่แนบรูปส่งให้ครับ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-16"
+    },
+    {
+      "issueId": "OFX-1994",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ข้อมูล Company ID ที่ Export ออกมาไม่ได้อยู่ในรูปแบบ UUID",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1995",
+      "module": "Admin",
+      "page": "App Users and Admins",
+      "description": "ต้องแสดงเฉพาะค่า User หรือ Admin เท่านั้น",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-17"
+    },
+    {
+      "issueId": "OFX-1996",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ไฟล์แนบรูปควรถูก บันทึกและแสดงใน Account Details หลังสร้างบัญชีเสร็จ",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-18"
+    },
+    {
+      "issueId": "OFX-1997",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ข้อมูลขัดแย้งกันระหว่าง Default floor และสถานะของ Floor ใน Building Access Permissions",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-25"
+    },
+    {
+      "issueId": "OFX-1998",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ระบบอนุญาตให้สร้างบัญชี Admin ทั้งที่แนบไฟล์ไม่ครบ ต้องแสดงข้อความแจ้งเตือนที่ฟิลด์นั้นว่า กรุณาอัปโหลดไฟล์ (หรือ Please upload a file)",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-18"
+    },
+    {
+      "issueId": "OFX-1999",
+      "module": "Admin",
+      "page": "Create Account",
+      "description": "หลังเลือกบริษัท ต้อง ไม่เปิด Building access permissions โดยอัตโนมัติ เมื่อผู้ใช้กด Toggle ให้ Active เอง ระบบจึงค่อยแสดง Floor ตามเงื่อนไข เช่นเดียวกับ logic ของฝั่ง Tenant",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-25"
+    },
+    {
+      "issueId": "OFX-2000",
+      "module": "Admin",
+      "page": "Create Account",
+      "description": "หากชั้นทั้งหมดถูก Inactive, Toggle Building Access Permissions หลักต้องเปลี่ยนเป็น Inactive อัตโนมัติ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-18"
+    },
+    {
+      "issueId": "OFX-2008",
+      "module": "BE",
+      "page": "Create Account",
+      "description": "ระบบควร ป้องกันการสร้างบัญชีซ้ำด้วยอีเมลเดิม แม้จะเป็นคนละ Role ก็ตาม",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-25"
+    },
+    {
+      "issueId": "OFX-2012",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ระบบแสดง Role ของผู้ใช้ cpnsudo01 เป็น Tenant User ต้องแสดง Role เป็น Super Admin",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2013",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ระบบแสดง toast Error แต่ข้อมูลถูกบันทึก",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-10",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2014",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ต้องแสดง Role ปัจจุบันของผู้ใช้งาน",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-18"
+    },
+    {
+      "issueId": "OFX-2015",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "รายชื่ออาคารแสดงมาเพียงบางส่วน",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-18"
+    },
+    {
+      "issueId": "OFX-2016",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ต้องแสดง Building แบบมีลำดับกลุ่มภายใต้ Branch อย่างถูกต้อง",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2017",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ต้อง ซ่อน Field Building เมื่อตั้ง Role เป็น Super Admin",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2018",
+      "module": "BE",
+      "page": "Administrators",
+      "description": "ไม่สามารถสร้าง Admin ได้",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-18"
+    },
+    {
+      "issueId": "OFX-2019",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ค่า Role ที่แสดงในไฟล์ CSV ผิด เช่น จาก Super Admin แสดงเป็น User",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-18" 
+    },
+    {
+      "issueId": "OFX-2020",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ค่า Firstname และฟิลด์อื่น ๆ ในไฟล์ CSV ไม่ตรงกับข้อมูลล่าสุดที่บันทึกไว้",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2021",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ได้ไฟล์ CSV ที่มีข้อมูลแค่ 1 Admin ไฟล์ CSV ต้องแสดงข้อมูล Admin ทั้งหมดที่แสดงในหน้า UI (กรณีนี้คือ 2 คน)",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2022",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "Role ยังคงเป็น User และไม่มีการแจ้งเตือนหรือบันทึกการเปลี่ยนแปลง ต้องสามารถเปลี่ยน Role จาก User เป็น Admin ได้เมื่อกรอกข้อมูลครบถ้วน",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-17"  
+    },
+    {
+      "issueId": "OFX-2023",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "หากลบผู้ใช้งานจากหน้า Account Detail ระบบควร ลบออกจากรายการทั้งหมด สถานะ Deleted ในหน้า App Users and Admins ควรแสดงเฉพาะกรณีที่ผู้ใช้ลบบัญชีผ่าน Mobile App",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-11",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2038",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ระบบพาไปที่หน้า Tenant List แทน ซึ่งไม่ถูกต้อง ต้องพาไปที่หน้า Tenant and Building Access ทันที",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-16",
+      "closedDate": "2025-04-17"  
+    },
+    {
+      "issueId": "OFX-2039",
+      "module": "Admin",
+      "page": "Tenant and Building Access",
+      "description": "ระบบ ไม่แสดงรายการผู้ใช้งานเลย ทั้งที่มีผู้ใช้อยู่ใน Tenant นั้น ต้องแสดงรายการผู้ใช้งานทั้งหมดที่อยู่ใน Tenant เดียวกับผู้ใช้งานที่ล็อกอิน",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-16",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2040",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details, กรณีที่ผู้ใช้งานลบบัญชีตนเองผ่านแอป (สถานะ: User deleted their account via the app) จะต้องไม่มีสิทธิเข้าถึงระบบอีก ต้องทำการ ปิด toggle ทั้งหมดอัตโนมัติ และ ปิดการใช้งานส่วน Building access permissions",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-16",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2041",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details, กรณีที่สถานะบัญชีเป็น User deleted their account via the app ผู้ใช้งานจะไม่สามารถเข้าระบบได้อีก และระบบควรปิดการใช้งานในส่วนที่ไม่จำเป็น ต้อง ไม่แสดงปุ่ม Save และ Cancel สำหรับบัญชีที่ถูกลบโดยผู้ใช้ผ่านแอป",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-16",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2042",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details, กรณีที่สถานะบัญชีเป็น User deleted their account via the app, เมื่อกดปุ่ม Restore Account ควรมี Dialog ยืนยันก่อนดำเนินการ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-16",
+      "closedDate": "2025-04-18" 
+    },
+    {
+      "issueId": "OFX-2043",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details, กรณีที่บัญชีถูกลบโดยผู้ใช้งานผ่านแอป แล้วกด Restore Account, ระบบสามารถกู้คืนบัญชีได้ แต่ ไม่มี Toast แจ้งเตือน",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-16",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2044",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details, เมื่อทำการ Restore Account ที่ถูกลบโดยผู้ใช้งานผ่านแอป ระบบไม่สามารถเรียกคืนสถานะก่อนลบและไม่อัปเดตหน้าจออย่างถูกต้อง",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-16",
+      "closedDate": "2025-04-22"  
+    },
+    {
+      "issueId": "OFX-2057",
+      "module": "BE",
+      "page": "Pending Onboarding",
+      "description": "ในหน้า Pending Onboarding, บริษัท เซ็นทรัลพัฒนา จำกัด (มหาชน) แสดง Building Code แค่ 2 ตึก แต่เมื่อกดไปที่หน้า Set Up Tenant, ระบบแสดงสิทธิ์การเข้าถึงถึง 3 ตึก ซึ่งไม่สอดคล้องกัน",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-17",
+      "closedDate": "2025-04-18"
+    },
+    {
+      "issueId": "OFX-2059",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ต้องแสดงเฉพาะ Building Code ของอาคารที่ผ่านการ Onboarding แล้วเท่านั้น",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-17",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2111",
+      "module": "BE",
+      "page": "Administrators",
+      "description": "ในหน้า Administrators, เมื่อพยายามสร้างผู้ใช้งานที่มี Role เป็น TS_CONCIERGE, ระบบแจ้ง 500 Internal Server Error โดยเกิดจากค่า TS_CONCIERGE ไม่ตรงกับ enum userrole ที่กำหนดไว้ในฐานข้อมูลไม่สามารถสร้างผู้ใช้งาน Role TS_CONCIERGE ได้ และขึ้นข้อความ Error ครับ",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2113",
+      "module": "BE",
+      "page": "Administrators",
+      "description": "ในหน้า Administrators, เมื่อพยายามสร้างผู้ใช้งานที่มี Role เป็น TS & Head Office, ระบบแจ้ง 500 Internal Server Error โดยเกิดจากค่า TS & Head Office ไม่ตรงกับ enum userrole ที่กำหนดไว้ในฐานข้อมูลไม่สามารถสร้างผู้ใช้งาน Role TS & Head Office ได้ และขึ้นข้อความ Error ครับ",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2115",
+      "module": "BE",
+      "page": "Administrators",
+      "description": "ในหน้า Administrators, เมื่อพยายามสร้างผู้ใช้งานที่มี Role เป็น MKT & CRM, ระบบแจ้ง 500 Internal Server Error โดยเกิดจากค่า MKT & CRM ไม่ตรงกับ enum userrole ที่กำหนดไว้ในฐานข้อมูลไม่สามารถสร้างผู้ใช้งาน Role MKT & CRM ได้ และขึ้นข้อความ Error ครับ",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2116",
+      "module": "BE",
+      "page": "Administrators",
+      "description": "ในหน้า Administrators, เมื่อพยายามสร้างผู้ใช้งานที่มี Role เป็น HSE Manager, ระบบแจ้ง 500 Internal Server Error โดยเกิดจากค่า HSE Manager ไม่ตรงกับ enum userrole ที่กำหนดไว้ในฐานข้อมูลไม่สามารถสร้างผู้ใช้งาน Role HSE Manager ได้ และขึ้นข้อความ Error ครับ",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2118",
+      "module": "BE",
+      "page": "Administrators",
+      "description": "ในหน้า Administrators, เมื่อพยายามสร้างผู้ใช้งานที่มี Role เป็น HSE, ระบบแจ้ง 500 Internal Server Error โดยเกิดจากค่า HSE ไม่ตรงกับ enum userrole ที่กำหนดไว้ในฐานข้อมูลไม่สามารถสร้างผู้ใช้งาน Role HSE ได้ และขึ้นข้อความ Error ครับ",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2119",
+      "module": "BE",
+      "page": "Administrators",
+      "description": "ในหน้า Administrators, เมื่อพยายามสร้างผู้ใช้งานที่มี Role เป็น Office GM, ระบบแจ้ง 500 Internal Server Error โดยเกิดจากค่า Office GM ไม่ตรงกับ enum userrole ที่กำหนดไว้ในฐานข้อมูลไม่สามารถสร้างผู้ใช้งาน Role Office GM ได้ และขึ้นข้อความ Error ครับ",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2120",
+      "module": "BE",
+      "page": "Administrators",
+      "description": "ในหน้า Administrators, เมื่อพยายามสร้างผู้ใช้งานที่มี Role เป็น Head of Office & Retail, ระบบแจ้ง 500 Internal Server Error โดยเกิดจากค่า Head of Office & Retail ไม่ตรงกับ enum userrole ที่กำหนดไว้ในฐานข้อมูลไม่สามารถสร้างผู้ใช้งาน Role Head of Office & Retail ได้ และขึ้นข้อความ Error ครับ",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-18"  
+    },
+    {
+      "issueId": "OFX-2121",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ในหน้า Administrators, ค่า 100 ที่แสดงใน Dropdown Rows per page แสดงผลไม่ถูกต้อง เช่น มีการขึ้นบรรทัดใหม่",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2122",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ในหน้า Tenant Info, เมื่อผู้ใช้เลือกค่าใน Filter Building Code, ตารางข้อมูล ไม่เปลี่ยนแปลง หรือ ไม่แสดงผลตามค่าที่เลือก",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-21"
+    },
+    {
+      "issueId": "OFX-2123",
+      "module": "Admin",
+      "page": "Create Account",
+      "description": "เมื่อผู้ใช้อัปโหลดไฟล์ JPG, ระบบแสดงตัวอย่างรูปภาพ ควรแสดงผล เหมือนกับไฟล์ PDF คือ ไม่ต้องแสดงตัวอย่าง",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-21"
+    },
+    {
+      "issueId": "OFX-2124",
+      "module": "Admin",
+      "page": "Create Account",
+      "description": "เมื่อทำการอัปโหลดไฟล์ PDF, ระบบควรแสดงรายการไฟล์แนบเป็น 2 คอลัมน์ในแต่ละแถว แต่ปัจจุบันแสดงเป็น 1 คอลัมน์ ซึ่งไม่ถูกต้องตามแบบที่ออกแบบไว้",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-21"
+    },
+    {
+      "issueId": "OFX-2125",
+      "module": "Admin",
+      "page": "Create Account",
+      "description": "เมื่อมีการอัปโหลดไฟล์ PDF แล้ว ปุ่ม Add File ควรแสดงที่ มุมขวาบนของหัวข้อฟิลด์ ไม่ใช่แสดง อยู่ในกล่องรายการไฟล์แนบ",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2126",
+      "module": "Admin",
+      "page": "Create Account",
+      "description": "ผู้ใช้งานสามารถแนบไฟล์ได้สูงสุด 5 ไฟล์ เมื่อแนบครบ 5 ไฟล์แล้ว ปุ่ม Add File ควรจะถูกปิดการใช้งาน (Disabled) โดยอัตโนมัติ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-23"    
+    },
+    {
+      "issueId": "OFX-2127",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details เมื่อผู้ใช้เปลี่ยนสถานะบัญชีจาก Active → Resigned → Active โดย ยังไม่กด Save ระบบแสดงพฤติกรรมผิดปกติ โดย ฟิลด์ Building access permissions หายไปจากหน้าจอ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2128",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details เมื่อผู้ใช้เปลี่ยนสถานะบัญชีจาก Active เป็น Resigned ระบบควร ปิดการใช้งาน (disable) toggle ทั้งหมดใน Building access permissions โดยอัตโนมัติ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2129",
+      "module": "BE",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details เมื่อลองเปลี่ยนสถานะบัญชีจาก Active เป็น Resigned ระบบแจ้ง 500 Internal Server Error เนื่องจาก backend ไม่สามารถประมวลผลค่า enum RESIGNED ได้",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2130",
+      "module": "BE",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details, กรณีดูข้อมูลของผู้ใช้ที่มี Role เป็น Admin, เมื่อมีการเพิ่มหรือลบไฟล์แนบในฟิลด์ สำเนาบัตรประชาชนพร้อมรับรองสำเนาถูกต้อง, ระบบไม่ทำการอัปเดต เวลาล่าสุด (Last Update)",
+      "severity": "Medium",
+      "status": "Implementation Complete",
+      "reportedDate": "2025-04-18",
+      "closedDate": null  
+    },
+    {
+      "issueId": "OFX-2131",
+      "module": "Admin",
+      "page": "Administrators",
+      "description": "ในหน้า Administrators, เมื่อสร้างผู้ใช้งานที่มี Role เป็น Super Admin, ระบบสามารถสร้างผู้ใช้ได้สำเร็จ แต่กลับแสดง Toast Error",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2132",
+      "module": "Admin",
+      "page": "Account Details",
+      "description": "ในหน้า Account Details เมื่อลบไฟล์แนบจากฟิลด์ สำเนาบัตรประชาชนพร้อมรับรองสำเนาถูกต้องหนังสือแต่งตั้งผู้ดูแลระบบ แล้วอัปโหลดไฟล์ใหม่ และกด Save ระบบยังแสดงไฟล์ที่ถูกลบไว้",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-18",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2133",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ในหน้า Tenant Info, ช่องค้นหาและ dropdown สำหรับ Filter ทั้งหมดควรแสดง Scrollbar ตลอดเวลา หากมีรายการให้เลื่อนดู แต่ปัจจุบัน Scrollbar จะแสดงเฉพาะเมื่อเอาเมาส์ไปชี้ (hover) ซึ่งอาจทำให้ผู้ใช้งานมองไม่เห็นตัวเลือกอื่น ๆ ที่มีอยู่",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-23"  
+    },
+    {
+      "issueId": "OFX-2134",
+      "module": "Admin",
+      "page": "Tenant Info",
+      "description": "ในหน้า Tenant Info, dropdown ทั้งหมดสำหรับ การค้นหาและฟิลเตอร์ ควรแสดงรายการที่ถูกเลือกด้วย สีพื้นหลังและสีตัวอักษรที่ไฮไลต์ ตามที่ออกแบบไว้ใน Figma แต่ปัจจุบันระบบแสดงเพียงแค่ ไอคอนติ๊กถูกด้านขวา โดยไม่มีการไฮไลต์สีพื้นหลัง",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2135",
+      "module": "Admin",
+      "page": "Onboarding Tenant",
+      "description": "ในหน้า Set up Tenant ระยะห่างของเนื้อหาด้านซ้ายและขวา ไม่ชิดขอบตามที่ออกแบบใน Figma ทำให้เกิดความไม่สม่ำเสมอของ UI",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2136",
+      "module": "Admin",
+      "page": "Tenant and Building Access",
+      "description": "ในหน้า Tenant and building access ระยะห่างของเนื้อหาด้านซ้ายและขวา ไม่ชิดขอบตามที่ออกแบบใน Figma ทำให้เกิดความไม่สม่ำเสมอของ UI",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2137",
+      "module": "Admin",
+      "page": "Create Account",
+      "description": "ในหน้า Create account ระยะห่างของเนื้อหาด้านซ้ายและขวา ไม่ชิดขอบตามที่ออกแบบใน Figma ทำให้เกิดความไม่สม่ำเสมอของ UI",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2138",
+      "module": "Admin", 
+      "page": "Account Details",
+      "description": "ในหน้า Account details ระยะห่างของเนื้อหาด้านซ้ายและขวา ไม่ชิดขอบตามที่ออกแบบใน Figma ทำให้เกิดความไม่สม่ำเสมอของ UI",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2139",
+      "module": "Admin", 
+      "page": "Account Details",
+      "description": "ในหน้า Account Details ส่วน Building Access Permissions มีการแสดงเส้นคั่นด้านล่างของ Building Access Card ซึ่งไม่ควรมี ระยะห่าง (padding) ระหว่างส่วนหัวของ Card และตารางข้อมูลมากเกินไป ควรลดเหลือ 16px ตามแบบใน Figma",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2140",
+      "module": "Admin", 
+      "page": "Account Details",
+      "description": "ข้อความหัวข้อ สิทธิ์เข้าถึงอาคาร ควรมีขนาดตัวอักษรเท่ากับหัวข้ออื่น เช่น ชื่อ ประเภทบัญชี สถานะบัญชี ข้อความ ทั้งหมด x ชั้นอาคาร ควรมีขนาดตัวอักษรเท่ากับหัวตาราง ไม่ต้องเน้นข้อความหรือแสดงขนาดใหญ่เกินความจำเป็น",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2141",
+      "module": "Admin", 
+      "page": "Account Details",
+      "description": "ในหน้า Account Details เมื่อผู้ใช้แตะรายการบัญชีที่มี ไอคอนแจ้งเตือน (กรณีไม่มีชั้นที่เปิดใช้งาน แต่สถานะเป็น Active) ระบบควรแสดง แถบแจ้งเตือน เพื่อแจ้งให้ผู้ใช้ทราบภายในหน้ารายละเอียด",
+      "severity": "Medium",
+      "status": "Completed", 
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2142",
+      "module": "Admin", 
+      "page": "Account Details",
+      "description": "ในหน้า Account Details เมื่อสถานะบัญชีเป็น ลบโดยผู้ใช้ (User Deleted) ควรแสดงหัวข้อ สถานะบัญชี ด้านบนของแถบแจ้งเตือน (alert bar)",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2143",
+      "module": "Admin", 
+      "page": "Account Details",
+      "description": "ในหน้า Account Details ปุ่ม Delete Account ควรแสดงเป็น ข้อความสีแดง พร้อมกรอบสีแดง",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2144",
+      "module": "Admin", 
+      "page": "App Users and Admins",
+      "description": "ในหน้า App users and admins หากข้อมูลในคอลัมน์ Accessible building และ Default FI. ไม่มีค่า ระบบควรแสดงเป็น เครื่องหมายขีด (-) แทนที่จะเว้นว่าง",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"    
+    },
+    {
+      "issueId": "OFX-2145",
+      "module": "Admin", 
+      "page": "App Users and Admins",
+      "description": "ในหน้า App Users and Admins ระบบมีการแสดง ไอคอนแจ้งเตือน (Alert icon) ด้านหน้ารายชื่อผู้ใช้ ซึ่งควรแสดงตามเงื่อนไขเท่านั้น แสดงไอคอนแจ้งเตือน เฉพาะกรณี สถานะผู้ใช้เป็น Active ยัง ไม่ได้ตั้งค่า Floor Access ไม่ควรแสดงไอคอนแจ้งเตือนหากผู้ใช้มีสถานะอื่น เช่น Inactive, Resigned, Deleted เพราะผู้ใช้ไม่สามารถเข้าถึงอาคารได้อยู่แล้ว",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-20",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2156",
+      "module": "BE", 
+      "page": "Tenant Info" ,
+      "description": "ในหน้า Tenant Info เมนูกรอง Filter Building Code ควรแสดงเฉพาะอาคารที่มีการ Onboarding สำเร็จแล้วเท่านั้น",
+      "severity": "Medium",
+      "status": "Reopen",
+      "reportedDate": "2025-04-21",
+      "closedDate": null  
+    },
+    {
+      "issueId": "OFX-2157",
+      "module": "Admin", 
+      "page": "App Users and Admins" ,
+      "description": "ในหน้า App Users and Admins เมื่อกรองข้อมูลด้วย Role ระบบควรแสดงเฉพาะผู้ใช้ตาม Role ที่เลือกเท่านั้น",
+      "severity": "High",
+      "status": "Completed",
+      "reportedDate": "2025-04-21",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2158",
+      "module": "Admin", 
+      "page": "Administrators" ,
+      "description": "ในหน้า Administrators ระบบมีการตั้งค่ากรอง Role เป็น Super Admin โดยอัตโนมัติ แต่ข้อมูลที่แสดงไม่ตรงกับ Role ดังกล่าว และเมื่อผู้ใช้เลือก Filter Role ใหม่ ข้อมูลในตารางก็ ไม่เปลี่ยนตามที่เลือก",
+      "severity": "Medium",
+      "status": "Completed",  
+      "reportedDate": "2025-04-21",
+      "closedDate": "2025-04-22"  
+    },
+    {
+      "issueId": "OFX-2159",
+      "module": "Admin", 
+      "page": "Pending Onboarding" ,
+      "description": "ในหน้า Pending Onboarding หากมีข้อมูลที่เกินพื้นที่แสดงผล ระบบควรแสดง Scrollbar ตลอดเวลา เพื่อให้ผู้ใช้งานรู้ว่ามีเนื้อหาเพิ่มเติมให้เลื่อนดูได้",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-21",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2160",
+      "module": "Admin", 
+      "page": "Administrators" ,
+      "description": "ในหน้า Administrators เมื่อลงทะเบียนผู้ใช้ใหม่ และเลือก Role ที่มีสิทธิ์เข้าถึง All Building ระบบ ไม่ควรแสดงรายการ Office Building ให้เลือก",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-21",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2161",
+      "module": "Admin", 
+      "page": "Pending Onboarding" ,
+      "description": "ในหน้า Pending Onboarding ควรแสดงเฉพาะรายการผู้เช่าที่มีสถานะ Contract started Waiting to start",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-21",
+      "closedDate": "2025-04-21"  
+    },
+    {
+      "issueId": "OFX-2164",
+      "module": "Admin", 
+      "page": "Account Details" ,
+      "description": "นหน้า Account Details เมื่อผู้ใช้แนบไฟล์ในช่อง สำเนาบัตรประชาชนที่รับรองสำเนาถูกต้อง อีเมลแต่งตั้งผู้ดูแลระบบ ระบบต้องแสดงชื่อไฟล์ที่แนบ และนามสกุลไฟล์ให้ถูกต้อง หลังจากกด Save หรือแม้กระทั่งตอน สร้างบัญชีผู้ใช้",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2166",
+      "module": "Admin", 
+      "page": "Create Account" ,
+      "description": "ในหน้า Create Account ส่วนฟิลด์สำหรับแนบไฟล์ สำเนาบัตรประชาชนที่รับรองสำเนาถูกต้อง อีเมลแต่งตั้งผู้ดูแลระบบ แสดง UI ไม่ตรงตามที่ออกแบบไว้ใน Figma",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2167",
+      "module": "Admin", 
+      "page": "App Users and Admins" ,
+      "description": "ในหน้า App users and admins เมื่อผู้ใช้ทำการค้นหา และไปยังหน้าถัดไป จากนั้นย้อนกลับมาหน้าเดิม ช่องค้นหาควรถูกรีเซ็ตเป็นค่าว่าง",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2169",
+      "module": "BE", 
+      "page": "Onboarding Tenant" ,
+      "description": "ในหน้า Onboarding Tenant ข้อมูลใน buildings ของ API response เป็น array ว่างเปล่า ([]) เป็นเฉพาะ ตึก Building Code: R4T-OFA ครับ",
+      "severity": "High",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-23",
+      "closedDate": null  
+    },
+    {
+      "issueId": "OFX-2171",
+      "module": "Admin", 
+      "page": "Create User Admin" ,
+      "description": "ในหน้า Create User Admin เมื่อผู้ใช้เลือก Role & Permission เป็น HSE แล้วทำการคลิกเลือก Role & Permission อีกรอบ พบว่า UI ของ Dropdown แสดงไม่สวยงาม ขนาดแคบเกินไป ทำให้ข้อความในรายการแสดงไม่ครบ",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2172",
+      "module": "Admin", 
+      "page": "Tenant Info" ,
+      "description": "ในหน้า Tenant Info เมื่อผู้ใช้คลิกที่ Filter ใด ๆ (เช่น Building Code หรือ Status) จะมีการแสดง Dropdown รายการให้เลือก เมื่อมีการ Hover ที่รายการที่ถูกเลือกไว้แล้ว จะพบว่า UI แสดงพื้นหลังสีเข้มเกินไป และมีไอคอนติ๊กถูก ซึ่งไม่ตรงกับดีไซน์ที่กำหนด",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2174",
+      "module": "Admin", 
+      "page": "Tenant Info" ,
+      "description": "ในหน้า Tenant Info ตอนนี้ใน Filter Status มีการแสดง Scrollbar ทั้งที่จำนวนรายการมีน้อยและไม่จำเป็นต้องเลื่อนดู",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-23"  
+    },
+    {
+      "issueId": "OFX-2175",
+      "module": "Admin", 
+      "page": "App Users and Admins" ,
+      "description": "ในหน้า App Users and Admins ตอนนี้ Filter Role แสดงไอคอนติ๊กถูกด้านหลังรายการที่เลือก ซึ่งไม่ถูกต้องตามที่ออกแบบใน Figma โดยควรแค่ ไฮไลต์รายการที่เลือกด้วยพื้นหลังสีทึบเล็กน้อย เท่านั้น ไม่ต้องมีไอคอนใด ๆ",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2176",
+      "module": "Admin", 
+      "page": "App Users and Admins" ,
+      "description": "ในหน้า App Users and Admins ตอนนี้ Filter Status แสดงไอคอนติ๊กถูก (✓) หลังรายการที่เลือก ซึ่งไม่ตรงกับดีไซน์ใน Figma โดยควรแสดงเฉพาะพื้นหลังทึบเล็กน้อย เพื่อบอกว่ารายการนั้นถูกเลือก ไม่ต้องแสดงไอคอนติ๊กถูก",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2177",
+      "module": "Admin", 
+      "page": "App Users and Admins" ,
+      "description": "ในหน้า App Users and Admins ฟิลเตอร์ Accessible building แสดงไอคอนติ๊กถูกหลังรายการที่เลือก ซึ่ง ไม่ตรงตามแบบที่ออกแบบไว้ใน Figma โดยควรแสดงเพียง พื้นหลังของรายการที่เลือกให้ทึบขึ้นเล็กน้อย เท่านั้น",
+      "severity": "Low",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2178",
+      "module": "Admin", 
+      "page": "App Users and Admins" ,
+      "description": "ในหน้า App Users and Admins ฟิลเตอร์ Company Scrollbar ไม่ได้แสดงตลอดเวลา ต้อง Hover ถึงจะแสดง และ การแสดงผลของสี Scrollbar ไม่ถูกต้อง",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2184",
+      "module": "BE", 
+      "page": "Building Details and Permissions" ,
+      "description": "ในหน้า Building details and Permissions หลังบ้าน (Backend) ไม่ได้ส่งข้อมูล default floor ของแต่ละ Tenant มาใน API response ซึ่งทำให้ฝั่งหน้าบ้าน (Frontend) ไม่สามารถตรวจสอบเงื่อนไขการเปิด-ปิดหรือการลบชั้นได้ ว่าชั้นใดมีการใช้งานโดยผู้ใช้ หรือชั้นใดยังไม่มีผู้ใช้งาน",
+      "severity": "Medium",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-23",
+      "closedDate": null  
+    },
+    {
+      "issueId": "OFX-2186",
+      "module": "BE", 
+      "page": "Tenant and Building Access" ,
+      "description": "ในหน้า Tenant and Building Access ไม่ได้รับข้อมูล default floors ของผู้ใช้งานแต่ละคน จาก API response ของฝั่ง Backend ทำให้ฝั่ง Frontend ไม่สามารถตรวจสอบเงื่อนไขการ เปิด/ปิดการใช้งาน หรือ ลบชั้น ได้อย่างถูกต้อง โดยเฉพาะในกรณีที่ต้องเช็คว่ามีผู้ใช้งานใช้งานอยู่บนชั้นนั้นหรือไม่",
+      "severity": "Medium",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-23",
+      "closedDate": null  
+    },
+    {
+      "issueId": "OFX-2187",
+      "module": "BE", 
+      "page": "Account Details" ,
+      "description": "ในหน้า Account Detail เมื่อมีการลบผู้ใช้ออกจากระบบ ฝั่ง Backend ไม่ได้ทำการเรียก API ไปยังระบบ Access Control เพื่อลบสิทธิ์การเข้าถึง ทำให้แม้ผู้ใช้จะถูกลบจากระบบแล้ว แต่ยังสามารถเข้าใช้งานระบบควบคุมการเข้าถึง (เช่น ประตู ลิฟต์) ได้อยู่ ซึ่งเป็นความเสี่ยงด้านความปลอดภัย",
+      "severity": "Medium",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-23",
+      "closedDate": null  
+    },
+    {
+      "issueId": "OFX-2188",
+      "module": "BE", 
+      "page": "Account Details" ,
+      "description": "ในหน้า Account Detail เมื่อมีการลบผู้ใช้ออกจากระบบ ฝั่ง Backend ไม่ได้ทำการเรียก API ไปยังระบบ Access Control เพื่อลบสิทธิ์การเข้าถึง ทำให้แม้ผู้ใช้จะถูกลบจากระบบแล้ว แต่ยังสามารถเข้าใช้งานระบบควบคุมการเข้าถึง (เช่น ประตู ลิฟต์) ได้อยู่ ซึ่งเป็นความเสี่ยงด้านความปลอดภัย",
+      "severity": "Medium",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-23",
+      "closedDate": null  
+    },
+    {
+      "issueId": "OFX-2189",
+      "module": "Admin", 
+      "page": "Building Details and Permissions" ,
+      "description": "ในหน้า Building Details and Permissions เมื่อผู้ดูแลระบบทำการ ปิดใช้งาน (Inactive) หรือ ลบชั้น (Delete) ที่มีผู้ใช้งานอยู่ ระบบควรแสดง Modal แจ้งเตือน เพื่อยืนยันและแจ้งให้ทราบว่ามีผู้ใช้งานชั้นนั้นอยู่ แต่ขณะนี้ระบบไม่แสดง Modal ใด ๆ ทำให้เกิดความเสี่ยงในการลบสิทธิ์โดยไม่ตั้งใจ",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-23",
+      "closedDate": "2025-04-23"  
+    },
+    {
+      "issueId": "OFX-2191",
+      "module": "Admin", 
+      "page": "Tenant and Building Access" ,
+      "description": "เมื่อเข้าสู่ระบบด้วย บทบาท Tenant Admin และกดที่ Tenant info ซึ่งจะพาไปยังหน้า Tenant and Building Access พบว่า UI ของ Tenant Status ที่แสดงในหน้านี้ ไม่ตรงกับแบบที่ออกแบบไว้ใน Figma ทำให้เกิดความไม่สอดคล้องของอินเทอร์เฟซผู้ใช้งาน และอาจสร้างความสับสนได้",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-24",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2192",
+      "module": "Admin", 
+      "page": "Tenant and Building Access" ,
+      "description": "ในหน้า Tenant and Building Access เมื่อเข้าสู่ระบบด้วย บทบาท Tenant Admin แล้วคลิกเข้าจากเมนู Tenant Info แม้ผู้ใช้ ยังไม่ได้แก้ไขข้อมูลใด ๆ เลย แต่ระบบกลับแสดง Modal แจ้งเตือน",
+      "severity": "Medium",
+      "status": "Completed",
+      "reportedDate": "2025-04-24",
+      "closedDate": "2025-04-25"  
+    },
+    {
+      "issueId": "OFX-2193",
+      "module": "Admin", 
+      "page": "App Users and Admins" ,
+      "description": "ในหน้า App Users and Admins Filter Accessible building ตอนนี้แสดงเป็น รหัสอาคาร (Building Code) ซึ่งไม่ตรงกับข้อมูลที่แสดงในคอลัมน์ Accessible building ของตาราง",
+      "severity": "Medium",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-24",
+      "closedDate": null
+    },
+    {
+      "issueId": "OFX-2196",
+      "module": "Admin", 
+      "page": "App Users and Admins" ,
+      "description": "ในหน้า App Users and Admins กรณีที่ผู้ใช้ Login ด้วย Role Tenant Admin ระบบควรทำการ ตั้งค่า Filter Company เป็นชื่อบริษัทของผู้ใช้แบบอัตโนมัติ และ ปิดการใช้งาน (Disable) การเลือกบริษัท",
+      "severity": "Medium",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-24",
+      "closedDate": null
+    },
+    {
+      "issueId": "OFX-2197",
+      "module": "Admin", 
+      "page": "Tenant and Building Access" ,
+      "description": "ในหน้า Tenant and Building Access ส่วนของ Allowed email domains หากมีการลบ Email Domain ที่ถูกใช้งานโดยผู้ใช้งานที่มีสถานะ Active หรือ Inactive ระบบควรแสดง Modal แจ้งเตือนทันที ตอนที่ผู้ใช้กดปุ่มลบ (ไอคอนลบ) ไม่ใช่ตอนกด Save",
+      "severity": "High",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-24",
+      "closedDate": null
+    },
+    {
+      "issueId": "OFX-2203",
+      "module": "BE", 
+      "page": "Create Account" ,
+      "description": "เดิม BE ต้องการให้ส่งข้อมูล floor เสมอ แต่จะปรับแก้ให้สามารถไม่ส่ง floor ได้ และต้องแน่ใจว่า user คนนั้นจะต้องแสดงใน user list เสมอ แม้ไม่มี floor",
+      "severity": "High",
+      "status": "Ready To Test",
+      "reportedDate": "2025-04-24",
+      "closedDate": "2025-04-25"
+    },
+    {
+      "issueId": "OFX-2204",
+      "module": "BE", 
+      "page": "Create Account" ,
+      "description": "ในหน้า Create Account ระบบอนุญาตให้สร้างบัญชีผู้ใช้โดยใช้อีเมลเดียวกันซ้ำได้ โดยเพียงแค่เปลี่ยน Role เช่น สร้างผู้ใช้ Role: User ด้วยอีเมล Tassana.khr@gmail.com ได้สำเร็จ และสามารถสร้าง Role: Tenant Admin ด้วยอีเมลเดียวกันอีกครั้งได้ ทำให้หน้า User List แสดงรายการผู้ใช้ซ้ำกัน โดยต่างกันแค่ Role ซึ่งไม่ควรเกิดขึ้น",
+      "severity": "High",
+      "status": "Ready To Test",
+      "reportedDate": "2025-04-24",
+      "closedDate": "2025-04-25"
+    },
+    {
+      "issueId": "OFX-2206",
+      "module": "Admin", 
+      "page": "System Admin" ,
+      "description": "ในหน้า Create User Admin และ Edit User Admin กรณีสร้างผู้ใช้งานที่มีสิทธิ์เข้าถึง Office Building เมื่อเลือก Building ไปแล้ว กดสร้างผู้ใช้งาน จากนั้นกลับมาแก้ไขข้อมูลอีกครั้ง Building ที่เลือกไว้กลับไม่แสดง",
+      "severity": "High",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-25",
+      "closedDate": null
+    },
+    {
+      "issueId": "OFX-2207",
+      "module": "BE", 
+      "page": "System Admin" ,
+      "description": "ในหน้า Create User Admin และ Edit User Admin กรณีสร้างผู้ใช้งานที่มีสิทธิ์เข้าถึง Office Building เมื่อเลือก Building ไปแล้ว กดสร้างผู้ใช้งาน จากนั้นกลับมาแก้ไขข้อมูลอีกครั้ง Building ที่เลือกไว้กลับไม่แสดง",
+      "severity": "High",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-25",
+      "closedDate": null
+    },
+    {
+      "issueId": "OFX-2208",
+      "module": "Admin", 
+      "page": "Account Details" ,
+      "description": "ในหน้ารายละเอียดบัญชี (Account Details) ส่วน Building access permissions ขณะนี้ระบบแสดงพฤติกรรมไม่สอดคล้องกับ UX ที่กำหนด โดยพบว่า ทุกตึกที่มีสิทธิ์เข้าถึงจะแสดงในรูปแบบ ตารางยุบ (collapse) โดยค่าเริ่มต้นทั้งหมด ถึงแม้ว่า toggle จะอยู่ในสถานะเปิด (Active) แล้วก็ตาม ตารางก็ไม่ถูก ขยาย (expand) โดยอัตโนมัติ ซึ่งจริง ๆ แล้วพฤติกรรมที่ถูกต้องควรเป็น หาก toggle อยู่ในสถานะ เปิด (Active) → ต้อง (Expand) รายการชั้นออกมาโดยอัตโนมัติ หาก toggle อยู่ในสถานะ ปิด (Inactive) → ต้อง (Collapse) ไว้เป็นค่าเริ่มต้น",
+      "severity": "Medium",
+      "status": "Ready To dav",
+      "reportedDate": "2025-04-25",
+      "closedDate": null
+    }
+  ],
+  "lastUpdated": "2025-04-13 15:45:30"
+} 

@@ -1,0 +1,577 @@
+    <!-- Module Testing Status - Advanced UI -->
+    <div class="relative bg-gradient-to-b from-gray-900 to-black rounded-xl border border-gray-700 p-6 mb-6 shadow-xl shadow-black/20 hover:shadow-2xl transition-all duration-500 overflow-hidden">
+      <!-- Decorative Elements -->
+      <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full -mt-16 -mr-16 z-0"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-purple-500/5 rounded-full -mb-32 -ml-32 z-0"></div>
+      
+      <div class="relative z-[10]">
+        <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 pb-6 border-b border-gray-700">
+          <div class="flex items-center space-x-4 mb-4 lg:mb-0">
+            <!-- Glow Effect Container -->
+            <div class="relative group">
+              <div class="absolute -inset-0.5 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg blur opacity-30 group-hover:opacity-70 transition duration-500"></div>
+              <div class="relative bg-gradient-to-br from-indigo-600 to-purple-700 p-3 rounded-lg text-white shadow-lg shadow-indigo-600/20 group-hover:shadow-indigo-600/40 transition duration-300">
+                <i class="ri-apps-2-line text-2xl"></i>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold text-white tracking-tight flex items-center">
+                Module Testing Status
+                <span class="ml-3 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-900/30 text-indigo-300 border border-indigo-800/30">
+                  <i class="ri-dashboard-line mr-1"></i>
+                  <span id="module-coverage-percent">76%</span>
+                </span>
+              </h3>
+              <p class="text-sm text-gray-400 mt-1">สถานะการทดสอบแยกตามโมดูลหลักของระบบ</p>
+            </div>
+          </div>
+          
+          <!-- Statistics Summary -->
+          <div class="flex flex-wrap gap-3 mb-4 lg:mb-0">
+            <div class="bg-gray-800/70 rounded-lg flex items-center px-3 py-2 border border-gray-700">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center bg-green-900/50 mr-2">
+                <i class="ri-check-line text-green-400"></i>
+              </div>
+              <div>
+                <div class="text-xs text-gray-400">Pass Rate</div>
+                <div id="overall-pass-rate" class="text-white font-medium">68%</div>
+              </div>
+            </div>
+            <div class="bg-gray-800/70 rounded-lg flex items-center px-3 py-2 border border-gray-700">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center bg-blue-900/50 mr-2">
+                <i class="ri-time-line text-blue-400"></i>
+              </div>
+              <div>
+                <div class="text-xs text-gray-400">Progress</div>
+                <div id="overall-progress" class="text-white font-medium">76%</div>
+              </div>
+            </div>
+            <div class="bg-gray-800/70 rounded-lg flex items-center px-3 py-2 border border-gray-700">
+              <div class="w-8 h-8 rounded-full flex items-center justify-center bg-red-900/50 mr-2">
+                <i class="ri-close-line text-red-400"></i>
+              </div>
+              <div>
+                <div class="text-xs text-gray-400">Failure Rate</div>
+                <div id="overall-failure-rate" class="text-white font-medium">12%</div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap gap-2">
+            <!-- Search Box -->
+            <div class="relative lg:min-w-[180px] mr-1">
+              <input id="module-search" type="text" placeholder="ค้นหาโมดูล..." class="w-full py-2 pl-9 pr-3 text-sm bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500/40 focus:outline-none transition-colors">
+              <i class="ri-search-line absolute left-3 top-2.5 text-gray-500"></i>
+            </div>
+            
+            <!-- Filter Dropdown -->
+            <div class="dropdown relative">
+              <button class="dropdown-toggle text-sm bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 px-3 py-2 rounded-lg transition-colors flex items-center space-x-1 shadow-sm focus:ring-2 focus:ring-indigo-500/40 focus:outline-none">
+                <i class="ri-filter-3-line mr-1.5"></i>
+                <span>แสดงทั้งหมด</span>
+                <i class="ri-arrow-down-s-line ml-1.5"></i>
+              </button>
+              <div class="dropdown-menu hidden py-2 rounded-lg bg-gray-800 border border-gray-700 w-48 shadow-lg z-10 absolute right-0 mt-1">
+                <p class="px-4 py-1 text-xs text-gray-400 border-b border-gray-700">กรองผลการทดสอบ</p>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-restart-line mr-2 text-gray-500"></i>
+                  <span>ทั้งหมด</span>
+                </a>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-check-double-line mr-2 text-green-500"></i>
+                  <span>Pass 100%</span>
+                </a>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-error-warning-line mr-2 text-red-500"></i>
+                  <span>มีการ Fail</span>
+                </a>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-timer-line mr-2 text-blue-500"></i>
+                  <span>กำลังทดสอบ</span>
+                </a>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-pause-circle-line mr-2 text-yellow-500"></i>
+                  <span>รอการทดสอบ</span>
+                </a>
+              </div>
+            </div>
+            
+            <!-- Advanced View Options -->
+            <div class="dropdown relative">
+              <button class="dropdown-toggle text-sm bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 px-3 py-2 rounded-lg transition-colors flex items-center space-x-1 shadow-sm focus:ring-2 focus:ring-indigo-500/40 focus:outline-none">
+                <i class="ri-dashboard-line mr-1.5"></i>
+                <span>มุมมอง</span>
+                <i class="ri-arrow-down-s-line ml-1.5"></i>
+              </button>
+              <div class="dropdown-menu hidden py-2 rounded-lg bg-gray-800 border border-gray-700 w-48 shadow-lg z-10 absolute right-0 mt-1">
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-table-line mr-2 text-purple-500"></i>
+                  <span>ตาราง</span>
+                </a>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-bar-chart-grouped-line mr-2 text-blue-500"></i>
+                  <span>แผนภูมิ</span>
+                </a>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-bubble-chart-line mr-2 text-green-500"></i>
+                  <span>Bubble View</span>
+                </a>
+                <a href="#" class="block text-sm py-2 px-4 text-gray-300 hover:bg-gray-700 hover:text-white transition-colors flex items-center">
+                  <i class="ri-list-check mr-2 text-amber-500"></i>
+                  <span>เฉพาะรายละเอียด</span>
+                </a>
+              </div>
+            </div>
+              
+            <!-- Export Button -->
+            <button class="text-sm bg-gradient-to-r from-indigo-600 to-purple-700 text-white px-4 py-2 rounded-lg hover:from-indigo-700 hover:to-purple-800 transition-all duration-300 font-medium shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/40 hover:-translate-y-0.5 focus:ring-2 focus:ring-indigo-500/50 focus:outline-none flex items-center">
+              <i class="ri-file-excel-line mr-1.5"></i> Export Report
+            </button>
+          </div>
+        </div>
+        
+        <!-- Testing Progress Overview -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <!-- Progress Chart Card -->
+          <div class="md:col-span-2 bg-gray-800/60 rounded-xl border border-gray-700 p-4 relative overflow-hidden flex flex-col">
+            <h4 class="text-sm font-medium text-gray-300 mb-2">Testing Progress Overview</h4>
+            
+            <!-- SVG Circle Chart -->
+            <div class="flex-1 flex items-center justify-center relative">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="text-center">
+                  <div id="testing-progress-value" class="text-3xl font-bold text-white">76%</div>
+                  <div class="text-xs text-gray-400">Completed</div>
+                </div>
+              </div>
+              
+              <!-- Circle Chart -->
+              <svg width="180" height="180" viewBox="0 0 180 180">
+                <!-- Background Circle -->
+                <circle cx="90" cy="90" r="80" fill="none" stroke="#374151" stroke-width="16" />
+                
+                <!-- Passed Tests (Green) -->
+                <circle cx="90" cy="90" r="80" fill="none" stroke="#10B981" stroke-width="16" stroke-dasharray="503" stroke-dashoffset="161" transform="rotate(-90 90 90)" />
+                
+                <!-- Failed Tests (Red) -->
+                <circle cx="90" cy="90" r="80" fill="none" stroke="#EF4444" stroke-width="16" stroke-dasharray="503" stroke-dashoffset="442" stroke-dashoffset="503" transform="rotate(-90 90 90)" style="stroke-dashoffset: 442;" />
+                
+                <!-- In Progress Tests (Blue) -->
+                <circle cx="90" cy="90" r="80" fill="none" stroke="#3B82F6" stroke-width="16" stroke-dasharray="503" stroke-dashoffset="402" transform="rotate(-90 90 90)" />
+                
+                <!-- Not Started Tests (Gray) -->
+                <circle cx="90" cy="90" r="80" fill="none" stroke="#6B7280" stroke-width="16" stroke-dasharray="503" stroke-dashoffset="382" transform="rotate(-90 90 90)" />
+              </svg>
+            </div>
+            
+            <!-- Legend -->
+            <div class="flex flex-wrap justify-center mt-3 gap-3">
+              <div class="flex items-center">
+                <span class="inline-block w-3 h-3 rounded-full bg-green-500 mr-1.5"></span>
+                <span class="text-xs text-gray-300">Passed: <span class="font-semibold text-green-400">68%</span></span>
+              </div>
+              <div class="flex items-center">
+                <span class="inline-block w-3 h-3 rounded-full bg-red-500 mr-1.5"></span>
+                <span class="text-xs text-gray-300">Failed: <span class="font-semibold text-red-400">12%</span></span>
+              </div>
+              <div class="flex items-center">
+                <span class="inline-block w-3 h-3 rounded-full bg-blue-500 mr-1.5"></span>
+                <span class="text-xs text-gray-300">In Progress: <span class="font-semibold text-blue-400">8%</span></span>
+              </div>
+              <div class="flex items-center">
+                <span class="inline-block w-3 h-3 rounded-full bg-gray-500 mr-1.5"></span>
+                <span class="text-xs text-gray-300">Not Started: <span class="font-semibold text-gray-400">12%</span></span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Summary Stats -->
+          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-4 relative overflow-hidden">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center justify-center text-white shadow-sm mr-3">
+                <i class="ri-check-double-line"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-white">ผ่านการทดสอบ</h4>
+            </div>
+            <div class="ml-11">
+              <div class="flex items-center">
+                <span id="module-total-passed" class="text-2xl font-bold text-emerald-400 mr-2">264</span>
+                <span class="text-xs text-gray-400">test cases</span>
+              </div>
+              <div class="text-xs text-gray-400 mt-1">จากทั้งหมด <span id="module-grand-total" class="text-white">390</span> cases</div>
+              <div class="mt-3 bg-gray-700/50 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-gradient-to-r from-emerald-500 to-emerald-400 h-full rounded-full" style="width: 68%"></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-4 relative overflow-hidden">
+            <div class="flex items-center mb-2">
+              <div class="w-8 h-8 rounded-full bg-gradient-to-r from-red-500 to-rose-600 flex items-center justify-center text-white shadow-sm mr-3">
+                <i class="ri-close-circle-line"></i>
+              </div>
+              <h4 class="text-sm font-semibold text-white">ไม่ผ่านการทดสอบ</h4>
+            </div>
+            <div class="ml-11">
+              <div class="flex items-center">
+                <span id="module-total-failed" class="text-2xl font-bold text-red-400 mr-2">47</span>
+                <span class="text-xs text-gray-400">test cases</span>
+              </div>
+              <div id="module-failed-percent" class="text-xs text-red-400 mt-1">12% ของ test cases ทั้งหมด</div>
+              <div class="mt-3 flex justify-between text-xs text-gray-500">
+                <span>Critical: <span class="text-red-400">18</span></span>
+                <span>Major: <span class="text-orange-400">21</span></span>
+                <span>Minor: <span class="text-yellow-400">8</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Advanced Table with Enhanced Features -->
+        <div class="rounded-xl border border-gray-700 overflow-hidden bg-gray-800/50 shadow-lg mb-6">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-gray-800/90 text-gray-300 text-xs uppercase font-medium border-b border-gray-700">
+                  <th class="py-3 px-4 text-left">
+                    <div class="flex items-center">
+                      <span>Module</span>
+                      <i class="ri-arrow-down-s-line ml-1 text-gray-500"></i>
+                    </div>
+                  </th>
+                  <th class="py-3 px-4 text-left">Description</th>
+                  <th class="py-3 px-4 text-center">Total</th>
+                  <th class="py-3 px-4 text-center">Passed</th>
+                  <th class="py-3 px-4 text-center">Failed</th>
+                  <th class="py-3 px-4 text-center">Blocked</th>
+                  <th class="py-3 px-4 text-center">In Progress</th>
+                  <th class="py-3 px-4 text-center">Not Started</th>
+                  <th class="py-3 px-4 text-center">Pass Rate</th>
+                  <th class="py-3 px-4 text-left">Remark</th>
+                </tr>
+              </thead>
+              <tbody id="module-testing-table" class="divide-y divide-gray-700">
+                <!-- Data will be filled by JavaScript -->
+                <!-- Example Row for Visual Reference -->
+                <tr class="hover:bg-gray-700/50 transition-colors duration-150 group">
+                  <td class="py-3 px-4 text-white font-medium">
+                    <div class="flex items-center">
+                      <i class="ri-login-circle-line mr-2 text-blue-400"></i>
+                      <span class="group-hover:text-indigo-400 transition-colors">Authentication</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-gray-400 max-w-xs truncate">
+                    <div class="flex items-center">
+                      <span class="truncate">User login, registration and authentication functionality</span>
+                      <button class="ml-2 text-gray-500 hover:text-gray-300 focus:outline-none transition-colors" title="View Details">
+                        <i class="ri-information-line"></i>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-center text-white font-medium">48</td>
+                  <td class="py-3 px-4 text-center text-green-400 font-medium">42</td>
+                  <td class="py-3 px-4 text-center text-red-400 font-medium">3</td>
+                  <td class="py-3 px-4 text-center text-amber-400 font-medium">1</td>
+                  <td class="py-3 px-4 text-center text-blue-400 font-medium">2</td>
+                  <td class="py-3 px-4 text-center text-gray-400 font-medium">0</td>
+                  <td class="py-3 px-4 text-center">
+                    <div class="flex items-center justify-center">
+                      <div class="w-16 bg-gray-700 rounded-full h-1.5 mr-2">
+                        <div class="bg-green-500 h-1.5 rounded-full" style="width: 88%"></div>
+                      </div>
+                      <span class="text-green-400 font-medium">88%</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-gray-400">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-yellow-900/20 text-yellow-400 border border-yellow-800/30">
+                      <i class="ri-alert-line mr-1"></i> OAuth issues
+                    </span>
+                  </td>
+                </tr>
+                <tr class="hover:bg-gray-700/50 transition-colors duration-150 group">
+                  <td class="py-3 px-4 text-white font-medium">
+                    <div class="flex items-center">
+                      <i class="ri-user-settings-line mr-2 text-purple-400"></i>
+                      <span class="group-hover:text-indigo-400 transition-colors">User Profile</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-gray-400 max-w-xs truncate">
+                    <div class="flex items-center">
+                      <span class="truncate">Profile management, settings and preferences</span>
+                      <button class="ml-2 text-gray-500 hover:text-gray-300 focus:outline-none transition-colors" title="View Details">
+                        <i class="ri-information-line"></i>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-center text-white font-medium">56</td>
+                  <td class="py-3 px-4 text-center text-green-400 font-medium">42</td>
+                  <td class="py-3 px-4 text-center text-red-400 font-medium">8</td>
+                  <td class="py-3 px-4 text-center text-amber-400 font-medium">0</td>
+                  <td class="py-3 px-4 text-center text-blue-400 font-medium">4</td>
+                  <td class="py-3 px-4 text-center text-gray-400 font-medium">2</td>
+                  <td class="py-3 px-4 text-center">
+                    <div class="flex items-center justify-center">
+                      <div class="w-16 bg-gray-700 rounded-full h-1.5 mr-2">
+                        <div class="bg-green-500 h-1.5 rounded-full" style="width: 75%"></div>
+                      </div>
+                      <span class="text-green-400 font-medium">75%</span>
+                    </div>
+                  </td>
+                  <td class="py-3 px-4 text-gray-400">
+                    <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-900/20 text-red-400 border border-red-800/30">
+                      <i class="ri-error-warning-line mr-1"></i> Image upload failing
+                    </span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <!-- Pagination and Status -->
+          <div class="flex flex-col md:flex-row justify-between items-center py-4 px-6 bg-gray-800 border-t border-gray-700">
+            <div class="flex items-center mb-4 md:mb-0">
+              <span class="text-xs text-gray-400 mr-3">Page 1 of 2</span>
+              <div class="flex space-x-1 items-center">
+                <button class="w-8 h-8 flex items-center justify-center rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300 transition-colors">
+                  <i class="ri-arrow-left-s-line"></i>
+                </button>
+                <button class="w-8 h-8 flex items-center justify-center rounded-md bg-gradient-to-r from-indigo-600 to-purple-700 text-white shadow-sm">1</button>
+                <button class="w-8 h-8 flex items-center justify-center rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300 transition-colors">2</button>
+                <button class="w-8 h-8 flex items-center justify-center rounded-md bg-gray-700 hover:bg-gray-600 text-gray-300 transition-colors">
+                  <i class="ri-arrow-right-s-line"></i>
+                </button>
+              </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-4 text-xs text-gray-400">
+              <div class="flex items-center">
+                <span class="inline-block w-3 h-3 rounded-full bg-green-500 mr-1.5"></span>
+                <span>Passed: <span id="module-total-passed-count" class="font-semibold text-green-400">264</span></span>
+              </div>
+              <div class="flex items-center">
+                <span class="inline-block w-3 h-3 rounded-full bg-red-500 mr-1.5"></span>
+                <span>Failed: <span id="module-total-failed-count" class="font-semibold text-red-400">47</span></span>
+              </div>
+              <div class="flex items-center">
+                <span class="inline-block w-3 h-3 rounded-full bg-blue-500 mr-1.5"></span>
+                <span>In Progress: <span id="module-total-progress-count" class="font-semibold text-blue-400">31</span></span>
+              </div>
+              <div class="flex items-center ml-4 pl-4 border-l border-gray-600">
+                <i class="ri-time-line mr-1.5 text-blue-400"></i>
+                <span>อัพเดทล่าสุด: <span id="module-last-updated" class="font-semibold text-blue-400">${LAST_UPDATED}</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Most Problematic Modules -->
+        <div class="bg-gray-800/60 rounded-xl border border-gray-700 p-4 relative overflow-hidden">
+          <h4 class="text-sm font-medium text-white mb-3 flex items-center">
+            <i class="ri-error-warning-line mr-2 text-amber-500"></i>
+            โมดูลที่มีปัญหามากที่สุด
+          </h4>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="bg-gray-800/80 rounded-lg border border-gray-700 p-3 relative overflow-hidden">
+              <div class="flex justify-between items-start mb-2">
+                <div class="flex items-center">
+                  <i class="ri-user-settings-line text-lg text-purple-400 mr-2"></i>
+                  <span class="text-white font-medium">User Profile</span>
+                </div>
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-900/20 text-red-400 border border-red-800/30">
+                  <i class="ri-error-warning-line mr-1"></i> High
+                </span>
+              </div>
+              <div class="mt-2 text-xs text-gray-400">
+                <div class="flex justify-between mb-1">
+                  <span>Failure Rate:</span>
+                  <span class="text-red-400">14.3%</span>
+                </div>
+                <div class="flex justify-between mb-1">
+                  <span>Failed Test Cases:</span>
+                  <span class="text-white">8</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Critical Issues:</span>
+                  <span class="text-red-400">3</span>
+                </div>
+              </div>
+              <div class="mt-3 text-xs text-gray-500">
+                Primary issue: Image upload functionality failing
+              </div>
+            </div>
+            
+            <div class="bg-gray-800/80 rounded-lg border border-gray-700 p-3 relative overflow-hidden">
+              <div class="flex justify-between items-start mb-2">
+                <div class="flex items-center">
+                  <i class="ri-bank-card-line text-lg text-green-400 mr-2"></i>
+                  <span class="text-white font-medium">Payment</span>
+                </div>
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-900/20 text-red-400 border border-red-800/30">
+                  <i class="ri-error-warning-line mr-1"></i> High
+                </span>
+              </div>
+              <div class="mt-2 text-xs text-gray-400">
+                <div class="flex justify-between mb-1">
+                  <span>Failure Rate:</span>
+                  <span class="text-red-400">12.8%</span>
+                </div>
+                <div class="flex justify-between mb-1">
+                  <span>Failed Test Cases:</span>
+                  <span class="text-white">10</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Critical Issues:</span>
+                  <span class="text-red-400">4</span>
+                </div>
+              </div>
+              <div class="mt-3 text-xs text-gray-500">
+                Primary issue: Payment gateway integration errors
+              </div>
+            </div>
+            
+            <div class="bg-gray-800/80 rounded-lg border border-gray-700 p-3 relative overflow-hidden">
+              <div class="flex justify-between items-start mb-2">
+                <div class="flex items-center">
+                  <i class="ri-inbox-archive-line text-lg text-amber-400 mr-2"></i>
+                  <span class="text-white font-medium">Inventory</span>
+                </div>
+                <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-amber-900/20 text-amber-400 border border-amber-800/30">
+                  <i class="ri-alert-line mr-1"></i> Medium
+                </span>
+              </div>
+              <div class="mt-2 text-xs text-gray-400">
+                <div class="flex justify-between mb-1">
+                  <span>Failure Rate:</span>
+                  <span class="text-amber-400">11.5%</span>
+                </div>
+                <div class="flex justify-between mb-1">
+                  <span>Failed Test Cases:</span>
+                  <span class="text-white">7</span>
+                </div>
+                <div class="flex justify-between">
+                  <span>Critical Issues:</span>
+                  <span class="text-red-400">1</span>
+                </div>
+              </div>
+              <div class="mt-3 text-xs text-gray-500">
+                Primary issue: Stock synchronization inconsistencies
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Module Testing Status -->
+
+    <!-- JavaScript for Module Testing Status -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize dropdowns
+        const initDropdowns = () => {
+          const dropdowns = document.querySelectorAll('.dropdown');
+          
+          dropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.dropdown-toggle');
+            const menu = dropdown.querySelector('.dropdown-menu');
+            
+            if (toggle && menu) {
+              toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // Close all other dropdowns first
+                dropdowns.forEach(otherDropdown => {
+                  if (otherDropdown !== dropdown) {
+                    const otherMenu = otherDropdown.querySelector('.dropdown-menu');
+                    if (otherMenu && !otherMenu.classList.contains('hidden')) {
+                      otherMenu.classList.add('hidden');
+                    }
+                  }
+                });
+                
+                // Toggle current dropdown
+                menu.classList.toggle('hidden');
+                
+                // Add animation
+                if (!menu.classList.contains('hidden')) {
+                  menu.style.opacity = '0';
+                  menu.style.transform = 'translateY(-10px)';
+                  setTimeout(() => {
+                    menu.style.opacity = '1';
+                    menu.style.transform = 'translateY(0)';
+                    menu.style.transition = 'opacity 150ms ease-out, transform 150ms ease-out';
+                  }, 10);
+                }
+              });
+            }
+          });
+          
+          // Close all dropdowns when clicking outside
+          document.addEventListener('click', function(e) {
+            dropdowns.forEach(dropdown => {
+              const toggle = dropdown.querySelector('.dropdown-toggle');
+              const menu = dropdown.querySelector('.dropdown-menu');
+              
+              if (toggle && menu && !dropdown.contains(e.target)) {
+                menu.classList.add('hidden');
+              }
+            });
+          });
+        };
+        
+        // Initialize all dropdowns
+        initDropdowns();
+        
+        // Search functionality
+        const searchInput = document.getElementById('module-search');
+        if (searchInput) {
+          searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#module-testing-table tr');
+            
+            rows.forEach(row => {
+              const moduleCell = row.querySelector('td:first-child');
+              if (moduleCell) {
+                const moduleName = moduleCell.textContent.toLowerCase();
+                if (moduleName.includes(searchTerm)) {
+                  row.style.display = '';
+                } else {
+                  row.style.display = 'none';
+                }
+              }
+            });
+          });
+        }
+        
+        // Row hover effect
+        const tableRows = document.querySelectorAll('#module-testing-table tr');
+        tableRows.forEach(row => {
+          row.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(3px)';
+          });
+          
+          row.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(0)';
+          });
+        });
+        
+        // Pagination functionality
+        const paginationButtons = document.querySelectorAll('.pagination button');
+        if (paginationButtons.length) {
+          paginationButtons.forEach(button => {
+            button.addEventListener('click', function() {
+              // This would normally fetch data for the selected page
+              console.log('Pagination clicked');
+            });
+          });
+        }
+        
+        // In a real implementation, this would fetch data from an API or backend
+        // For now, we'll simulate the data loading with a timeout
+        setTimeout(() => {
+          console.log('Module testing data loaded');
+          // Additional functionality could be added here
+        }, 500);
+      });
+    </script>

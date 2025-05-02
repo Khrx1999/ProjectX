@@ -1,0 +1,280 @@
+    <!-- ======== Enhanced Navbar ======== -->
+    <div class="py-3 px-6 bg-gradient-to-r from-gray-900 to-black border-b border-gray-800/50 flex items-center sticky top-0 left-0 z-30 shadow-lg shadow-black/20 backdrop-blur-md">
+      <!-- Sidebar Toggle (Mobile) -->
+      <button 
+        type="button" 
+        id="sidebar-toggle" 
+        class="relative text-lg text-white hover:text-indigo-400 transition-colors duration-300 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-2 focus:ring-offset-gray-900 rounded-lg p-1.5 group"
+        aria-label="Toggle sidebar menu"
+        aria-expanded="false"
+        aria-controls="sidebar"
+      >
+        <i class="ri-menu-2-line" aria-hidden="true"></i>
+        <span class="absolute -bottom-1 left-1/2 w-0 h-0.5 bg-indigo-500 group-hover:w-full group-hover:left-0 transition-all duration-300"></span>
+      </button>
+      
+      <!-- Breadcrumb -->
+      <nav class="ml-4 flex items-center" aria-label="Breadcrumb">
+        <ol class="flex items-center space-x-2">
+          <li>
+            <a href="#dashboard" class="text-sm text-gray-400 hover:text-indigo-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-1 focus:ring-offset-gray-900 rounded px-1 py-0.5 flex items-center group">
+              <i class="ri-home-4-line mr-1.5 text-indigo-500 group-hover:animate-pulse"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <i class="ri-arrow-right-s-line mx-2 text-gray-600" aria-hidden="true"></i>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <span class="text-sm font-medium text-white breadcrumb-text flex items-center">
+                <i class="ri-dashboard-line mr-1.5 text-indigo-400"></i>
+                Dashboard
+              </span>
+              <!-- Badge -->
+              <span class="ml-2 text-xs font-medium bg-indigo-900/50 text-indigo-300 px-1.5 py-0.5 rounded-full border border-indigo-800/50">
+                v1.0.0
+              </span>
+            </div>
+          </li>
+        </ol>
+      </nav>
+
+      <!-- Navbar Right -->
+      <ul class="ml-auto flex items-center space-x-2">
+        <!-- Search Button -->
+        <li>
+          <div class="relative group">
+            <button 
+              type="button" 
+              id="search-toggle"
+              class="p-2 text-gray-300 rounded-lg bg-gray-800/70 hover:bg-gray-700/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-1 focus:ring-offset-gray-900"
+              aria-label="Search"
+            >
+              <i class="ri-search-line text-lg group-hover:text-indigo-400 transition-colors duration-300" aria-hidden="true"></i>
+            </button>
+            
+            <!-- Search Panel (Hidden by default) -->
+            <div id="search-panel" class="hidden absolute right-0 mt-2 w-72 bg-gray-800 border border-gray-700 rounded-lg shadow-xl overflow-hidden z-40">
+              <div class="p-3">
+                <div class="relative">
+                  <input 
+                    type="text" 
+                    placeholder="Search..." 
+                    class="w-full bg-gray-900/70 border border-gray-700 text-white px-4 py-2 pl-10 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                  >
+                  <i class="ri-search-line absolute left-3 top-3 text-gray-500"></i>
+                </div>
+                <div class="mt-2 text-xs text-gray-400">Recent searches: <span class="text-indigo-400">test summary, defects, regressions</span></div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <!-- Notification Button -->
+        <li>
+          <div class="relative group">
+            <button 
+              type="button" 
+              id="notification-toggle"
+              class="relative p-2 text-gray-300 rounded-lg bg-gray-800/70 hover:bg-gray-700/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-1 focus:ring-offset-gray-900"
+              aria-label="Notifications"
+            >
+              <i class="ri-notification-3-line text-lg group-hover:text-indigo-400 transition-colors duration-300" aria-hidden="true"></i>
+              <span class="absolute top-1 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-pulse" aria-hidden="true"></span>
+            </button>
+            
+            <!-- Include Notifications Component -->
+            {% include 'partials/notifications.html' %}
+          </div>
+        </li>
+
+        <!-- Dark Mode Toggle -->
+        <li>
+          <button 
+            id="dark-mode-toggle" 
+            type="button" 
+            class="p-2 text-gray-300 rounded-lg bg-gray-800/70 hover:bg-gray-700/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-1 focus:ring-offset-gray-900 relative overflow-hidden"
+            aria-label="Toggle Dark Mode"
+          >
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <i class="ri-sun-line text-lg hover:text-indigo-400 transition-colors duration-300" aria-hidden="true"></i>
+          </button>
+        </li>
+
+        <!-- Fullscreen Button -->
+        <li>
+          <button 
+            id="fullscreen-button" 
+            type="button" 
+            class="p-2 text-gray-300 rounded-lg bg-gray-800/70 hover:bg-gray-700/80 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-1 focus:ring-offset-gray-900"
+            aria-label="Toggle fullscreen"
+          >
+            <i class="ri-fullscreen-line text-lg hover:text-indigo-400 transition-colors duration-300" aria-hidden="true"></i>
+          </button>
+        </li>
+        
+        <!-- User Profile Button -->
+        <li class="relative group">
+          <button 
+            type="button"
+            class="flex items-center focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:ring-offset-1 focus:ring-offset-gray-900 rounded-lg transition-all duration-300 ease-in-out"
+            aria-label="User Profile"
+          >
+            <div class="flex-shrink-0 relative">
+              <div class="p-1 bg-gray-800/80 rounded-full border-2 border-gray-700 group-hover:border-indigo-600/50 transition-colors duration-300">
+                <img 
+                  loading="lazy" 
+                  class="w-8 h-8 rounded-full" 
+                  src="https://laravelui.spruko.com/tailwind/ynex/build/assets/images/faces/9.jpg" 
+                  alt="User profile picture"
+                />
+                <div class="top-0 right-0 absolute w-3 h-3 bg-emerald-400 border-2 border-gray-900 rounded-full animate-pulse" aria-hidden="true"></div>
+              </div>
+            </div>
+            <div class="p-2 md:block text-left">
+              <h2 class="text-sm font-semibold text-white group-hover:text-indigo-400 transition-colors duration-300">{{ NAME }}</h2>
+              <p class="text-xs text-gray-400">QA Lead</p>
+            </div>
+          </button>
+        </li>
+      </ul>
+    </div>
+    <!-- ======== End Enhanced Navbar ======== -->
+
+    <!-- JavaScript for Navbar Functionality -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Sidebar Toggle Functionality - ที่ปรับปรุงแล้ว
+        const sidebarToggle = document.getElementById('sidebar-toggle');
+        
+        if (sidebarToggle) {
+          // ตรวจสอบว่ามีบัคที่ทำให้ addEventListener ถูกเรียกซ้ำซ้อนหรือไม่
+          if (sidebarToggle.hasAttribute('data-event-attached')) {
+            console.log('Event already attached to sidebar toggle button');
+          } else {
+            // ตั้งค่า event ให้ปุ่มเปิด/ปิด sidebar เฉพาะเมื่อยังไม่มีการกำหนด event ไว้
+            sidebarToggle.addEventListener('click', function(e) {
+              e.stopPropagation(); // ป้องกันการ bubble ของ event
+              
+              // เรียกใช้ฟังก์ชัน toggleSidebar ที่กำหนดไว้ใน main_scripts.html
+              if (typeof window.toggleSidebar === 'function') {
+                window.toggleSidebar();
+                console.log('Toggle sidebar from navbar');
+              } else {
+                console.error('toggleSidebar function not found!');
+              }
+            });
+            
+            // ตั้งค่า attribute เพื่อป้องกันการกำหนด event ซ้ำซ้อน
+            sidebarToggle.setAttribute('data-event-attached', 'true');
+          }
+        }
+        
+        // Fullscreen functionality
+        const fullscreenButton = document.getElementById('fullscreen-button');
+        const fullscreenIcon = fullscreenButton.querySelector('i');
+        
+        // Function to toggle fullscreen
+        const toggleFullscreen = () => {
+          if (!document.fullscreenElement) {
+            // Enter fullscreen
+            if (document.documentElement.requestFullscreen) {
+              document.documentElement.requestFullscreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+              document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+              document.documentElement.msRequestFullscreen();
+            }
+            fullscreenIcon.classList.replace('ri-fullscreen-line', 'ri-fullscreen-exit-line');
+          } else {
+            // Exit fullscreen
+            if (document.exitFullscreen) {
+              document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+              document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+              document.msExitFullscreen();
+            }
+            fullscreenIcon.classList.replace('ri-fullscreen-exit-line', 'ri-fullscreen-line');
+          }
+        };
+        
+        // ตั้งค่า event listener ให้กับปุ่ม Fullscreen โดยป้องกันการกำหนดซ้ำ
+        if (fullscreenButton && !fullscreenButton.hasAttribute('data-event-attached')) {
+          fullscreenButton.addEventListener('click', toggleFullscreen);
+          fullscreenButton.setAttribute('data-event-attached', 'true');
+        }
+
+        // Handle fullscreen change event
+        document.addEventListener('fullscreenchange', () => {
+          if (!document.fullscreenElement) {
+            fullscreenIcon.classList.replace('ri-fullscreen-exit-line', 'ri-fullscreen-line');
+          }
+        });
+
+        // Handle ESC key press
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && document.fullscreenElement) {
+            toggleFullscreen();
+          }
+        });
+        
+        // Toggle search panel
+        const searchToggle = document.getElementById('search-toggle');
+        const searchPanel = document.getElementById('search-panel');
+        
+        if (searchToggle && searchPanel) {
+          searchToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            searchPanel.classList.toggle('hidden');
+            
+            // Close other panels
+            if (document.getElementById('notification-panel')) document.getElementById('notification-panel').classList.add('hidden');
+          });
+        }
+        
+        // Toggle notification panel
+        const notificationToggle = document.getElementById('notification-toggle');
+        const notificationPanel = document.getElementById('notification-panel');
+        
+        if (notificationToggle && notificationPanel) {
+          notificationToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            notificationPanel.classList.toggle('hidden');
+            
+            // Close other panels
+            if (document.getElementById('search-panel')) document.getElementById('search-panel').classList.add('hidden');
+          });
+        }
+        
+        // Close panels when clicking outside
+        document.addEventListener('click', function(e) {
+          if (searchPanel && !searchToggle.contains(e.target) && !searchPanel.contains(e.target)) {
+            searchPanel.classList.add('hidden');
+          }
+          
+          if (notificationPanel && !notificationToggle.contains(e.target) && !notificationPanel.contains(e.target)) {
+            notificationPanel.classList.add('hidden');
+          }
+        });
+        
+        // Dark mode toggle logic (basic implementation)
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const darkModeIcon = darkModeToggle.querySelector('i');
+        
+        if (darkModeToggle) {
+          darkModeToggle.addEventListener('click', function() {
+            // Toggle between sun and moon icons
+            if (darkModeIcon.classList.contains('ri-sun-line')) {
+              darkModeIcon.classList.replace('ri-sun-line', 'ri-moon-line');
+            } else {
+              darkModeIcon.classList.replace('ri-moon-line', 'ri-sun-line');
+            }
+            
+            // Here you would toggle your dark mode class on the document
+            // document.documentElement.classList.toggle('dark');
+          });
+        }
+      });
+    </script>
